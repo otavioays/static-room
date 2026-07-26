@@ -1,0 +1,55 @@
+:root {
+  --early-web-blue: #000080;
+}
+
+/* Early-internet hover language: classic navy blue, immediate and unpolished. */
+a:hover,
+a:focus-visible,
+button:hover,
+button:focus-visible,
+.product-open:hover .product-title,
+.product-open:focus-visible .product-title,
+.document-links a:hover,
+.document-links a:focus-visible,
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--early-web-blue);
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible,
+.utilities a:hover,
+.utilities a:focus-visible,
+.utilities button:hover,
+.utilities button:focus-visible,
+.filter-button:hover,
+.filter-button:focus-visible,
+.sort-label select:hover,
+.sort-label select:focus-visible {
+  color: var(--early-web-blue);
+  text-decoration-thickness: 2px;
+}
+
+.logo:hover,
+.logo:focus-visible {
+  color: var(--early-web-blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.grid-add:hover:not(:disabled),
+.drawer-add:hover:not(:disabled),
+.checkout:hover {
+  color: var(--early-web-blue);
+  background: #fff;
+  border-color: var(--early-web-blue);
+}
+
+.cart-item button:hover,
+.cart-item button:focus-visible,
+.search-row button:hover,
+.search-row button:focus-visible,
+.announcement button:hover,
+.announcement button:focus-visible {
+  color: var(--early-web-blue);
+}
