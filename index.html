@@ -3,289 +3,131 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#efe7d2" />
-  <meta name="description" content="Static Room Industries. Soluções para problemas que ninguém possui." />
-  <title>Static Room Industries — Ideias indefensáveis, executadas corretamente</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Inter+Tight:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="Static Room. Objetos para situações que não exigiam um objeto." />
+  <title>Static Room — Ideias indefensáveis</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="paper-noise" aria-hidden="true"></div>
-  <div class="side-rail left"><span class="rail-text">STATIC ROOM · DEPARTAMENTO DE IDEIAS INDEFENSÁVEIS</span></div>
-  <div class="side-rail right"><span class="rail-text">CATÁLOGO Nº 001 · FABRICADO COM SERIEDADE DESNECESSÁRIA</span></div>
-
-  <div class="shell">
-    <div class="site-chrome" data-chrome-headroom="true">
-      <div class="utility-strip">
-        <div class="container utility-inner">
-          <span><b>SR / 2026</b> · EMPRESA OPERACIONAL</span>
-          <span class="utility-marquee" aria-hidden="true"><span>ENVIO NACIONAL PARA OBJETOS QUE NÃO DEVERIAM EXISTIR</span></span>
-          <span><span class="status-dot"></span> SISTEMAS INJUSTIFICADAMENTE ATIVOS</span>
-        </div>
-      </div>
-
-      <header class="main-nav container">
-        <a href="#inicio" class="wordmark" aria-label="Static Room Industries">
-          <span class="wordmark-main">STATIC ROOM</span>
-          <span class="wordmark-sub">INDUSTRIES</span>
-        </a>
-        <nav aria-label="Navegação principal">
-          <a href="#catalogo">Produtos</a>
-          <a href="#departamentos">Departamentos</a>
-          <a href="#qualidade">Controle de qualidade</a>
-          <a href="#documentacao">Documentação</a>
-        </nav>
-        <button class="cart-trigger" id="cartTrigger" type="button" aria-expanded="false" aria-controls="cartDrawer">
-          CARRINHO <span id="cartCount">0</span>
-        </button>
-      </header>
-    </div>
-
-    <main id="inicio">
-      <section class="hero container">
-        <div class="hero-copy">
-          <p class="kicker">Uma empresa extremamente séria dedicada a ideias indefensáveis.</p>
-          <h1 class="display">SOLUÇÕES PARA<br />PROBLEMAS QUE<br /><em>NINGUÉM POSSUI.</em></h1>
-          <p class="hero-deck">Objetos desnecessários desenvolvidos, testados, embalados e enviados com um nível de seriedade difícil de justificar.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#catalogo">CONSULTAR CATÁLOGO</a>
-            <a class="btn btn-secondary" href="#processo">VER PROCESSO INDUSTRIAL</a>
-          </div>
-          <dl class="hero-meta">
-            <div><dt>Responsabilidade</dt><dd>Limitada</dd></div>
-            <div><dt>Utilidade média</dt><dd>0,7%</dd></div>
-            <div><dt>Aprovação interna</dt><dd>1 pessoa</dd></div>
-          </dl>
-        </div>
-
-        <article class="hero-object" aria-labelledby="heroProductTitle">
-          <div class="object-frame">
-            <div class="object-label">SR-001 / UNIDADE DE RETENÇÃO ALIMENTAR</div>
-            <svg class="object-illustration" viewBox="0 0 720 700" role="img" aria-label="Suporte individual para uma batata frita">
-              <defs>
-                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="14" dy="18" stdDeviation="0" flood-color="#16140f"/></filter>
-                <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#c8c2b4"/><stop offset=".45" stop-color="#f8f4e8"/><stop offset="1" stop-color="#878276"/></linearGradient>
-              </defs>
-              <rect x="82" y="60" width="556" height="560" rx="2" fill="#f5eed9" stroke="#16140f" stroke-width="4"/>
-              <g filter="url(#shadow)">
-                <ellipse cx="360" cy="545" rx="155" ry="52" fill="url(#metal)" stroke="#16140f" stroke-width="5"/>
-                <rect x="332" y="300" width="56" height="230" fill="url(#metal)" stroke="#16140f" stroke-width="5"/>
-                <path d="M280 286 Q360 215 440 286 L416 340 Q360 307 304 340 Z" fill="#ed6f5c" stroke="#16140f" stroke-width="5"/>
-                <rect x="344" y="120" width="31" height="220" rx="5" transform="rotate(4 360 230)" fill="#e9b94a" stroke="#16140f" stroke-width="5"/>
-              </g>
-              <g font-family="JetBrains Mono, monospace" font-size="17" fill="#16140f">
-                <path d="M470 160 H585" stroke="#16140f" stroke-width="2"/>
-                <text x="480" y="148">BATATA SELECIONADA</text>
-                <path d="M420 370 H590" stroke="#16140f" stroke-width="2"/>
-                <text x="450" y="397">ZONA DE ISOLAMENTO</text>
-                <path d="M205 515 H110" stroke="#16140f" stroke-width="2"/>
-                <text x="110" y="500">BASE DESNECESSÁRIA</text>
-              </g>
-            </svg>
-            <div class="object-stamp">APROVADO<br />INTERNAMENTE</div>
-          </div>
-          <div class="hero-product-info">
-            <div>
-              <span class="product-code">PRODUTO EM DESTAQUE</span>
-              <h2 id="heroProductTitle">SUPORTE INDIVIDUAL PARA BATATA FRITA</h2>
-              <p>Impede que uma batata específica entre em contato com as demais.</p>
-            </div>
-            <div class="hero-buy">
-              <strong>R$ 39,90</strong>
-              <button type="button" class="btn add-to-cart" data-product="Suporte Individual para Batata Frita" data-price="39.90">PROTEGER BATATA</button>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <div class="old-web-strip" aria-hidden="true">
-        <div class="old-web-track">
-          <span>★ CATÁLOGO OFICIAL ★</span><span>NÃO EMPILHÁVEL</span><span>BATATA NÃO INCLUSA</span><span>GARANTIA CONTRA NECESSIDADE REAL</span><span>★ CATÁLOGO OFICIAL ★</span><span>NÃO EMPILHÁVEL</span><span>BATATA NÃO INCLUSA</span><span>GARANTIA CONTRA NECESSIDADE REAL</span>
-        </div>
-      </div>
-
-      <section id="catalogo" class="catalog-section container">
-        <header class="section-header editorial-header">
-          <div>
-            <p class="section-index">01 / CATÁLOGO ATUAL</p>
-            <h2 class="display">PROBLEMAS<br />RECENTEMENTE<br />INVENTADOS.</h2>
-          </div>
-          <p>Uma seleção de soluções desenvolvidas para situações que ainda não justificavam desenvolvimento de produto.</p>
-        </header>
-
-        <div class="product-grid">
-          <article class="product-card product-card-large">
-            <div class="product-media media-coral">
-              <span class="media-code">SR-004</span>
-              <svg viewBox="0 0 620 570" aria-hidden="true">
-                <rect x="60" y="50" width="500" height="470" fill="#f7f1de" stroke="#15140f" stroke-width="5"/>
-                <rect x="145" y="260" width="330" height="185" rx="30" fill="#6e7448" stroke="#15140f" stroke-width="7"/>
-                <circle cx="225" cy="455" r="45" fill="#15140f"/><circle cx="395" cy="455" r="45" fill="#15140f"/>
-                <path d="M295 270 L300 138 L420 100" fill="none" stroke="#15140f" stroke-width="18"/>
-                <ellipse cx="455" cy="95" rx="95" ry="55" fill="#9fc6d8" stroke="#15140f" stroke-width="6" transform="rotate(-8 455 95)"/>
-                <text x="92" y="95" font-family="JetBrains Mono, monospace" font-size="18">CAMPO VISUAL TRASEIRO</text>
-              </svg>
-            </div>
-            <div class="product-info">
-              <span class="product-code">SR-004 / MOBILIÁRIO DE VIGILÂNCIA</span>
-              <h3>Espelho retrovisor para cadeira de escritório</h3>
-              <p>Monitore acontecimentos atrás de você sem abandonar sua planilha.</p>
-              <div class="product-purchase"><strong>R$ 89,90</strong><button type="button" class="add-to-cart" data-product="Espelho Retrovisor para Cadeira" data-price="89.90">MONITORAR RETAGUARDA</button></div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-media media-mustard">
-              <span class="media-code">SR-009</span>
-              <svg viewBox="0 0 520 520" aria-hidden="true">
-                <rect x="78" y="95" width="364" height="330" fill="#ed6f5c" stroke="#15140f" stroke-width="7"/>
-                <path d="M78 180 L260 275 L442 180" fill="none" stroke="#15140f" stroke-width="7"/>
-                <rect x="160" y="205" width="200" height="160" fill="#f7f1de" stroke="#15140f" stroke-width="6"/>
-                <path d="M160 255 L260 310 L360 255" fill="none" stroke="#15140f" stroke-width="6"/>
-                <text x="130" y="72" font-family="JetBrains Mono, monospace" font-size="18">EMERGÊNCIA NÍVEL 2</text>
-              </svg>
-            </div>
-            <div class="product-info">
-              <span class="product-code">SR-009 / CONTENÇÃO RECURSIVA</span>
-              <h3>Caixa de emergência contendo outra caixa</h3>
-              <p>A segunda caixa deve ser utilizada caso a primeira seja insuficiente.</p>
-              <div class="product-purchase"><strong>R$ 54,90</strong><button type="button" class="add-to-cart" data-product="Caixa de Emergência Recursiva" data-price="54.90">ABRIR EMERGÊNCIA</button></div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-media media-blue">
-              <span class="media-code">SR-012</span>
-              <svg viewBox="0 0 520 520" aria-hidden="true">
-                <rect x="110" y="75" width="300" height="385" rx="12" fill="#2a2620" stroke="#15140f" stroke-width="7"/>
-                <rect x="135" y="120" width="250" height="290" fill="#f7f1de" stroke="#15140f" stroke-width="5"/>
-                <g stroke="#15140f" stroke-width="3"><line x1="155" y1="175" x2="365" y2="175"/><line x1="155" y1="225" x2="365" y2="225"/><line x1="155" y1="275" x2="365" y2="275"/><line x1="155" y1="325" x2="365" y2="325"/></g>
-                <path d="M195 128 C185 185 230 200 214 255 C200 310 245 340 225 405" fill="none" stroke="#ed6f5c" stroke-width="12"/>
-                <text x="145" y="445" fill="#f7f1de" font-family="JetBrains Mono, monospace" font-size="17">RECIBOS IMPORTANTES</text>
-              </svg>
-            </div>
-            <div class="product-info">
-              <span class="product-code">SR-012 / ARQUIVO AFETIVO</span>
-              <h3>Carteira para recibos emocionalmente importantes</h3>
-              <p>Proteção dedicada para comprovantes que você não consegue jogar fora.</p>
-              <div class="product-purchase"><strong>R$ 69,90</strong><button type="button" class="add-to-cart" data-product="Carteira para Recibos Emocionais" data-price="69.90">ARMAZENAR RECIBO</button></div>
-            </div>
-          </article>
-
-          <article class="product-card product-card-wide">
-            <div class="product-media media-olive">
-              <span class="media-code">SR-017</span>
-              <svg viewBox="0 0 820 480" aria-hidden="true">
-                <rect x="110" y="45" width="600" height="380" fill="#f7f1de" stroke="#15140f" stroke-width="7"/>
-                <rect x="110" y="45" width="600" height="86" fill="#ed6f5c" stroke="#15140f" stroke-width="7"/>
-                <text x="160" y="105" font-family="Inter Tight, sans-serif" font-size="45" font-weight="800">CALENDÁRIO</text>
-                <text x="180" y="300" font-family="Playfair Display, serif" font-size="108" font-style="italic">terça-feira</text>
-                <text x="200" y="365" font-family="JetBrains Mono, monospace" font-size="18">REPETIR ATÉ O FIM DO ANO</text>
-              </svg>
-            </div>
-            <div class="product-info">
-              <span class="product-code">SR-017 / GESTÃO TEMPORAL REDUZIDA</span>
-              <h3>Calendário composto exclusivamente por terças-feiras</h3>
-              <p>Organize o ano utilizando o único dia que a equipe conseguiu aprovar.</p>
-              <div class="product-purchase"><strong>R$ 47,90</strong><button type="button" class="add-to-cart" data-product="Calendário Só de Terças" data-price="47.90">PLANEJAR TERÇA</button></div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section id="departamentos" class="campaign-section">
-        <div class="campaign-split container">
-          <div class="campaign-copy">
-            <p class="section-index">02 / DEPARTAMENTOS</p>
-            <h2 class="display">A PIOR IDEIA<br />É ENCAMINHADA<br />À MELHOR EQUIPE.</h2>
-            <p>Dividimos a operação em áreas especializadas para garantir que nenhuma oportunidade de desistir seja aproveitada.</p>
-            <a href="#processo" class="text-link">CONSULTAR FLUXO DE APROVAÇÃO ↗</a>
-          </div>
-          <div class="department-board">
-            <article><span>01</span><h3>Pesquisa de problemas inexistentes</h3><p>Identificação de desconfortos que ninguém havia percebido.</p></article>
-            <article><span>02</span><h3>Engenharia desproporcional</h3><p>Desenvolvimento de mecanismos incompatíveis com a importância da tarefa.</p></article>
-            <article><span>03</span><h3>Justificativa institucional</h3><p>Criação de documentos para defender o que não possui defesa.</p></article>
-            <article><span>04</span><h3>Logística da punchline</h3><p>Transformação de uma conversa ruim em código de rastreamento.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section id="processo" class="process-section container">
-        <header class="section-header compact-header">
-          <p class="section-index">03 / PROCESSO DE DESENVOLVIMENTO</p>
-          <h2 class="display">DA IDEIA RUIM<br />À RESPONSABILIDADE LOGÍSTICA.</h2>
-        </header>
-        <ol class="process-list">
-          <li><span>01</span><h3>IDENTIFICAR</h3><p>Encontramos uma situação que não constitui um problema.</p></li>
-          <li><span>02</span><h3>COMPLICAR</h3><p>Desenvolvemos uma solução muito maior que a situação.</p></li>
-          <li><span>03</span><h3>IGNORAR</h3><p>Desconsideramos todos os sinais técnicos, financeiros e sociais para parar.</p></li>
-          <li><span>04</span><h3>FABRICAR</h3><p>Produzimos o objeto com materiais e acabamento constrangedoramente bons.</p></li>
-          <li><span>05</span><h3>DOCUMENTAR</h3><p>Escrevemos um manual porque o objeto piora quando é explicado.</p></li>
-          <li><span>06</span><h3>ENTREGAR</h3><p>A compra conclui a punchline e transfere a responsabilidade para você.</p></li>
-        </ol>
-      </section>
-
-      <section id="qualidade" class="quality-section">
-        <div class="container quality-grid">
-          <div class="quality-copy">
-            <p class="section-index">04 / CONTROLE DE QUALIDADE</p>
-            <h2 class="display">APROVADO PARA<br />SITUAÇÕES QUE<br />NÃO EXIGEM ISTO.</h2>
-            <p>Todos os produtos passam por um protocolo interno de utilidade reversa antes de serem considerados comercialmente indefensáveis.</p>
-          </div>
-          <div class="inspection-form">
-            <header><span>FORMULÁRIO SR-QA-00</span><strong>RESULTADO: APROVADO</strong></header>
-            <div class="inspection-row"><span>Teste de existência</span><b>PASSOU</b></div>
-            <div class="inspection-row"><span>Necessidade comprovada</span><b>NÃO ENCONTRADA</b></div>
-            <div class="inspection-row"><span>Importância percebida</span><b>EXCESSIVA</b></div>
-            <div class="inspection-row"><span>Chance de explicação constrangedora</span><b>96,4%</b></div>
-            <div class="inspection-row"><span>Aprovação por pessoa habilitada</span><b>INCONCLUSIVA</b></div>
-            <div class="inspection-signature"><span>Assinatura do responsável</span><em>ilegível</em></div>
-            <div class="quality-stamp">QUALIDADE<br />DESNECESSÁRIA</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="documentacao" class="documentation-section container">
-        <header class="section-header editorial-header">
-          <div><p class="section-index">05 / DOCUMENTAÇÃO PÚBLICA</p><h2 class="display">RELATÓRIOS DE<br />PROPRIETÁRIOS.</h2></div>
-          <p>Ocorrências registradas após a transferência financeira da responsabilidade.</p>
-        </header>
-        <div class="testimonials-grid">
-          <blockquote><p>“Minha família perguntou por que eu comprei. O produto funcionou exatamente como esperado.”</p><footer>PROTOCOLO #00291 · SÃO PAULO</footer></blockquote>
-          <blockquote><p>“Chegou em perfeito estado, infelizmente.”</p><footer>PROTOCOLO #00304 · CURITIBA</footer></blockquote>
-          <blockquote><p>“Eu não precisava disso antes e continuo não precisando.”</p><footer>PROTOCOLO #00317 · RECIFE</footer></blockquote>
-          <blockquote><p>“Comprei para dar de presente. Decidi ficar. Agora tenho outro problema.”</p><footer>PROTOCOLO #00388 · BELO HORIZONTE</footer></blockquote>
-        </div>
-      </section>
-
-      <section class="final-cta">
-        <div class="container final-cta-grid">
-          <div><p class="section-index">CATÁLOGO Nº 001</p><h2 class="display">COISAS QUE NÃO<br />PRECISAVAM EXISTIR.<br /><em>AGORA PRECISAM SER ENTREGUES.</em></h2></div>
-          <div class="final-actions"><p>Transforme dinheiro em uma história ridícula com documentação fiscal.</p><a href="#catalogo" class="btn btn-primary">CONSULTAR PRODUTOS</a></div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand"><strong>STATIC ROOM INDUSTRIES</strong><p>Transformando ideias indefensáveis em responsabilidades logísticas desde 2026.</p></div>
-        <div><span>DEPARTAMENTOS</span><a href="#catalogo">Catálogo</a><a href="#processo">Processo</a><a href="#qualidade">Qualidade</a></div>
-        <div><span>INSTITUCIONAL</span><a href="#documentacao">Relatórios</a><a href="#">Termos inexplicavelmente longos</a><a href="#">Atendimento corporativo</a></div>
-        <div><span>PROTOCOLO</span><p>CNPJ: em espírito</p><p>Atendimento: terças</p><p>Utilidade: não garantida</p></div>
-      </div>
-      <div class="container footer-bottom"><span>© 2026 STATIC ROOM</span><span>UMA PIADA COM CÓDIGO DE RASTREAMENTO</span><a href="#inicio">VOLTAR AO INÍCIO ↑</a></div>
-    </footer>
+  <div class="announcement">
+    <p>Use o código “STATIC” para receber avisos do próximo drop de problemas inexistentes.</p>
+    <button type="button" id="announcementClose" aria-label="Fechar aviso">×</button>
   </div>
 
-  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-    <div class="cart-header"><div><span>FORMULÁRIO SR-CART</span><h2>RESPONSABILIDADES ADQUIRIDAS</h2></div><button id="cartClose" type="button" aria-label="Fechar carrinho">×</button></div>
-    <div id="cartItems" class="cart-items"><p class="empty-cart">Nenhuma decisão comercial foi tomada.</p></div>
-    <div class="cart-summary"><p>TOTAL <strong id="cartTotal">R$ 0,00</strong></p><button id="checkoutButton" type="button" class="btn btn-primary">FINALIZAR PUNCHLINE</button></div>
-  </aside>
-  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <header class="site-header">
+    <div class="header-main page-width">
+      <a class="logo" href="#top">STATIC ROOM</a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#catalogo">New</a><span>♬</span>
+        <a href="#catalogo">Shop All</a><span>♬</span>
+        <a href="#catalogo">Objects</a><span>♬</span>
+        <a href="#documentos">Documents</a>
+        <a href="#info">Info</a>
+      </nav>
+      <div class="utilities">
+        <button type="button" id="searchToggle">Search</button>
+        <a href="#info">Account</a>
+        <button type="button" class="currency">BR / BRL</button>
+        <button type="button" id="cartToggle">Cart (<span id="cartCount">0</span>)</button>
+      </div>
+    </div>
+    <div class="search-row page-width" id="searchRow" hidden>
+      <label for="searchInput">Search products</label>
+      <input id="searchInput" type="search" placeholder="Digite um problema que você não possui" autocomplete="off" />
+      <button type="button" id="searchClose">Close</button>
+    </div>
+  </header>
 
+  <main id="top">
+    <section class="catalog-intro page-width">
+      <h1>Uma empresa extremamente séria dedicada a ideias indefensáveis.</h1>
+      <p>Produtos desnecessários tratados com importância desproporcional.</p>
+    </section>
+
+    <section id="catalogo" class="catalog page-width">
+      <div class="catalog-toolbar">
+        <p><span id="visibleCount">0</span> products</p>
+        <div class="filters" role="group" aria-label="Filtrar produtos">
+          <button class="filter-button active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="available">Available</button>
+          <button class="filter-button" data-filter="sold">Sold out</button>
+        </div>
+        <label class="sort-label">Sort
+          <select id="sortSelect">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price, low to high</option>
+            <option value="price-desc">Price, high to low</option>
+            <option value="name">Alphabetically</option>
+          </select>
+        </label>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <p class="no-results" id="noResults" hidden>Nenhum produto corresponde ao problema pesquisado.</p>
+    </section>
+
+    <section id="documentos" class="document-strip page-width">
+      <h2>Documents</h2>
+      <div class="document-links">
+        <a href="#info">Manual geral de inutilidade</a>
+        <a href="#info">Política de substituição simbólica</a>
+        <a href="#info">Relatório interno de aprovação por uma pessoa</a>
+        <a href="#info">Tabela de situações que não exigiam produto</a>
+      </div>
+    </section>
+
+    <section id="info" class="info-page page-width">
+      <h2>Info</h2>
+      <p>STATIC ROOM FABRICA SOLUÇÕES PARA PROBLEMAS QUE NINGUÉM POSSUI.</p>
+      <p>A COMPRA É O ÚLTIMO ESTÁGIO DA PUNCHLINE.</p>
+      <ul>
+        <li>OBJETOS SÃO ENVIADOS EM ATÉ 7 DIAS ÚTEIS.</li>
+        <li>CONFIRA SEU ENDEREÇO ANTES DE TRANSFERIR A RESPONSABILIDADE.</li>
+        <li>VARIAÇÕES ENTRE UNIDADES PODEM OCORRER PORQUE A PRODUÇÃO TAMBÉM QUESTIONOU O PROJETO.</li>
+        <li>PRODUTOS ESGOTADOS PERMANECEM VISÍVEIS COMO REGISTRO DE DECISÕES PASSADAS.</li>
+        <li>CONTATO: DEPARTAMENTO@STATICROOM.COM.BR</li>
+      </ul>
+      <p>STATIC ROOM INDUSTRIES<br />UMA PIADA COM CÓDIGO DE RASTREAMENTO<br />BRASIL, 2026</p>
+    </section>
+  </main>
+
+  <footer class="site-footer page-width">
+    <span>© 2026 STATIC ROOM</span>
+    <span>Coisas que não precisavam existir. Agora precisam ser entregues.</span>
+    <a href="#top">Top</a>
+  </footer>
+
+  <aside class="drawer cart-drawer" id="cartDrawer" aria-hidden="true">
+    <header><h2>Your cart</h2><button type="button" id="cartClose" aria-label="Fechar carrinho">×</button></header>
+    <div class="drawer-body" id="cartItems"><p class="empty-message">Your cart is empty.</p></div>
+    <footer>
+      <p>Estimated total <strong id="cartTotal">R$ 0,00</strong></p>
+      <small>Taxes, discounts and shipping calculated at checkout.</small>
+      <button class="checkout" id="checkoutButton" type="button">CHECKOUT</button>
+    </footer>
+  </aside>
+
+  <aside class="drawer product-drawer" id="productDrawer" aria-hidden="true">
+    <header><p id="drawerProductId">SR-000</p><button type="button" id="productClose" aria-label="Fechar produto">×</button></header>
+    <div class="product-drawer-content">
+      <div class="drawer-gallery"><div id="drawerFront"></div><div id="drawerBack"></div></div>
+      <div class="drawer-product-panel">
+        <h2 id="drawerProductName"></h2>
+        <p class="drawer-price" id="drawerProductPrice"></p>
+        <p id="drawerProductStatus"></p>
+        <p id="drawerProductDesc"></p>
+        <p class="drawer-label">Variant</p>
+        <div class="variant-button" id="drawerProductVariants"></div>
+        <button class="drawer-add" id="drawerAdd" type="button">ADD TO CART</button>
+        <div class="drawer-description">
+          <p class="drawer-label">Technical information</p>
+          <ul id="drawerSpecs"></ul>
+          <p>Desenvolvido pela Static Room Industries. Cada unidade pode apresentar pequenas variações porque nenhum fornecedor entendeu completamente a solicitação.</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="backdrop" id="backdrop" hidden></div>
   <script src="script.js"></script>
 </body>
 </html>
