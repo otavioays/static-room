@@ -3,12 +3,219 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Static Room</title>
+  <meta name="theme-color" content="#f1e5d3" />
+  <meta name="description" content="Static Room. Uma empresa extremamente séria dedicada a ideias indefensáveis." />
+  <title>Static Room — Ideias indefensáveis</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main id="app" aria-label="Static Room"></main>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Static Room">
+      <img data-art="mark" alt="" />
+      <span>STATIC ROOM</span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="active" href="#inicio">início</a>
+      <a href="#catalogo">catálogo</a>
+      <a href="#manifesto">manifesto</a>
+      <a href="#arquivo">arquivo</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="round-icon spiral-button" type="button" aria-label="Abrir menu visual">◎</button>
+      <button class="round-icon face-button" type="button" aria-label="Sua conta">☺</button>
+      <button class="chaos-button" id="cartButton" type="button">
+        entre no caos <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <img class="hero-art" data-art="hero" alt="Colagem psicodélica da identidade visual Static Room" />
+      <div class="hero-vignette"></div>
+
+      <div class="hero-copy paper-slip">
+        <p>STATIC ROOM INDUSTRIES / CATÁLOGO 001</p>
+        <h1>Objetos que não precisavam existir.</h1>
+        <span>Agora precisam ser entregues.</span>
+      </div>
+
+      <a class="hero-cta" href="#catalogo">
+        consultar catálogo
+        <b>→</b>
+      </a>
+    </section>
+
+    <section class="motif-strip" aria-label="Elementos visuais Static Room">
+      <span>✷</span><span class="scribble">∿∿∿</span><span>◎</span><span>◉</span>
+      <span class="lizard">⌁</span><span>☺</span><span>✹</span><span class="scribble">〰〰</span>
+      <span>◉</span><span>✷</span><span>◎</span>
+    </section>
+
+    <section class="statement-grid">
+      <article>
+        <span class="statement-icon">☺</span>
+        <p>Você nunca quis ser <em>normal</em>.</p>
+      </article>
+      <article>
+        <span class="statement-icon">✦</span>
+        <p>Soluções para problemas que ninguém possui.</p>
+      </article>
+      <article>
+        <span class="statement-icon">◉</span>
+        <p>Quanto mais séria a execução, melhor a piada.</p>
+      </article>
+    </section>
+
+    <section class="catalog-section" id="catalogo">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">DROP 001 / PROBLEMAS RECENTEMENTE INVENTADOS</p>
+          <h2>A loja oficial das piores ideias executadas corretamente.</h2>
+        </div>
+        <div class="section-note">
+          <span>APROVADO INTERNAMENTE</span>
+          <strong>por uma pessoa</strong>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="product-image">
+            <img data-art="spiral" alt="Arte psicodélica em espiral" />
+            <span class="product-code">SR-001</span>
+            <span class="new-sticker">NEW!</span>
+          </div>
+          <div class="product-info">
+            <h3>Suporte Individual para Batata Frita</h3>
+            <p>Impede que uma batata específica entre em contato com as demais.</p>
+            <div class="product-bottom"><strong>R$ 39,90</strong><button data-add="Suporte Individual para Batata Frita">PROTEGER BATATA</button></div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">
+            <img data-art="head" alt="Cabeça em silhueta com ondas psicodélicas" />
+            <span class="product-code">SR-002</span>
+          </div>
+          <div class="product-info">
+            <h3>Porta-retrato para Fotos Ainda Não Tiradas</h3>
+            <p>Reserva espaço físico para uma memória que ainda não aconteceu.</p>
+            <div class="product-bottom"><strong>R$ 59,90</strong><button data-add="Porta-retrato para Fotos Ainda Não Tiradas">RESERVAR MEMÓRIA</button></div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">
+            <img data-art="room" alt="Sala surreal em perspectiva" />
+            <span class="product-code">SR-003</span>
+            <span class="hot-sticker">HOT</span>
+          </div>
+          <div class="product-info">
+            <h3>Caixa de Emergência Contendo Outra Caixa</h3>
+            <p>A segunda caixa deve ser usada caso a primeira seja insuficiente.</p>
+            <div class="product-bottom"><strong>R$ 54,90</strong><button data-add="Caixa de Emergência Contendo Outra Caixa">ABRIR EMERGÊNCIA</button></div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">
+            <img data-art="eyes" alt="Colagem de olhos em halftone" />
+            <span class="product-code">SR-004</span>
+          </div>
+          <div class="product-info">
+            <h3>Espelho Retrovisor para Cadeira de Escritório</h3>
+            <p>Monitore acontecimentos atrás de você sem abandonar sua planilha.</p>
+            <div class="product-bottom"><strong>R$ 89,90</strong><button data-add="Espelho Retrovisor para Cadeira de Escritório">MONITORAR RETAGUARDA</button></div>
+          </div>
+        </article>
+
+        <article class="product-card product-card-wide">
+          <div class="product-image">
+            <img data-art="cosmos" alt="Colagem cósmica da Static Room" />
+            <span class="product-code">SR-005</span>
+          </div>
+          <div class="product-info">
+            <h3>Carregador Portátil para Objetos sem Eletricidade</h3>
+            <p>Fornece energia armazenada a objetos estruturalmente incapazes de recebê-la.</p>
+            <div class="product-bottom"><strong>R$ 79,90</strong><button data-add="Carregador Portátil para Objetos sem Eletricidade">INICIAR CARGA</button></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto" id="manifesto">
+      <img data-art="banner" alt="Banner visual Static Room com lagartos e o símbolo SR" />
+      <div class="manifesto-copy">
+        <p class="eyebrow">MANIFESTO / UMA PIADA COM CNPJ</p>
+        <h2>Não vendemos coisas engraçadas.</h2>
+        <p>Vendemos o fato de que alguém levou uma ideia imbecil longe demais. Pesquisa, engenharia, embalagem, fotografia, estoque e código de rastreamento. Tudo dedicado ao que deveria ter morrido numa conversa às três da manhã.</p>
+        <a href="#catalogo">ver decisões comerciais →</a>
+      </div>
+    </section>
+
+    <section class="archive" id="arquivo">
+      <div class="archive-title">
+        <span>EDITORIAL ↓</span>
+        <h2>Pequenas anomalias para ambientes excessivamente normais.</h2>
+      </div>
+      <div class="archive-grid">
+        <div class="archive-tile"><img data-art="spiral" alt="" /><span>MIND / OBJECT</span></div>
+        <div class="archive-tile"><img data-art="head" alt="" /><span>IDENTIDADE MAL RESOLVIDA</span></div>
+        <div class="archive-tile"><img data-art="room" alt="" /><span>ENTER THE STATIC</span></div>
+        <div class="archive-tile"><img data-art="eyes" alt="" /><span>NOT FOR EVERYONE</span></div>
+      </div>
+    </section>
+
+    <section class="drop-banner">
+      <span class="drop-smiley">☺</span>
+      <div>
+        <small>PRÓXIMO DROP</small>
+        <h2>CAOS FASE 02</h2>
+      </div>
+      <p>11.08 — 23H59</p>
+      <a href="#newsletter">SEJA O PRIMEIRO A SABER →</a>
+      <span class="drop-star">✷</span>
+    </section>
+  </main>
+
+  <footer id="newsletter">
+    <div class="newsletter">
+      <div>
+        <p>ENTRE NO CAOS. FIQUE POR DENTRO.</p>
+        <form id="newsletterForm">
+          <input type="email" placeholder="seu e-mail aqui" aria-label="Seu e-mail" required />
+          <button type="submit">VAMO</button>
+        </form>
+        <span id="newsletterStatus" aria-live="polite"></span>
+      </div>
+      <span class="footer-face">☺</span>
+    </div>
+
+    <div class="footer-links">
+      <div><b>sobre</b><a href="#manifesto">manifesto</a><a href="#arquivo">arquivo</a></div>
+      <div><b>ajuda</b><a href="#">faq</a><a href="#">trocas & devoluções</a></div>
+      <div><b>legal</b><a href="#">termos</a><a href="#">privacidade</a></div>
+      <div><b>conecta</b><a href="#">@staticroom.br</a><a href="#">#notforeveryone</a></div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>STATIC ROOM INDUSTRIES © 2026</span>
+      <span>UMA EMPRESA EXTREMAMENTE SÉRIA DEDICADA A IDEIAS INDEFENSÁVEIS.</span>
+    </div>
+  </footer>
+
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart-head"><h2>Decisões adquiridas</h2><button id="cartClose" type="button">×</button></div>
+    <div id="cartItems" class="cart-items"><p>Nenhuma responsabilidade logística selecionada.</p></div>
+    <button class="cart-checkout" type="button">FINALIZAR PUNCHLINE</button>
+  </aside>
+  <div class="backdrop" id="backdrop" hidden></div>
+
   <script src="script.js"></script>
 </body>
 </html>
