@@ -11,24 +11,27 @@
 </head>
 <body>
   <div class="announcement">
-    <p>Use o código “STATIC” para receber avisos do próximo drop de problemas inexistentes.</p>
+    <div class="announcement-track">★ DROP 001 ONLINE ★ FRETE NACIONAL ★ OBJETOS QUE NÃO DEVERIAM EXISTIR ★ COMPRE ANTES QUE A EQUIPE RECONSIDERE ★</div>
     <button type="button" id="announcementClose" aria-label="Fechar aviso">×</button>
   </div>
 
   <header class="site-header">
     <div class="header-main page-width">
-      <a class="logo" href="#top">STATIC ROOM</a>
+      <a class="logo rainbow-logo" href="#top" aria-label="Static Room">
+        <span>S</span><span>T</span><span>A</span><span>T</span><span>I</span><span>C</span>
+        <span>&nbsp;</span>
+        <span>R</span><span>O</span><span>O</span><span>M</span>
+      </a>
       <nav class="main-nav" aria-label="Navegação principal">
         <a href="#catalogo">New</a><span>♬</span>
         <a href="#catalogo">Shop All</a><span>♬</span>
-        <a href="#catalogo">Objects</a><span>♬</span>
-        <a href="#documentos">Documents</a>
+        <a href="#como-funciona">How it works</a><span>♬</span>
+        <a href="#reviews">Guestbook</a>
         <a href="#info">Info</a>
       </nav>
       <div class="utilities">
         <button type="button" id="searchToggle">Search</button>
-        <a href="#info">Account</a>
-        <button type="button" class="currency">BR / BRL</button>
+        <span class="online-dot">●</span>
         <button type="button" id="cartToggle">Cart (<span id="cartCount">0</span>)</button>
       </div>
     </div>
@@ -40,105 +43,79 @@
   </header>
 
   <main id="top">
-    <section class="old-web-portal page-width" aria-labelledby="oldWebTitle">
-      <div class="rainbow-rule" aria-hidden="true"></div>
-
-      <h1 class="old-web-title" id="oldWebTitle" aria-label="Welcome To The Static Room Again">
-        <span class="rainbow-word rainbow-blue">Welcome</span>
-        <span class="rainbow-word rainbow-red">To</span>
-        <span class="rainbow-word rainbow-orange">The</span>
-        <span class="rainbow-word rainbow-green">Static</span>
-        <span class="rainbow-word rainbow-purple">Room</span>
-        <span class="rainbow-word rainbow-red">Again!</span>
-      </h1>
-
-      <div class="old-browser-box" aria-label="Simulação de navegador antigo">
-        <div class="retro-address-row">
-          <label for="retroUrl">http://</label>
-          <input id="retroUrl" value="staticroom.com" readonly />
-          <select aria-label="Ano do arquivo">
-            <option>1996</option>
-            <option>1998</option>
-            <option selected>2001</option>
-            <option>2003</option>
-          </select>
-          <a class="system-button" href="#catalogo">Go</a>
+    <section class="sales-hero page-width">
+      <div class="hero-copy-2000">
+        <div class="retro-meta-row">
+          <span class="visitor-counter-mini">007690934 visitors</span>
+          <span class="blinkie blinkie-blue">BEST VIEWED<br />1024×768</span>
+          <span class="blinkie blinkie-yellow">SECURE-ish<br />CHECKOUT</span>
         </div>
-        <div class="retro-address-row">
-          <input value="objetos que não deveriam existir" aria-label="Busca no arquivo" readonly />
-          <a class="system-button" href="#catalogo">Search Archives</a>
+
+        <p class="eyebrow">STATIC ROOM INDUSTRIES / EST. 2026</p>
+        <h1>Coisas que não precisavam existir.<br /><span>Agora precisam ser entregues.</span></h1>
+        <p class="hero-lead">Objetos estruturalmente idiotas, executados com um nível de cuidado que torna sua existência ainda mais difícil de justificar.</p>
+
+        <div class="hero-cta-row">
+          <a class="retro-cta" href="#catalogo">ENTER THE CATALOG</a>
+          <a class="text-cta" href="#como-funciona">Why does this exist?</a>
         </div>
-        <div class="visitor-counter" aria-label="Contador de visitantes">
-          <span>7,690,934 Visitors</span>
+
+        <ul class="sales-points">
+          <li><span>💾</span> Produtos físicos, realmente fabricados.</li>
+          <li><span>📦</span> Envio nacional com código de rastreamento.</li>
+          <li><span>🌀</span> Utilidade cultural maior que utilidade funcional.</li>
+        </ul>
+      </div>
+
+      <article class="featured-window">
+        <div class="window-titlebar">
+          <span>featured_product.exe</span>
+          <div><button type="button" aria-label="Minimizar">_</button><button type="button" aria-label="Maximizar">□</button><button type="button" aria-label="Fechar">×</button></div>
         </div>
-      </div>
-
-      <p class="lite-version"><span class="bulb-gif" aria-hidden="true">💡</span> checkout out the <a href="#catalogo">lite</a> version for low-memory systems</p>
-
-      <div class="construction-row" aria-label="Página em construção">
-        <span class="pixel-sign" aria-hidden="true">🚧</span>
-        <span class="hazard-tape"></span>
-        <strong>UNDER CONSTRUCTION</strong>
-        <span class="hazard-tape"></span>
-        <span class="pixel-sign mirror" aria-hidden="true">🚧</span>
-      </div>
-
-      <p class="portal-copy">
-        We are in the middle of updates to improve the industrial production of problems nobody has.<br />
-        We also migrated to a new server to improve performance and reliability.<br />
-        Please be patient, expect bugs and delays. Sign the Guestbook!
-      </p>
-
-      <div class="construction-row" aria-hidden="true">
-        <span class="pixel-sign">🚧</span>
-        <span class="hazard-tape"></span>
-        <strong>UNDER CONSTRUCTION</strong>
-        <span class="hazard-tape"></span>
-        <span class="pixel-sign mirror">🚧</span>
-      </div>
-
-      <div class="portal-links">
-        <a href="#guestbook-panel"><span class="book-gif" aria-hidden="true">📖✒️</span> Sign the Guestbook</a>
-        <a href="#chat-panel">Enter Chat Room <span class="chat-gif" aria-hidden="true">🖥️💬</span></a>
-      </div>
-
-      <div class="sponsor-line">
-        <span class="pixel-heart broken-left" aria-hidden="true">💔</span>
-        <p>Today's <a href="#catalogo">Sponsor</a> is Static Room Industries!</p>
-        <span class="pixel-heart broken-right" aria-hidden="true">💔</span>
-      </div>
-
-      <a class="retro-ad" href="#catalogo" aria-label="Anúncio falso do Modem Depot">
-        <span class="ad-badge">NEW!</span>
-        <span class="ad-icon" aria-hidden="true">☎️</span>
-        <span class="ad-copy"><b>The Modem Depot</b><small>FOR ALL YOUR VINTAGE CONNECTIVITY NEEDS!</small></span>
-        <span class="ad-price"><del>$199.99</del><b>$34.99!</b></span>
-      </a>
-
-      <div class="random-homepage-box">
-        <div class="random-logo"><span aria-hidden="true">🖥️</span><b>HOME<br />PAGES</b></div>
-        <p>Random Bad Ideas of the Day<br /><strong>12 of 29013</strong></p>
-        <div class="blinkie-row" aria-label="Selos antigos">
-          <span class="blinkie blinkie-blue">BEST VIEWED<br />800×600</span>
-          <span class="blinkie blinkie-yellow">MADE WITH<br />NOTEPAD</span>
-          <span class="blinkie blinkie-red">NO FLASH<br />REQUIRED</span>
-          <span class="blinkie blinkie-green">100% HUMAN<br />CONFUSION</span>
+        <div class="featured-window-body">
+          <div class="featured-sticker">NEW!</div>
+          <svg viewBox="0 0 600 520" role="img" aria-label="Suporte individual para batata frita">
+            <rect width="600" height="520" fill="#fff" />
+            <g stroke="#111" stroke-width="7">
+              <ellipse cx="300" cy="420" rx="118" ry="34" fill="#ddd" />
+              <rect x="279" y="255" width="42" height="160" fill="#e6e6e6" />
+              <path d="M235 270 Q300 208 365 270 L347 320 Q300 300 253 320 Z" fill="#ff7b66" />
+              <rect x="287" y="92" width="27" height="220" rx="8" transform="rotate(4 300 200)" fill="#f2c647" />
+            </g>
+            <text x="130" y="485" font-family="Times New Roman, serif" font-size="37">1 BATATA. 0 CONTATO.</text>
+          </svg>
+          <div class="featured-copy">
+            <span class="product-code-retro">SR-001 / AVAILABLE</span>
+            <h2>Suporte Individual para Batata Frita</h2>
+            <p>Impede que uma batata específica entre em contato com as demais.</p>
+            <strong>R$ 39,90</strong>
+            <a href="#catalogo" class="system-button-large">PROTEGER BATATA</a>
+          </div>
         </div>
-      </div>
-
-      <div class="pixel-junk-drawer" aria-hidden="true">
-        <span>💾</span><span>📟</span><span>📼</span><span>☎️</span><span>🖱️</span><span>🧃</span><span>💿</span><span>📠</span>
-      </div>
-
-      <div class="rainbow-rule bottom" aria-hidden="true"></div>
+      </article>
     </section>
 
-    <section class="catalog-intro page-width">
-      <h1>Uma empresa extremamente séria dedicada a ideias indefensáveis.</h1>
-      <p>Produtos desnecessários tratados com importância desproporcional.</p>
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">★ BATATA NÃO INCLUSA ★ APROVADO INTERNAMENTE POR UMA PESSOA ★ COMPRE ANTES QUE A IDEIA SEJA CANCELADA ★ PRODUTOS DESNECESSÁRIOS DESDE 2026 ★ BATATA NÃO INCLUSA ★ APROVADO INTERNAMENTE POR UMA PESSOA ★</div>
+    </div>
+
+    <section class="conversion-strip page-width" aria-label="Benefícios da loja">
+      <div class="conversion-item"><span class="pixel-icon">📦</span><div><b>OBJETOS REAIS</b><small>não são apenas estampas engraçadas</small></div></div>
+      <div class="conversion-item"><span class="pixel-icon">🎁</span><div><b>PRESENTES IMPOSSÍVEIS</b><small>ninguém prevê o que está dentro</small></div></div>
+      <div class="conversion-item"><span class="pixel-icon">💬</span><div><b>HISTÓRIA INSTANTÂNEA</b><small>“por que você tem isso?”</small></div></div>
+      <div class="conversion-item"><span class="pixel-icon">🧾</span><div><b>NOTA FISCAL</b><small>a decisão inexplicável fica documentada</small></div></div>
     </section>
 
     <section id="catalogo" class="catalog page-width">
+      <div class="catalog-heading">
+        <div>
+          <div class="tiny-badges"><span>NEW DROP</span><span class="construction-mini">⚠ STILL SHIPPING</span></div>
+          <h2>Problemas recentemente inventados</h2>
+          <p>Escolha uma solução. O problema será imaginado depois.</p>
+        </div>
+        <div class="counter-box"><small>VISITORS WHO QUESTIONED THIS</small><strong>7,690,934</strong></div>
+      </div>
+
       <div class="catalog-toolbar">
         <p><span id="visibleCount">0</span> products</p>
         <div class="filters" role="group" aria-label="Filtrar produtos">
@@ -159,46 +136,42 @@
       <p class="no-results" id="noResults" hidden>Nenhum produto corresponde ao problema pesquisado.</p>
     </section>
 
-    <section id="guestbook-panel" class="retro-panel page-width">
-      <div class="retro-panel-title">STATIC ROOM GUESTBOOK.EXE</div>
-      <div class="retro-panel-body guestbook-layout">
-        <div>
-          <h2>Sign the Guestbook!</h2>
-          <p>Tell the internet why you visited a store dedicated to preventable objects.</p>
-          <form class="retro-form" action="#guestbook-panel">
-            <label>Your name <input type="text" placeholder="anonymous_user_2001" /></label>
-            <label>Your homepage <input type="url" placeholder="http://" /></label>
-            <label>Message <textarea rows="4" placeholder="cool site!!!"></textarea></label>
-            <button type="submit">Submit Entry</button>
-          </form>
-        </div>
-        <div class="guestbook-entries">
-          <p><b>#0042 xX_darkangel_Xx:</b> why did you manufacture a holder for one cheetos. 10/10</p>
-          <p><b>#0041 modem_father:</b> page loaded in only 47 seconds. very fast.</p>
-          <p><b>#0040 visitante_sem_nome:</b> cheguei procurando uma pedra. saí com manual.</p>
-        </div>
+    <section class="banner-ad page-width">
+      <div class="ad-new">NEW!</div>
+      <span class="ad-emoji">☎️</span>
+      <div><strong>THE STATIC ROOM DEPOT</strong><small>OBJETOS PARA SITUAÇÕES QUE NÃO EXIGIAM UM OBJETO</small></div>
+      <div class="ad-offer"><del>SENSO COMUM</del><b>ESGOTADO!</b></div>
+    </section>
+
+    <section id="como-funciona" class="sales-process page-width">
+      <div class="section-title-2000">
+        <span class="pixel-icon">🖥️</span>
+        <div><p>HOW_IT_WORKS.HTML</p><h2>A compra é o último estágio da punchline.</h2></div>
+      </div>
+      <div class="process-grid">
+        <article><span>01</span><h3>Você vê</h3><p>O objeto parece profissional demais para ser uma piada.</p></article>
+        <article><span>02</span><h3>Você entende</h3><p>A função é completa, específica e completamente indefensável.</p></article>
+        <article><span>03</span><h3>Você compra</h3><p>Agora você é proprietário oficial da decisão comercial.</p></article>
       </div>
     </section>
 
-    <section id="chat-panel" class="retro-panel page-width">
-      <div class="retro-panel-title">STATIC ROOM CHAT ROOM — 4 USERS ONLINE</div>
-      <div class="retro-panel-body chat-room">
-        <p><b>[18:42] admin:</b> welcome to the official room</p>
-        <p><b>[18:43] potato_holder:</b> is the fry included?</p>
-        <p><b>[18:43] admin:</b> no</p>
-        <p><b>[18:44] receipt_keeper:</b> perfect</p>
-        <form class="chat-input" action="#chat-panel"><input type="text" placeholder="type message..." /><button type="submit">SEND</button></form>
+    <section id="reviews" class="guestbook-sales page-width">
+      <div class="window-titlebar"><span>guestbook_entries.txt</span><div><button type="button">_</button><button type="button">□</button><button type="button">×</button></div></div>
+      <div class="guestbook-sales-body">
+        <header><h2>What previous visitors typed</h2><span>4 USERS ONLINE ●</span></header>
+        <blockquote><b>#0042 xX_darkangel_Xx:</b> “Minha família perguntou por que eu comprei. O produto funcionou exatamente como esperado.”</blockquote>
+        <blockquote><b>#0041 modem_father:</b> “Chegou em perfeito estado, infelizmente.”</blockquote>
+        <blockquote><b>#0040 visitante_sem_nome:</b> “Eu não precisava disso antes e continuo não precisando.”</blockquote>
+        <blockquote><b>#0039 receipt_keeper:</b> “Comprei para dar de presente. Decidi ficar.”</blockquote>
       </div>
     </section>
 
-    <section id="documentos" class="document-strip page-width">
-      <h2>Documents</h2>
-      <div class="document-links">
-        <a href="#info">Manual geral de inutilidade</a>
-        <a href="#info">Política de substituição simbólica</a>
-        <a href="#info">Relatório interno de aprovação por uma pessoa</a>
-        <a href="#info">Tabela de situações que não exigiam produto</a>
-      </div>
+    <section class="faq-section page-width">
+      <h2>Frequently Asked Questions.gif</h2>
+      <details><summary>Isso realmente existe?</summary><p>Sim. Essa é a parte principal da piada.</p></details>
+      <details><summary>Os produtos funcionam?</summary><p>Funcionam exatamente para a tarefa desnecessária descrita.</p></details>
+      <details><summary>É uma loja de presentes engraçadinhos?</summary><p>Não. O humor está na engenharia do próprio objeto, não em uma frase aplicada a um produto comum.</p></details>
+      <details><summary>Vocês entregam no Brasil?</summary><p>Sim. Ideias indefensáveis também recebem código de rastreamento.</p></details>
     </section>
 
     <section id="info" class="info-page page-width">
@@ -208,7 +181,6 @@
       <ul>
         <li>OBJETOS SÃO ENVIADOS EM ATÉ 7 DIAS ÚTEIS.</li>
         <li>CONFIRA SEU ENDEREÇO ANTES DE TRANSFERIR A RESPONSABILIDADE.</li>
-        <li>VARIAÇÕES ENTRE UNIDADES PODEM OCORRER PORQUE A PRODUÇÃO TAMBÉM QUESTIONOU O PROJETO.</li>
         <li>PRODUTOS ESGOTADOS PERMANECEM VISÍVEIS COMO REGISTRO DE DECISÕES PASSADAS.</li>
         <li>CONTATO: DEPARTAMENTO@STATICROOM.COM.BR</li>
       </ul>
@@ -218,7 +190,7 @@
 
   <footer class="site-footer page-width">
     <span>© 2026 STATIC ROOM</span>
-    <span>Coisas que não precisavam existir. Agora precisam ser entregues.</span>
+    <span class="footer-blink">⚠ SITE PERMANENTEMENTE EM CONSTRUÇÃO</span>
     <a href="#top">Top</a>
   </footer>
 
