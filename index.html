@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f7efdc" />
+  <meta name="description" content="Static Room. Roupas encontradas em lugares que você nem lembra." />
+  <title>Static Room — not from here</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><span></span></div>
+
+  <div id="entry" class="entry-screen" aria-label="Entrada da Static Room">
+    <button class="entry-button" id="enterButton" type="button">
+      <span class="entry-kicker">não tente entender ainda</span>
+      <img data-asset="enter-room" alt="Enter the Room" />
+      <span class="entry-action">entrar mesmo assim ↘</span>
+    </button>
+  </div>
+
+  <header class="site-header">
+    <a class="mini-mark" href="#top" aria-label="Static Room, início"><span>SR</span></a>
+    <nav aria-label="Navegação principal">
+      <a href="#drop">drop</a>
+      <a href="#manifesto">não-manifesto</a>
+      <a href="#arquivo">arquivo</a>
+    </nav>
+    <button class="bag-button" id="bagButton" type="button" aria-expanded="false" aria-controls="bagPanel">bolsa <span id="bagCount">0</span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="orbit orbit-one" aria-hidden="true">NOT FROM HERE · NOT FOR EVERYONE · </div>
+      <div class="orbit orbit-two" aria-hidden="true">INHERITED, NOT GIVEN · STATIC ROOM · </div>
+      <p class="hero-note note-a">roupas que não pedem<br />sua atenção, mas recebem.</p>
+      <p class="hero-note note-b">um site.<br />ou um sintoma.</p>
+      <p class="hero-note note-c">11.05<br />23h59</p>
+      <div class="hero-symbol"><img data-asset="static-room-logo" alt="Static Room" /></div>
+      <h1 id="heroTitle"><span>STATIC</span><span>ROOM</span></h1>
+      <button class="sticker smile draggable" type="button" aria-label="Adesivo arrastável">☺</button>
+      <button class="sticker spark draggable" type="button" aria-label="Adesivo arrastável">✷</button>
+      <button class="sticker spiral draggable" type="button" aria-label="Adesivo arrastável">↻</button>
+      <button class="sticker question draggable" type="button" aria-label="Adesivo arrastável">?</button>
+      <a class="hero-cta" href="#drop"><span>ver o que apareceu</span><b>↓</b></a>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div><span>NOT FROM HERE</span><i>✹</i><span>100% CAOS</span><i>☺</i><span>HEAVYWEIGHT</span><i>↝</i><span>NÃO É SOBRE MODA</span><i>✷</i><span>NOT FROM HERE</span><i>✹</i><span>100% CAOS</span><i>☺</i><span>HEAVYWEIGHT</span><i>↝</i><span>NÃO É SOBRE MODA</span><i>✷</i></div></div>
+
+    <section id="drop" class="drop-section" aria-labelledby="dropTitle">
+      <header class="section-intro">
+        <p>não é coleção. foi encontrado assim.</p>
+        <h2 id="dropTitle">drop<br /><em>novo</em></h2>
+        <span>quantidade limitada como tudo que é bom</span>
+      </header>
+      <div class="product-stage">
+        <article class="product-card product-a" data-product="Camiseta Static Room 01" data-price="189">
+          <div class="product-art art-a"><img data-asset="sr-monogram" alt="Arte circular SR em rosa, lilás e amarelo" /></div>
+          <div class="product-meta"><p>SR–001 / heavyweight</p><h3>peça que finge ser camiseta</h3><div><span>R$ 189</span><button class="add-button" type="button">levar</button></div></div>
+        </article>
+        <article class="product-card product-b" data-product="Camiseta Todo Online" data-price="219">
+          <div class="product-art art-b"><img data-asset="todo-online" alt="Arte Todo Online" /></div>
+          <div class="product-meta"><p>SR–002 / boxy</p><h3>todo online, ninguém presente</h3><div><span>R$ 219</span><button class="add-button" type="button">levar</button></div></div>
+        </article>
+        <article class="product-card product-c" data-product="Poster Enter the Room" data-price="79">
+          <div class="product-art art-c"><img data-asset="enter-room" alt="Arte Enter the Room" /></div>
+          <div class="product-meta"><p>SR–003 / papel estranho</p><h3>entrada para uma sala que não existe</h3><div><span>R$ 79</span><button class="add-button" type="button">levar</button></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="manifesto" class="manifesto" aria-labelledby="manifestoTitle">
+      <div class="manifesto-eye" aria-hidden="true"></div>
+      <p class="manifesto-label">isto não é um manifesto porque manifestos explicam demais.</p>
+      <h2 id="manifestoTitle">você nunca quis ser <span>NORMAL</span><br />então por que se vestir para isso?</h2>
+      <div class="manifesto-grid">
+        <p>Static Room não tenta representar uma tribo. Tribos já vêm com uniforme, manual e uma pequena polícia estética.</p>
+        <p>Aqui, o erro não é ruído a ser removido. É o ponto onde a imagem começa a respirar.</p>
+        <p>A roupa termina no tecido. O resto acontece na cabeça de quem olha e não sabe onde guardar aquilo.</p>
+      </div>
+      <button class="disturb-button" id="disturbButton" type="button">desorganizar a sala</button>
+    </section>
+
+    <section id="arquivo" class="archive" aria-labelledby="archiveTitle">
+      <div class="archive-heading"><p>material encontrado</p><h2 id="archiveTitle">ARQUIVO<br />SEM ORDEM</h2></div>
+      <div class="archive-wall">
+        <figure class="archive-piece piece-one"><img data-asset="collage" alt="Colagem visual da Static Room" /><figcaption>registro 00 / propaganda ou sonho febril</figcaption></figure>
+        <figure class="archive-piece piece-two"><img data-asset="static-room-logo" alt="Logo Static Room" /><figcaption>registro 11 / o círculo insiste</figcaption></figure>
+        <figure class="archive-piece piece-three"><img data-asset="sr-monogram" alt="Símbolo SR" /><figcaption>registro ?? / autoria contestada</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="newsletter" aria-labelledby="newsletterTitle">
+      <p>mensagens raras. roupas ainda mais.</p>
+      <h2 id="newsletterTitle">deixe um endereço<br />para o ruído te encontrar.</h2>
+      <form id="newsletterForm"><label class="sr-only" for="email">Seu e-mail</label><input id="email" name="email" type="email" placeholder="seu@email.estranho" required /><button type="submit">entrar na interferência</button></form>
+      <p class="form-message" id="formMessage" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer><span>STATIC ROOM © 2026</span><span>saia pela parede mais próxima.</span><a href="#top">voltar para lugar nenhum ↑</a></footer>
+
+  <aside class="bag-panel" id="bagPanel" aria-hidden="true">
+    <div class="bag-head"><h2>coisas retiradas da sala</h2><button id="bagClose" type="button" aria-label="Fechar bolsa">×</button></div>
+    <div id="bagItems" class="bag-items"><p class="bag-empty">ainda ecoa vazio.</p></div>
+    <div class="bag-foot"><p>total <strong id="bagTotal">R$ 0</strong></p><button type="button" id="checkoutButton">continuar sem entender</button></div>
+  </aside>
+
+  <script src="embedded/enter-room.js"></script>
+  <script src="embedded/static-room-logo.js"></script>
+  <script src="embedded/sr-monogram.js"></script>
+  <script src="embedded/todo-online.js"></script>
+  <script src="embedded/collage.js"></script>
+  <script>document.querySelectorAll('[data-asset]').forEach((image) => { image.src = window.STATIC_ROOM_ASSETS[image.dataset.asset]; });</script>
+  <script src="script.js"></script>
+</body>
+</html>
