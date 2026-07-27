@@ -23,60 +23,7 @@
   <link rel="stylesheet" href="./wordmark.css?v=7" />
   <link rel="stylesheet" href="./nav-art.css?v=7" />
   <link rel="stylesheet" href="./header-actions.css?v=5" />
-  <style id="chaos-right-edge-fix">
-    .chaos-zone{
-      position:absolute!important;
-      top:0!important;
-      right:0!important;
-      width:620px!important;
-      height:var(--header-divider-y)!important;
-      display:flex!important;
-      align-items:center!important;
-      justify-content:flex-end!important;
-      padding:0!important;
-      overflow:visible!important;
-      pointer-events:auto!important;
-      z-index:999!important;
-    }
-
-    .chaos-action{
-      position:relative!important;
-      top:auto!important;
-      right:auto!important;
-      display:block!important;
-      width:620px!important;
-      max-width:none!important;
-      aspect-ratio:449/66!important;
-      margin:0!important;
-      background-size:110.25% auto!important;
-      background-position:56.5% 59.2%!important;
-      background-repeat:no-repeat!important;
-      transform:none!important;
-      transform-origin:right center!important;
-      filter:none!important;
-      image-rendering:auto!important;
-    }
-
-    .header-nav{
-      right:630px!important;
-    }
-
-    @media(max-width:1250px){
-      .chaos-zone,.chaos-action{width:540px!important}
-      .header-nav{right:550px!important}
-    }
-
-    @media(max-width:980px){
-      .chaos-zone,.chaos-action{width:440px!important}
-      .header-nav{right:450px!important}
-    }
-
-    @media(max-width:820px){
-      .chaos-zone,.chaos-action{width:330px!important}
-      .header-nav{right:340px!important}
-    }
-  </style>
-  <link rel="stylesheet" href="./chaos-fixed-right.css?v=1" />
+  <link rel="stylesheet" href="./chaos-final.css?v=1" />
   <script src="./divider.js?v=1" defer></script>
   <script src="./wordmark-fit.js?v=2" defer></script>
   <script src="./nav-fit.js?v=2" defer></script>
@@ -139,10 +86,6 @@
         </nav>
       </div>
 
-      <div class="chaos-zone">
-        <a class="chaos-action" href="#objetos" aria-label="Entre no caos"></a>
-      </div>
-
       <header class="art-header" aria-label="Divisória ilustrada do cabeçalho">
         <img
           class="art-header__line-image"
@@ -161,5 +104,7 @@
       <span class="section-anchor" id="contato" style="top:92%" aria-hidden="true"></span>
     </div>
   </main>
+
+  <a class="chaos-action chaos-final" href="#objetos" aria-label="Entre no caos"></a>
 </body>
 </html>
