@@ -50,14 +50,14 @@ body{
 .art-header__line-image{
   position:absolute;
   top:50%;
-  left:0;
+  left:50%;
   display:block;
-  width:100vw;
+  width:130vw;
   max-width:none;
   height:auto;
   margin:0;
   padding:0;
-  transform:translateY(-50%) scaleY(1.12);
+  transform:translate(-50%, -50%) scaleY(1.12);
   transform-origin:center;
   opacity:1;
   filter:none;
@@ -107,7 +107,7 @@ body{
   }
 
   .art-header__line-image{
-    width:100vw;
-    transform:translateY(-50%) scaleY(1.15);
+    width:150vw;
+    transform:translate(-50%, -50%) scaleY(1.15);
   }
 }
