@@ -40,16 +40,23 @@ body{
   position:absolute;
   top:0;
   left:0;
-  width:100%;
+  width:100vw;
+  height:15.08vw;
+  overflow:hidden;
   z-index:30;
   pointer-events:none;
 }
 
 .art-header__frame-image{
+  position:absolute;
   display:block;
-  width:100%;
-  height:auto;
+  width:105.32vw;
   max-width:none;
+  height:auto;
+  top:-26.59vw;
+  left:-2.72vw;
+  margin:0;
+  padding:0;
   pointer-events:none;
   user-select:none;
   -webkit-user-drag:none;
@@ -87,13 +94,5 @@ body{
     height:100svh;
     object-fit:cover;
     object-position:center top;
-  }
-
-  .art-header{
-    top:0;
-  }
-
-  .art-header__frame-image{
-    width:100%;
   }
 }
