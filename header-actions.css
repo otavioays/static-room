@@ -3,40 +3,54 @@
   top:50%;
   right:clamp(12px,1.4vw,26px);
   z-index:36;
-  transform:translateY(-50%);
+  width:clamp(220px,18vw,310px);
+  aspect-ratio:157/31;
+  transform:translateY(-50%) rotate(-.35deg);
+  background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ0AAAAfCAMAAADKgD83AAAAwFBMVEXr1aDu16bymC3lnK0qIBOqY5RZSCl0WVmdim5LNRqaZRqulILmzafHb5jpzqujX33/xtxtPGXYesPDsHrbdB/cg8b/w0K7giX/yT7t0q7+ms376Kr+97HtiNP+pdGyZovMdZnxprjJt4mUh2hkOlTziLT/t9fSeKoMBgdZNkxuRVqnmXD+qDLYxZNyaE+VWXQxGS3u16nu1arx2qnq1Je2pXeEeVmSem9GJzvozqo4JDBRLEdoWU+FS26SaHK7qIbeIfJtAAAAQHRSTlPjof/+//////////9e/xP/////////////AP/8////////////////////////////Uitv+f////8v////////DwQqAAAABcFJREFUeNrtlwtT6jgUx5O+iyCgV3dNAq1Na1+0FPqgltf3/1Z7koKgV2fv7Myd3dnxrySlFfPLeeWAnv7LQt90/xe6Ev8X6UpMKUy0qujXdMPhevj6yYdfh2K4/X109N5idE0rg39JhygTouVPO8u4aRt5ulr//Tq3r0K3MMl3cm8wXW1tvfqELtVqxlATWXQFZqR0/Z5uDWgZz808xYxde/+29HamPiOzcB/z7PpfYq+Xqh6Fbi6ybizLErMlrjhMm82Gb87i3tO1hzDFLNU0yixDS8E8Xp6j8h0dZbQ2eUYZ8oy8YlcmxXz6QABOSN8dh2/b8W42hwP8gsZj3ZGSk+5+lHqazjpsVhe8FYVlU8M2LVsxarBipNXvbUdZlteMVhhVlNV5drFeme9npGcDObvjybvr40Gfv0wmL/OTiNC7Ee69uy1vgV5ensc7+rZNXNma1WiLSFMUW4vsQdScl0cnOC/HzLMaDvKY11TsHIvcBKiRLtGk9XrnluoheAHNzwv/moBMDPP5Ib/gCbdG0UJRFoptKAvNZvQ6KwDMpJQ3Hq4quPRYmrLe8atsF85md9stjI4GjA9+Ko2HNyqsBOsQErhBIAbXDRyXBM5IJXDDISNHJeIp3AqIuw9I6J5sCeabdOcUKymrjIEyWCyUhXjZWsXo6oqO0iZjDcdeekw5QzmtGsTk1igXVgu1AqZpFM9mRN+tsAi6AyHScPNwu3ViMyzayI/jLonbZUCSQm3HbQFEgdaOx5HrRvvW6doRkfsh88lE39BbEXO08iDmbEEGbI+KEeX39x5C6I1O2CrbUY8jinjKrCPLPdabKJd0haCLgY6QMC6BuzyO50QuRNwkIF3kxIHv+o7pJyO450d6ZyYjPyCmT4I9PF2SKElUGYLwMwGz2xBcmGWNphmKtFo/DkCGZvR50dM1HvDQPEtTigzmcWbWfeD1dDN9L8IuEtcPRQZmL28ccnLTqG3VrtsKurgograAJ37bFsnSBTp4F/rtsnDhqgVbygSZi4jtwDsiVzXNHgyUhQw78VoMDMNoMnrxLIRaR2mOICMaLixpHvu0QTtBpL+lrD57aD3Y1SodnwPd8V3SLSMf6LbdNvABjsROVJh7JxF0o2XbJoXjFqHejsg57CbPhlgBC8fmmvZD4klAO2ruEcKXuGNAZyCa02xncEaNDJtZH3flzgG/bgFMVhVd08MuAzp8XJ4rBHgt7NzWD5Kw1YvxNoEc8N1l4WwF6H5rJnvX3G/j8TKO3ZPhgO/ARdLeQuRByg6UH4qEewTTRQZl11nBrJTVDfM24gxBuyNLG9onNW32s5EDGduXvKk+c2wsPpod1Ll00Fzd+5CdkI+QspC3+hIMBFk8ChzAhHyVGQ2ZDJchkdVO1sjudByUrAbP2toPkRWPj8pAUTTt3Av0ns2gwBkezTi3mhzJcizpb1fHOCQz0w8F291+ezfzdyIrntZ8SV4mv1Lvrv9A1mI5JpxK561ZHUWRkQKdsRj88acRCWkVutCVDDKV5paHKJxoiO/qt3qIcyALp/5e1/e+r8/0Iu0PIXxYPv9SLf5AJ9+rPkRR//+Z2dRwPBkQb4MoGgzyqvJq7+S6EyMUEkpTk1tpyjkUv3M5fFqh3daZ3elT35/qIcDtsv7RGm/spROGanil87k6cq40Bi3fKS426HSEvmLZF6W2BueFbcEIhzwuV+86KEprnlbYq+v6iKCJurRKK8S7rX53F4Z3s9Avduh0fkM8e4ck8RO/V/yTxN3kg0w5HJ7xpc0QhZdZkVHxyIOTQLtnP/d3Jc08S5yylscovu7jMMrMqNhOzWkRdSm99D5YVZ+h33g+6e3iS6kX4Q/tXZ1DUFkUWrs6o591nyuMMJwVCJXDD/3kmmJuap2xgdYF3f6exh3jJ9lylgh/1bkjlH36PWOIoCpBz/yb2EQUX7z1+k++9WA0/P4++033Tffv6y9dFQY8gKoTygAAAABJRU5ErkJggg==");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  filter:contrast(1.12) saturate(1.08) drop-shadow(1px 1px 0 rgba(23,19,23,.08));
   white-space:nowrap;
 }
 
-.chaos-action-link{
-  display:block;
-  line-height:0;
-  text-decoration:none;
-  transform:rotate(-.35deg);
-  transform-origin:center;
+.header-actions>.header-icon,
+.header-actions>.chaos-star{
+  display:none!important;
 }
 
-.chaos-action-art{
-  display:block;
-  width:clamp(220px,18vw,310px);
-  height:auto;
-  max-width:none;
-  object-fit:contain;
-  filter:contrast(1.12) saturate(1.08) drop-shadow(1px 1px 0 rgba(23,19,23,.08));
-  user-select:none;
-  -webkit-user-drag:none;
+.header-actions>.chaos-button{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  min-width:0!important;
+  min-height:0!important;
+  width:100%!important;
+  height:100%!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  transform:none!important;
+  overflow:hidden!important;
+  text-indent:-9999px!important;
 }
 
-.chaos-action-link:hover,
-.chaos-action-link:focus-visible{
-  transform:translateY(-2px) rotate(.25deg) scale(1.02);
+.header-actions:hover{
+  transform:translateY(calc(-50% - 2px)) rotate(.2deg) scale(1.02);
 }
 
 @media(max-width:1100px){
-  .header-actions{right:9px}
-  .chaos-action-art{width:clamp(190px,20vw,240px)}
+  .header-actions{
+    right:9px;
+    width:clamp(190px,20vw,240px);
+  }
 }
 
 @media(max-width:820px){
-  .header-actions{right:5px}
-  .chaos-action-art{width:clamp(145px,39vw,190px)}
+  .header-actions{
+    right:5px;
+    width:clamp(145px,39vw,190px);
+  }
 }
