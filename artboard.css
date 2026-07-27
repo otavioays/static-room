@@ -2,7 +2,7 @@
 
 :root{
   --header-divider-y:clamp(72px,5.6vw,100px);
-  --header-line-window:48px;
+  --header-line-window:18px;
 }
 
 html{
@@ -93,16 +93,34 @@ body{
   -webkit-user-drag:none;
 }
 
-.brand-word{
-  display:block;
-  font-family:"Arial Black","Trebuchet MS",sans-serif;
-  font-size:clamp(1.15rem,2.05vw,2.25rem);
-  font-weight:900;
-  letter-spacing:.075em;
-  line-height:.92;
-  transform:scaleX(.84) rotate(-.4deg);
+.brand-word-art{
+  display:flex;
+  align-items:center;
+  gap:clamp(0px,.1vw,2px);
+  height:clamp(32px,3vw,46px);
+  transform:rotate(-.4deg);
   transform-origin:left center;
-  text-shadow:.8px .8px 0 rgba(23,19,23,.2);
+}
+
+.brand-letter{
+  display:block;
+  width:auto;
+  height:100%;
+  max-width:none;
+  margin-left:clamp(-7px,-.35vw,-3px);
+  object-fit:contain;
+  mix-blend-mode:multiply;
+  filter:contrast(1.06) saturate(1.06);
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+.brand-letter:first-child{
+  margin-left:0;
+}
+
+.brand-letter--space{
+  margin-left:clamp(3px,.45vw,8px);
 }
 
 .header-nav{
@@ -220,18 +238,19 @@ body{
 
 .art-header__line-image{
   position:absolute;
-  top:50%;
+  top:0;
   left:50%;
   display:block;
-  width:130vw;
+  width:150vw;
   max-width:none;
-  height:auto;
+  height:100%;
   margin:0;
   padding:0;
-  transform:translate(-50%,-50%);
-  transform-origin:center;
+  object-fit:fill;
+  object-position:center;
+  transform:translateX(-50%);
   opacity:1;
-  filter:none;
+  filter:contrast(1.18);
   pointer-events:none;
   user-select:none;
   -webkit-user-drag:none;
@@ -259,7 +278,7 @@ body{
 
 @media(max-width:1100px){
   .header-ui{gap:10px;padding-left:10px;padding-right:12px}
-  .brand-word{font-size:clamp(1rem,1.8vw,1.45rem)}
+  .brand-word-art{height:clamp(28px,2.75vw,38px)}
   .header-nav{gap:10px}
   .nav-link{font-size:.74rem}
   .header-actions{gap:6px}
@@ -269,7 +288,7 @@ body{
 @media(max-width:820px){
   :root{
     --header-divider-y:78px;
-    --header-line-window:38px;
+    --header-line-window:14px;
   }
 
   .header-ui{
@@ -278,7 +297,10 @@ body{
     gap:8px;
   }
 
-  .brand-word{display:none}
+  .brand-word-art{
+    display:none;
+  }
+
   .brand-mark{width:48px;height:48px}
 
   .header-nav{
@@ -306,5 +328,5 @@ body{
   }
 
   .chaos-star{width:30px;height:30px;margin:0}
-  .art-header__line-image{width:150vw}
+  .art-header__line-image{width:170vw}
 }
