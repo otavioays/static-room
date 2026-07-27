@@ -38,7 +38,7 @@ body{
 
 .art-header{
   position:absolute;
-  top:clamp(3px,.28vw,6px);
+  top:0;
   left:0;
   width:100%;
   z-index:30;
@@ -90,7 +90,7 @@ body{
   }
 
   .art-header{
-    top:3px;
+    top:0;
   }
 
   .art-header__frame-image{
