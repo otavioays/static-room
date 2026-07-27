@@ -1,0 +1,15 @@
+.chaos-zone{
+  right:clamp(80px,7vw,130px)!important;
+}
+
+@media(max-width:1100px){
+  .chaos-zone{
+    right:60px!important;
+  }
+}
+
+@media(max-width:820px){
+  .chaos-zone{
+    right:22px!important;
+  }
+}
