@@ -40,24 +40,24 @@ body{
   position:absolute;
   top:0;
   left:0;
-  width:100vw;
-  height:clamp(18px, 1.55vw, 30px);
-  overflow:hidden;
+  width:100%;
   z-index:30;
+  line-height:0;
+  overflow:visible;
   pointer-events:none;
 }
 
 .art-header__line-image{
   display:block;
-  width:104vw;
-  min-width:104vw;
-  height:100%;
+  width:100%;
   max-width:none;
-  margin:0 0 0 -2vw;
+  height:auto;
+  margin:0;
   padding:0;
-  object-fit:fill;
+  opacity:1;
+  object-fit:contain;
   object-position:center top;
-  filter:contrast(1.45) drop-shadow(0 1px 0 #111) drop-shadow(0 -1px 0 #111);
+  filter:none;
   pointer-events:none;
   user-select:none;
   -webkit-user-drag:none;
@@ -97,11 +97,8 @@ body{
     object-position:center top;
   }
 
-  .art-header{
-    height:clamp(17px, 4.6vw, 25px);
-  }
-
+  .art-header,
   .art-header__line-image{
-    filter:contrast(1.5) drop-shadow(0 1px 0 #111) drop-shadow(0 -1px 0 #111);
+    width:100%;
   }
 }
