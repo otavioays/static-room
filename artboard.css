@@ -57,7 +57,7 @@ body{
   height:auto;
   margin:0;
   padding:0;
-  transform:translateY(-50%) scaleY(1.35);
+  transform:translateY(-50%) scaleY(1.28);
   transform-origin:center;
   opacity:1;
   filter:none;
@@ -108,6 +108,6 @@ body{
 
   .art-header__line-image{
     width:100vw;
-    transform:translateY(-50%) scaleY(1.4);
+    transform:translateY(-50%) scaleY(1.32);
   }
 }
