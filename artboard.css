@@ -40,23 +40,26 @@ body{
   position:absolute;
   top:0;
   left:0;
-  width:100%;
+  width:100vw;
+  height:48px;
+  overflow:hidden;
   z-index:30;
-  line-height:0;
-  overflow:visible;
   pointer-events:none;
 }
 
 .art-header__line-image{
+  position:absolute;
+  top:50%;
+  left:0;
   display:block;
-  width:100%;
+  width:100vw;
   max-width:none;
   height:auto;
   margin:0;
   padding:0;
+  transform:translateY(-50%) scaleY(1.35);
+  transform-origin:center;
   opacity:1;
-  object-fit:contain;
-  object-position:center top;
   filter:none;
   pointer-events:none;
   user-select:none;
@@ -97,8 +100,13 @@ body{
     object-position:center top;
   }
 
-  .art-header,
+  .art-header{
+    width:100vw;
+    height:38px;
+  }
+
   .art-header__line-image{
-    width:100%;
+    width:100vw;
+    transform:translateY(-50%) scaleY(1.4);
   }
 }
