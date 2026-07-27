@@ -112,12 +112,11 @@
     const frameWidth = frame.clientWidth;
     const frameHeight = frame.clientHeight;
     const scale = Math.min(frameWidth / bounds.width, frameHeight / bounds.height);
-    const visibleWidth = bounds.width * scale;
     const visibleHeight = bounds.height * scale;
 
     image.style.width = `${image.naturalWidth * scale}px`;
     image.style.height = `${image.naturalHeight * scale}px`;
-    image.style.left = `${((frameWidth - visibleWidth) / 2) - (bounds.left * scale)}px`;
+    image.style.left = `${-(bounds.left * scale)}px`;
     image.style.top = `${((frameHeight - visibleHeight) / 2) - (bounds.top * scale)}px`;
     image.classList.add('is-ready');
   };
@@ -135,6 +134,7 @@
       image.style.left = '0';
       image.style.top = '0';
       image.style.objectFit = 'contain';
+      image.style.objectPosition = 'left center';
       image.classList.add('is-ready');
       return;
     }
