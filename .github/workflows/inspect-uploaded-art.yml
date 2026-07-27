@@ -17,14 +17,16 @@ jobs:
       - name: Build contact sheet
         run: |
           python - <<'PY'
-          from PIL import Image, ImageDraw, ImageFont
+          from PIL import Image, ImageDraw
           from pathlib import Path
-          import math
+          import math, shutil
 
           candidates = sorted([
               p for p in Path('.').glob('*.png')
               if p.name.startswith('ChatGPT Image Jul 27, 2026') or p.name.startswith('bfcc1a2f-')
           ])
+          originals = Path('uploaded-art-originals')
+          originals.mkdir(exist_ok=True)
           thumb_w, thumb_h = 360, 260
           label_h = 56
           cols = 3
@@ -36,6 +38,7 @@ jobs:
           for i, path in enumerate(candidates):
               img = Image.open(path).convert('RGBA')
               manifest.append(f'{path.name}\t{img.width}x{img.height}\t{img.mode}')
+              shutil.copy2(path, originals / path.name)
               preview = Image.new('RGBA', (thumb_w, thumb_h), (245, 232, 214, 255))
               copy = img.copy()
               copy.thumbnail((thumb_w - 20, thumb_h - 20))
@@ -58,6 +61,8 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: uploaded-art-inspection
+          compression-level: 6
           path: |
             uploaded-art-contact-sheet.jpg
             uploaded-art-manifest.txt
+            uploaded-art-originals/
