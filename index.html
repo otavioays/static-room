@@ -3,222 +3,99 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f1e5d3" />
+  <meta name="theme-color" content="#f5d3bd" />
   <meta name="description" content="Static Room. Uma empresa extremamente séria dedicada a ideias indefensáveis." />
-  <title>Static Room — Ideias indefensáveis</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="theme.css" />
-  <link rel="stylesheet" href="stickers.css?v=4" />
+  <title>Static Room — página ilustrada</title>
+  <link rel="preload" href="assets/art/page-base.png" as="image" />
+  <link rel="preload" href="assets/art/hero-banner.png" as="image" />
+  <link rel="stylesheet" href="artboard.css?v=1" />
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
+  <img class="site-texture" src="assets/art/pastel-background.png" alt="" aria-hidden="true" draggable="false" />
 
-  <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Static Room">
-      <img data-art="mark" alt="" />
-      <span>STATIC ROOM</span>
-    </a>
+  <main>
+    <h1 class="sr-only">Static Room</h1>
+    <p class="sr-only">Uma empresa extremamente séria dedicada a ideias indefensáveis.</p>
 
-    <nav class="nav" aria-label="Navegação principal">
-      <a class="active" href="#inicio">início</a>
-      <a href="#catalogo">catálogo</a>
-      <a href="#manifesto">manifesto</a>
-      <a href="#arquivo">arquivo</a>
-    </nav>
+    <section class="artboard-shell" aria-label="Página ilustrada e interativa da Static Room">
+      <div class="artboard" id="inicio">
+        <img class="artboard-base" src="assets/art/page-base.png" alt="" aria-hidden="true" draggable="false" />
 
-    <div class="header-actions">
-      <button class="round-icon spiral-button" type="button" aria-label="Abrir menu visual">◎</button>
-      <button class="round-icon face-button" type="button" aria-label="Sua conta">☺</button>
-      <button class="chaos-button" id="cartButton" type="button">
-        entre no caos <span id="cartCount">0</span>
-      </button>
-    </div>
-  </header>
+        <span class="section-anchor" id="objetos" style="top:41%"></span>
+        <span class="section-anchor" id="manifesto" style="top:69%"></span>
+        <span class="section-anchor" id="arquivo" style="top:71%"></span>
+        <span class="section-anchor" id="contato" style="top:84%"></span>
 
-  <main id="inicio">
-    <section class="hero">
-      <img class="hero-art" data-art="hero" alt="Colagem psicodélica da identidade visual Static Room" />
-      <div class="hero-vignette"></div>
+        <a class="art-piece" href="#inicio" aria-label="Voltar ao início" data-pop style="--x:2.5%;--y:.6%;--w:5.2%;--h:6.5%;--r:-4deg">
+          <img src="assets/art/sr-badge.png" alt="" />
+        </a>
 
-      <div class="hero-copy paper-slip">
-        <p>STATIC ROOM INDUSTRIES / CATÁLOGO 001</p>
-        <h1>Objetos que não precisavam existir.</h1>
-        <span>Agora precisam ser entregues.</span>
-      </div>
+        <nav aria-label="Navegação principal">
+          <a class="hotspot" href="#inicio" aria-label="Início" data-scroll="#inicio" style="--x:30.4%;--y:1.3%;--w:7.2%;--h:5.1%"></a>
+          <a class="hotspot" href="#objetos" aria-label="Objetos" data-scroll="#objetos" style="--x:38.5%;--y:1.3%;--w:7.4%;--h:5.1%"></a>
+          <a class="hotspot" href="#manifesto" aria-label="Manifesto" data-scroll="#manifesto" style="--x:46.7%;--y:1.3%;--w:8.1%;--h:5.1%"></a>
+          <a class="hotspot" href="#arquivo" aria-label="Arquivo" data-scroll="#arquivo" style="--x:55.6%;--y:1.3%;--w:7.2%;--h:5.1%"></a>
+          <a class="hotspot" href="#contato" aria-label="Contato" data-scroll="#contato" style="--x:63.6%;--y:1.3%;--w:7.2%;--h:5.1%"></a>
+          <button class="hotspot" type="button" aria-label="Controle visual um" data-pop style="--x:73.9%;--y:1.1%;--w:3.5%;--h:5.2%"></button>
+          <button class="hotspot" type="button" aria-label="Controle visual dois" data-pop style="--x:78.2%;--y:1.1%;--w:3.5%;--h:5.2%"></button>
+          <a class="hotspot" href="#objetos" aria-label="Entre no caos" data-scroll="#objetos" style="--x:82.6%;--y:.9%;--w:14.2%;--h:5.7%"></a>
+        </nav>
 
-      <a class="hero-cta" href="#catalogo">
-        consultar catálogo
-        <b>→</b>
-      </a>
-    </section>
-
-    <section class="motif-strip" aria-label="Elementos visuais Static Room">
-      <span>✷</span><span class="scribble">∿∿∿</span><span>◎</span><span>◉</span>
-      <span class="lizard">⌁</span><span>☺</span><span>✹</span><span class="scribble">〰〰</span>
-      <span>◉</span><span>✷</span><span>◎</span>
-    </section>
-
-    <section class="statement-grid">
-      <article>
-        <span class="statement-icon">☺</span>
-        <p>Você nunca quis ser <em>normal</em>.</p>
-      </article>
-      <article>
-        <span class="statement-icon">✦</span>
-        <p>Soluções para problemas que ninguém possui.</p>
-      </article>
-      <article>
-        <span class="statement-icon">◉</span>
-        <p>Quanto mais séria a execução, melhor a piada.</p>
-      </article>
-    </section>
-
-    <section class="catalog-section" id="catalogo">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">DROP 001 / PROBLEMAS RECENTEMENTE INVENTADOS</p>
-          <h2>A loja oficial das piores ideias executadas corretamente.</h2>
+        <div class="title-lockup" aria-label="Static Room">
+          <div class="title-row title-row-static">
+            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra S" style="--r:-3deg"><img src="assets/art/letter-s.png" alt="" /></a>
+            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra T" style="--r:2deg"><img src="assets/art/letter-t.png" alt="" /></a>
+            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra A" style="--r:-1deg"><img src="assets/art/letter-a.png" alt="" /></a>
+            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, segunda letra T" style="--r:2deg"><img src="assets/art/letter-t.png" alt="" /></a>
+            <a class="letter-piece letter-i" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra I" style="--r:-2deg"><img src="assets/art/letter-i.png" alt="" /></a>
+            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra C" style="--r:2deg"><img src="assets/art/letter-c.png" alt="" /></a>
+          </div>
+          <div class="title-row title-row-room">
+            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra R" style="--r:2deg"><img src="assets/art/letter-r.png" alt="" /></a>
+            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra O" style="--r:-2deg"><img src="assets/art/letter-o.png" alt="" /></a>
+            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, segunda letra O" style="--r:2deg"><img src="assets/art/letter-o.png" alt="" /></a>
+            <a class="letter-piece letter-m" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra M" style="--r:-1deg"><img src="assets/art/letter-m.png" alt="" /></a>
+          </div>
         </div>
-        <div class="section-note">
-          <span>APROVADO INTERNAMENTE</span>
-          <strong>por uma pessoa</strong>
+
+        <a class="art-piece hero-banner" href="#objetos" data-scroll="#objetos" aria-label="Abrir o catálogo Static Room" style="--x:34.9%;--y:8.3%;--w:59.4%;--h:29.9%">
+          <img src="assets/art/hero-banner.png" alt="Colagem ilustrada Static Room" />
+        </a>
+
+        <button class="art-piece" type="button" data-pop aria-label="Olho cósmico" style="--x:1.8%;--y:28.8%;--w:8.5%;--h:8.6%;--r:-3deg"><img src="assets/art/eye.png" alt="" /></button>
+        <button class="art-piece" type="button" data-pop aria-label="Pássaro ilustrado" style="--x:55%;--y:6.1%;--w:9%;--h:10%;--r:5deg"><img src="assets/art/bird.png" alt="" /></button>
+        <button class="art-piece" type="button" data-pop aria-label="Lagartixa ilustrada" style="--x:92.9%;--y:23.2%;--w:4.6%;--h:10%;--r:8deg"><img src="assets/art/lizard.png" alt="" /></button>
+        <button class="art-piece" type="button" data-pop aria-label="Rosto sorridente ilustrado" style="--x:91.9%;--y:8.1%;--w:4.5%;--h:7.4%;--r:-5deg"><img src="assets/art/smiley.png" alt="" /></button>
+
+        <div aria-label="Objetos do catálogo">
+          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar suporte individual para batata frita" aria-pressed="false" data-product="Suporte individual para batata frita" style="--x:1.1%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
+          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar pedra com manual" aria-pressed="false" data-product="Pedra com manual" style="--x:17%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
+          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar botão que acende outro botão" aria-pressed="false" data-product="Botão que acende outro botão" style="--x:32.9%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
+          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar carteira para recibos emocionalmente importantes" aria-pressed="false" data-product="Carteira para recibos emocionalmente importantes" style="--x:48.8%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
+          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar caixa de emergência contendo outra caixa" aria-pressed="false" data-product="Caixa de emergência contendo outra caixa" style="--x:64.7%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
+          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar certificado oficial de presença em casa" aria-pressed="false" data-product="Certificado oficial de presença em casa" style="--x:80.6%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
         </div>
+
+        <button class="art-piece" type="button" data-pop aria-label="Olho decorativo" style="--x:1.2%;--y:69.2%;--w:6.5%;--h:7%;--r:3deg"><img src="assets/art/eye.png" alt="" /></button>
+        <button class="art-piece" type="button" data-pop aria-label="Pássaro decorativo" style="--x:8.2%;--y:72%;--w:6%;--h:6.5%;--r:-8deg"><img src="assets/art/bird.png" alt="" /></button>
+        <button class="art-piece" type="button" data-pop aria-label="Lagartixa decorativa" style="--x:93.5%;--y:69.5%;--w:4%;--h:9%;--r:-8deg"><img src="assets/art/lizard.png" alt="" /></button>
+        <button class="art-piece" type="button" data-pop aria-label="Rosto sorridente decorativo" style="--x:88.9%;--y:81%;--w:5%;--h:8.2%;--r:5deg"><img src="assets/art/smiley.png" alt="" /></button>
+        <a class="art-piece" href="#inicio" data-scroll="#inicio" aria-label="Voltar ao topo" style="--x:1.1%;--y:82.5%;--w:6.5%;--h:8%;--r:-6deg"><img src="assets/art/sr-badge.png" alt="" /></a>
+
+        <a class="hotspot" href="#manifesto" data-scroll="#manifesto" aria-label="Manifesto, painel um" style="--x:5.5%;--y:68.7%;--w:21.5%;--h:11.2%"></a>
+        <a class="hotspot" href="#manifesto" data-scroll="#manifesto" aria-label="Manifesto, painel dois" style="--x:28.5%;--y:68.7%;--w:21.5%;--h:11.2%"></a>
+        <a class="hotspot" href="#manifesto" data-scroll="#manifesto" aria-label="Manifesto, painel três" style="--x:51.5%;--y:68.7%;--w:21.5%;--h:11.2%"></a>
+        <a class="hotspot" href="#manifesto" data-scroll="#manifesto" aria-label="Manifesto, painel quatro" style="--x:74.5%;--y:68.7%;--w:21.5%;--h:11.2%"></a>
+
+        <button class="hotspot" type="button" data-pop aria-label="Área da newsletter ilustrada" style="--x:5.4%;--y:82.3%;--w:24.7%;--h:10.2%"></button>
+        <a class="hotspot" href="#contato" data-scroll="#contato" aria-label="Links institucionais" style="--x:31.5%;--y:82.3%;--w:39.7%;--h:10.2%"></a>
+        <a class="hotspot" href="#contato" data-scroll="#contato" aria-label="Redes sociais" style="--x:72.6%;--y:82.3%;--w:23.8%;--h:10.2%"></a>
+
+        <p class="sr-only" id="interactionStatus" aria-live="polite"></p>
       </div>
-
-      <div class="product-grid">
-        <article class="product-card">
-          <div class="product-image">
-            <img data-art="spiral" alt="Arte psicodélica em espiral" />
-            <span class="product-code">SR-001</span>
-            <span class="new-sticker">NEW!</span>
-          </div>
-          <div class="product-info">
-            <h3>Suporte Individual para Batata Frita</h3>
-            <p>Impede que uma batata específica entre em contato com as demais.</p>
-            <div class="product-bottom"><strong>R$ 39,90</strong><button data-add="Suporte Individual para Batata Frita">PROTEGER BATATA</button></div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img data-art="head" alt="Cabeça em silhueta com ondas psicodélicas" />
-            <span class="product-code">SR-002</span>
-          </div>
-          <div class="product-info">
-            <h3>Porta-retrato para Fotos Ainda Não Tiradas</h3>
-            <p>Reserva espaço físico para uma memória que ainda não aconteceu.</p>
-            <div class="product-bottom"><strong>R$ 59,90</strong><button data-add="Porta-retrato para Fotos Ainda Não Tiradas">RESERVAR MEMÓRIA</button></div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img data-art="room" alt="Sala surreal em perspectiva" />
-            <span class="product-code">SR-003</span>
-            <span class="hot-sticker">HOT</span>
-          </div>
-          <div class="product-info">
-            <h3>Caixa de Emergência Contendo Outra Caixa</h3>
-            <p>A segunda caixa deve ser usada caso a primeira seja insuficiente.</p>
-            <div class="product-bottom"><strong>R$ 54,90</strong><button data-add="Caixa de Emergência Contendo Outra Caixa">ABRIR EMERGÊNCIA</button></div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image">
-            <img data-art="eyes" alt="Colagem de olhos em halftone" />
-            <span class="product-code">SR-004</span>
-          </div>
-          <div class="product-info">
-            <h3>Espelho Retrovisor para Cadeira de Escritório</h3>
-            <p>Monitore acontecimentos atrás de você sem abandonar sua planilha.</p>
-            <div class="product-bottom"><strong>R$ 89,90</strong><button data-add="Espelho Retrovisor para Cadeira de Escritório">MONITORAR RETAGUARDA</button></div>
-          </div>
-        </article>
-
-        <article class="product-card product-card-wide">
-          <div class="product-image">
-            <img data-art="cosmos" alt="Colagem cósmica da Static Room" />
-            <span class="product-code">SR-005</span>
-          </div>
-          <div class="product-info">
-            <h3>Carregador Portátil para Objetos sem Eletricidade</h3>
-            <p>Fornece energia armazenada a objetos estruturalmente incapazes de recebê-la.</p>
-            <div class="product-bottom"><strong>R$ 79,90</strong><button data-add="Carregador Portátil para Objetos sem Eletricidade">INICIAR CARGA</button></div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="manifesto" id="manifesto">
-      <img data-art="banner" alt="Banner visual Static Room com lagartos e o símbolo SR" />
-      <div class="manifesto-copy">
-        <p class="eyebrow">MANIFESTO / UMA PIADA COM CNPJ</p>
-        <h2>Não vendemos coisas engraçadas.</h2>
-        <p>Vendemos o fato de que alguém levou uma ideia imbecil longe demais. Pesquisa, engenharia, embalagem, fotografia, estoque e código de rastreamento. Tudo dedicado ao que deveria ter morrido numa conversa às três da manhã.</p>
-        <a href="#catalogo">ver decisões comerciais →</a>
-      </div>
-    </section>
-
-    <section class="archive" id="arquivo">
-      <div class="archive-title">
-        <span>EDITORIAL ↓</span>
-        <h2>Pequenas anomalias para ambientes excessivamente normais.</h2>
-      </div>
-      <div class="archive-grid">
-        <div class="archive-tile"><img data-art="spiral" alt="" /><span>MIND / OBJECT</span></div>
-        <div class="archive-tile"><img data-art="head" alt="" /><span>IDENTIDADE MAL RESOLVIDA</span></div>
-        <div class="archive-tile"><img data-art="room" alt="" /><span>ENTER THE STATIC</span></div>
-        <div class="archive-tile"><img data-art="eyes" alt="" /><span>NOT FOR EVERYONE</span></div>
-      </div>
-    </section>
-
-    <section class="drop-banner">
-      <span class="drop-smiley">☺</span>
-      <div>
-        <small>PRÓXIMO DROP</small>
-        <h2>CAOS FASE 02</h2>
-      </div>
-      <p>11.08 — 23H59</p>
-      <a href="#newsletter">SEJA O PRIMEIRO A SABER →</a>
-      <span class="drop-star">✷</span>
     </section>
   </main>
 
-  <footer id="newsletter">
-    <div class="newsletter">
-      <div>
-        <p>ENTRE NO CAOS. FIQUE POR DENTRO.</p>
-        <form id="newsletterForm">
-          <input type="email" placeholder="seu e-mail aqui" aria-label="Seu e-mail" required />
-          <button type="submit">VAMO</button>
-        </form>
-        <span id="newsletterStatus" aria-live="polite"></span>
-      </div>
-      <span class="footer-face">☺</span>
-    </div>
-
-    <div class="footer-links">
-      <div><b>sobre</b><a href="#manifesto">manifesto</a><a href="#arquivo">arquivo</a></div>
-      <div><b>ajuda</b><a href="#">faq</a><a href="#">trocas & devoluções</a></div>
-      <div><b>legal</b><a href="#">termos</a><a href="#">privacidade</a></div>
-      <div><b>conecta</b><a href="#">@staticroom.br</a><a href="#">#notforeveryone</a></div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>STATIC ROOM INDUSTRIES © 2026</span>
-      <span>UMA EMPRESA EXTREMAMENTE SÉRIA DEDICADA A IDEIAS INDEFENSÁVEIS.</span>
-    </div>
-  </footer>
-
-  <aside class="cart" id="cart" aria-hidden="true">
-    <div class="cart-head"><h2>Decisões adquiridas</h2><button id="cartClose" type="button">×</button></div>
-    <div id="cartItems" class="cart-items"><p>Nenhuma responsabilidade logística selecionada.</p></div>
-    <button class="cart-checkout" type="button">FINALIZAR PUNCHLINE</button>
-  </aside>
-  <div class="backdrop" id="backdrop" hidden></div>
-
-  <script src="script.js"></script>
-  <script src="stickers.js?v=4"></script>
+  <script src="artboard.js?v=1"></script>
 </body>
 </html>
