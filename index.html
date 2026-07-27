@@ -3,99 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f5d3bd" />
+  <meta name="theme-color" content="#f4cdbf" />
   <meta name="description" content="Static Room. Uma empresa extremamente séria dedicada a ideias indefensáveis." />
-  <title>Static Room — página ilustrada</title>
-  <link rel="preload" href="assets/art/page-base.png" as="image" />
-  <link rel="preload" href="assets/art/hero-banner.png" as="image" />
-  <link rel="stylesheet" href="artboard.css?v=1" />
+  <title>Static Room</title>
+  <link rel="preload" href="./0f787591-64ac-4d80-ad23-1f2675ec2ec3.png" as="image" />
+  <link rel="stylesheet" href="./artboard.css?v=background-2" />
 </head>
 <body>
-  <img class="site-texture" src="assets/art/pastel-background.png" alt="" aria-hidden="true" draggable="false" />
-
-  <main>
+  <main class="site-canvas" id="inicio" aria-label="Página ilustrada da Static Room">
     <h1 class="sr-only">Static Room</h1>
-    <p class="sr-only">Uma empresa extremamente séria dedicada a ideias indefensáveis.</p>
-
-    <section class="artboard-shell" aria-label="Página ilustrada e interativa da Static Room">
-      <div class="artboard" id="inicio">
-        <img class="artboard-base" src="assets/art/page-base.png" alt="" aria-hidden="true" draggable="false" />
-
-        <span class="section-anchor" id="objetos" style="top:41%"></span>
-        <span class="section-anchor" id="manifesto" style="top:69%"></span>
-        <span class="section-anchor" id="arquivo" style="top:71%"></span>
-        <span class="section-anchor" id="contato" style="top:84%"></span>
-
-        <a class="art-piece" href="#inicio" aria-label="Voltar ao início" data-pop style="--x:2.5%;--y:.6%;--w:5.2%;--h:6.5%;--r:-4deg">
-          <img src="assets/art/sr-badge.png" alt="" />
-        </a>
-
-        <nav aria-label="Navegação principal">
-          <a class="hotspot" href="#inicio" aria-label="Início" data-scroll="#inicio" style="--x:30.4%;--y:1.3%;--w:7.2%;--h:5.1%"></a>
-          <a class="hotspot" href="#objetos" aria-label="Objetos" data-scroll="#objetos" style="--x:38.5%;--y:1.3%;--w:7.4%;--h:5.1%"></a>
-          <a class="hotspot" href="#manifesto" aria-label="Manifesto" data-scroll="#manifesto" style="--x:46.7%;--y:1.3%;--w:8.1%;--h:5.1%"></a>
-          <a class="hotspot" href="#arquivo" aria-label="Arquivo" data-scroll="#arquivo" style="--x:55.6%;--y:1.3%;--w:7.2%;--h:5.1%"></a>
-          <a class="hotspot" href="#contato" aria-label="Contato" data-scroll="#contato" style="--x:63.6%;--y:1.3%;--w:7.2%;--h:5.1%"></a>
-          <button class="hotspot" type="button" aria-label="Controle visual um" data-pop style="--x:73.9%;--y:1.1%;--w:3.5%;--h:5.2%"></button>
-          <button class="hotspot" type="button" aria-label="Controle visual dois" data-pop style="--x:78.2%;--y:1.1%;--w:3.5%;--h:5.2%"></button>
-          <a class="hotspot" href="#objetos" aria-label="Entre no caos" data-scroll="#objetos" style="--x:82.6%;--y:.9%;--w:14.2%;--h:5.7%"></a>
-        </nav>
-
-        <div class="title-lockup" aria-label="Static Room">
-          <div class="title-row title-row-static">
-            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra S" style="--r:-3deg"><img src="assets/art/letter-s.png" alt="" /></a>
-            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra T" style="--r:2deg"><img src="assets/art/letter-t.png" alt="" /></a>
-            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra A" style="--r:-1deg"><img src="assets/art/letter-a.png" alt="" /></a>
-            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, segunda letra T" style="--r:2deg"><img src="assets/art/letter-t.png" alt="" /></a>
-            <a class="letter-piece letter-i" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra I" style="--r:-2deg"><img src="assets/art/letter-i.png" alt="" /></a>
-            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra C" style="--r:2deg"><img src="assets/art/letter-c.png" alt="" /></a>
-          </div>
-          <div class="title-row title-row-room">
-            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra R" style="--r:2deg"><img src="assets/art/letter-r.png" alt="" /></a>
-            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra O" style="--r:-2deg"><img src="assets/art/letter-o.png" alt="" /></a>
-            <a class="letter-piece" href="#objetos" data-scroll="#objetos" aria-label="Static Room, segunda letra O" style="--r:2deg"><img src="assets/art/letter-o.png" alt="" /></a>
-            <a class="letter-piece letter-m" href="#objetos" data-scroll="#objetos" aria-label="Static Room, letra M" style="--r:-1deg"><img src="assets/art/letter-m.png" alt="" /></a>
-          </div>
-        </div>
-
-        <a class="art-piece hero-banner" href="#objetos" data-scroll="#objetos" aria-label="Abrir o catálogo Static Room" style="--x:34.9%;--y:8.3%;--w:59.4%;--h:29.9%">
-          <img src="assets/art/hero-banner.png" alt="Colagem ilustrada Static Room" />
-        </a>
-
-        <button class="art-piece" type="button" data-pop aria-label="Olho cósmico" style="--x:1.8%;--y:28.8%;--w:8.5%;--h:8.6%;--r:-3deg"><img src="assets/art/eye.png" alt="" /></button>
-        <button class="art-piece" type="button" data-pop aria-label="Pássaro ilustrado" style="--x:55%;--y:6.1%;--w:9%;--h:10%;--r:5deg"><img src="assets/art/bird.png" alt="" /></button>
-        <button class="art-piece" type="button" data-pop aria-label="Lagartixa ilustrada" style="--x:92.9%;--y:23.2%;--w:4.6%;--h:10%;--r:8deg"><img src="assets/art/lizard.png" alt="" /></button>
-        <button class="art-piece" type="button" data-pop aria-label="Rosto sorridente ilustrado" style="--x:91.9%;--y:8.1%;--w:4.5%;--h:7.4%;--r:-5deg"><img src="assets/art/smiley.png" alt="" /></button>
-
-        <div aria-label="Objetos do catálogo">
-          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar suporte individual para batata frita" aria-pressed="false" data-product="Suporte individual para batata frita" style="--x:1.1%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
-          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar pedra com manual" aria-pressed="false" data-product="Pedra com manual" style="--x:17%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
-          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar botão que acende outro botão" aria-pressed="false" data-product="Botão que acende outro botão" style="--x:32.9%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
-          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar carteira para recibos emocionalmente importantes" aria-pressed="false" data-product="Carteira para recibos emocionalmente importantes" style="--x:48.8%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
-          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar caixa de emergência contendo outra caixa" aria-pressed="false" data-product="Caixa de emergência contendo outra caixa" style="--x:64.7%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
-          <button class="hotspot product-hotspot" type="button" aria-label="Selecionar certificado oficial de presença em casa" aria-pressed="false" data-product="Certificado oficial de presença em casa" style="--x:80.6%;--y:42.2%;--w:15.4%;--h:24.4%"><img class="selection-mark" src="assets/art/smiley.png" alt="" /></button>
-        </div>
-
-        <button class="art-piece" type="button" data-pop aria-label="Olho decorativo" style="--x:1.2%;--y:69.2%;--w:6.5%;--h:7%;--r:3deg"><img src="assets/art/eye.png" alt="" /></button>
-        <button class="art-piece" type="button" data-pop aria-label="Pássaro decorativo" style="--x:8.2%;--y:72%;--w:6%;--h:6.5%;--r:-8deg"><img src="assets/art/bird.png" alt="" /></button>
-        <button class="art-piece" type="button" data-pop aria-label="Lagartixa decorativa" style="--x:93.5%;--y:69.5%;--w:4%;--h:9%;--r:-8deg"><img src="assets/art/lizard.png" alt="" /></button>
-        <button class="art-piece" type="button" data-pop aria-label="Rosto sorridente decorativo" style="--x:88.9%;--y:81%;--w:5%;--h:8.2%;--r:5deg"><img src="assets/art/smiley.png" alt="" /></button>
-        <a class="art-piece" href="#inicio" data-scroll="#inicio" aria-label="Voltar ao topo" style="--x:1.1%;--y:82.5%;--w:6.5%;--h:8%;--r:-6deg"><img src="assets/art/sr-badge.png" alt="" /></a>
-
-        <a class="hotspot" href="#manifesto" data-scroll="#manifesto" aria-label="Manifesto, painel um" style="--x:5.5%;--y:68.7%;--w:21.5%;--h:11.2%"></a>
-        <a class="hotspot" href="#manifesto" data-scroll="#manifesto" aria-label="Manifesto, painel dois" style="--x:28.5%;--y:68.7%;--w:21.5%;--h:11.2%"></a>
-        <a class="hotspot" href="#manifesto" data-scroll="#manifesto" aria-label="Manifesto, painel três" style="--x:51.5%;--y:68.7%;--w:21.5%;--h:11.2%"></a>
-        <a class="hotspot" href="#manifesto" data-scroll="#manifesto" aria-label="Manifesto, painel quatro" style="--x:74.5%;--y:68.7%;--w:21.5%;--h:11.2%"></a>
-
-        <button class="hotspot" type="button" data-pop aria-label="Área da newsletter ilustrada" style="--x:5.4%;--y:82.3%;--w:24.7%;--h:10.2%"></button>
-        <a class="hotspot" href="#contato" data-scroll="#contato" aria-label="Links institucionais" style="--x:31.5%;--y:82.3%;--w:39.7%;--h:10.2%"></a>
-        <a class="hotspot" href="#contato" data-scroll="#contato" aria-label="Redes sociais" style="--x:72.6%;--y:82.3%;--w:23.8%;--h:10.2%"></a>
-
-        <p class="sr-only" id="interactionStatus" aria-live="polite"></p>
-      </div>
-    </section>
+    <img
+      class="page-background"
+      src="./0f787591-64ac-4d80-ad23-1f2675ec2ec3.png"
+      alt=""
+      aria-hidden="true"
+      draggable="false"
+    />
+    <div class="interactive-layer" aria-hidden="true"></div>
   </main>
-
-  <script src="artboard.js?v=1"></script>
 </body>
 </html>
