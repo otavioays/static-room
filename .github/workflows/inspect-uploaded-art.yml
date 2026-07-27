@@ -1,0 +1,63 @@
+name: Inspect uploaded art
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  contact-sheet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow
+      - name: Build contact sheet
+        run: |
+          python - <<'PY'
+          from PIL import Image, ImageDraw, ImageFont
+          from pathlib import Path
+          import math
+
+          candidates = sorted([
+              p for p in Path('.').glob('*.png')
+              if p.name.startswith('ChatGPT Image Jul 27, 2026') or p.name.startswith('bfcc1a2f-')
+          ])
+          thumb_w, thumb_h = 360, 260
+          label_h = 56
+          cols = 3
+          rows = max(1, math.ceil(len(candidates) / cols))
+          sheet = Image.new('RGB', (cols * thumb_w, rows * (thumb_h + label_h)), '#efe1cf')
+          draw = ImageDraw.Draw(sheet)
+          manifest = []
+
+          for i, path in enumerate(candidates):
+              img = Image.open(path).convert('RGBA')
+              manifest.append(f'{path.name}\t{img.width}x{img.height}\t{img.mode}')
+              preview = Image.new('RGBA', (thumb_w, thumb_h), (245, 232, 214, 255))
+              copy = img.copy()
+              copy.thumbnail((thumb_w - 20, thumb_h - 20))
+              x = (thumb_w - copy.width) // 2
+              y = (thumb_h - copy.height) // 2
+              preview.alpha_composite(copy, (x, y))
+              cx = (i % cols) * thumb_w
+              cy = (i // cols) * (thumb_h + label_h)
+              sheet.paste(preview.convert('RGB'), (cx, cy))
+              draw.rectangle((cx, cy, cx + thumb_w - 1, cy + thumb_h + label_h - 1), outline='#16110e', width=2)
+              label = path.name
+              if len(label) > 43:
+                  label = label[:40] + '...'
+              draw.text((cx + 10, cy + thumb_h + 8), label, fill='#16110e')
+              draw.text((cx + 10, cy + thumb_h + 29), f'{img.width} x {img.height}', fill='#5b3b52')
+
+          sheet.save('uploaded-art-contact-sheet.jpg', quality=92)
+          Path('uploaded-art-manifest.txt').write_text('\n'.join(manifest), encoding='utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: uploaded-art-inspection
+          path: |
+            uploaded-art-contact-sheet.jpg
+            uploaded-art-manifest.txt
