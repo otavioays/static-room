@@ -58,6 +58,7 @@ jobs:
             "lerajustificativa.png"
             "novaimagem.png"
             "lisademais.png"
+            "conceito.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -80,6 +81,7 @@ jobs:
           old_price_button = '<a class="btn btn-primary" href="#drop">Entrar no drop ↗</a>'
           old_justification_button = '<a class="btn btn-secondary" href="#manifesto">Ler transmissão</a>'
           old_drop_title = '<h2 class="section-title" data-reveal>Drop <span class="outline">001</span></h2>'
+          old_manifesto_eye = '<div class="eye-poster" data-reveal aria-hidden="true"></div>'
           old_manifesto_copy = '<div class="manifesto-copy" data-reveal><span class="section-tag">TRANSMISSION / 00:13 AM</span><blockquote>A internet ficou lisa demais. A gente veio devolver o <em>ruído.</em></blockquote><p>Static Room nasce da saudade de quando cada perfil parecia um quarto bagunçado, cada foto tinha flash estourado e ninguém sabia exatamente o que estava fazendo. Não vendemos nostalgia limpa. Recuperamos o caos, imprimimos por cima e vestimos.</p><span class="scribble">NOT A TREND. A MEMORY LEAK.</span></div>'
 
           required = (
@@ -89,10 +91,11 @@ jobs:
               old_price_button,
               old_justification_button,
               old_drop_title,
+              old_manifesto_eye,
               old_manifesto_copy,
           )
           if not all(item in html for item in required):
-              raise RuntimeError('original hero, drop or manifesto copy markup was not found')
+              raise RuntimeError('original hero, drop or manifesto markup was not found')
 
           html = html.replace(
               old_eyebrow,
@@ -121,6 +124,11 @@ jobs:
               1,
           )
           html = html.replace(
+              old_manifesto_eye,
+              '<div class="eye-poster manifesto-conceito-sticker" data-reveal aria-label="Você chegou na parte do conceito"><img class="manifesto-conceito-image" src="./conceito.png?v=1" alt="Você chegou na parte do conceito"></div>',
+              1,
+          )
+          html = html.replace(
               old_manifesto_copy,
               '<div class="manifesto-copy manifesto-sticker-copy" data-reveal aria-label="A internet ficou lisa demais. Aí a gente fez uma camiseta."><img class="manifesto-sticker-image" src="./lisademais.png?v=1" alt="A internet ficou lisa demais. Aí a gente fez uma camiseta."></div>',
               1,
@@ -138,6 +146,7 @@ jobs:
               '  <style>.hero .hero-actions .hero-price-image-button,.hero .hero-actions .hero-justification-image-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;line-height:0!important;overflow:visible!important}.hero .hero-actions .hero-price-image-button:hover,.hero .hero-actions .hero-price-image-button:focus-visible{transform:translate(3px,3px) rotate(-1deg)!important;box-shadow:none!important}.hero .hero-actions .hero-justification-image-button:hover,.hero .hero-actions .hero-justification-image-button:focus-visible{transform:translate(3px,3px) rotate(1deg)!important;box-shadow:none!important}.hero .hero-price-button-image,.hero .hero-justification-button-image{display:block!important;width:clamp(190px,19vw,285px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important;filter:drop-shadow(5px 5px 0 rgba(19,13,22,.72))}@media(max-width:620px){.hero .hero-price-button-image,.hero .hero-justification-button-image{width:min(64vw,245px)!important}}</style>\n'
               '  <style>.drop-section .float-star.star-a,.drop-section .section-tag,.drop-section .section-lead{display:none!important}.drop-section .drop-title-image-wrap{display:block!important;position:relative!important;left:0!important;top:0!important;width:min(100%,1100px)!important;max-width:1100px!important;margin:0 auto!important;line-height:0!important;text-shadow:none!important;-webkit-text-stroke:0!important}.drop-section .drop-title-image{display:block!important;width:100%!important;height:auto!important;max-width:1100px!important;object-fit:contain!important;object-position:center!important;filter:drop-shadow(7px 8px 0 rgba(19,13,22,.62))}@media(max-width:620px){.drop-section .drop-title-image-wrap{width:100%!important;margin:0 auto!important}.drop-section .drop-title-image{width:100%!important}}</style>\n'
               '  <style>.manifesto .manifesto-sticker-copy{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;max-width:none!important;padding:0!important;background:transparent!important;text-shadow:none!important;line-height:0!important}.manifesto .manifesto-sticker-image{display:block!important;width:min(112%,820px)!important;height:auto!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(8px 9px 0 rgba(19,13,22,.58));transform:rotate(-.7deg)}@media(max-width:700px){.manifesto .manifesto-sticker-image{width:100%!important;max-width:760px!important;transform:rotate(-.35deg)}}</style>\n'
+              '  <style>.manifesto .manifesto-grid{align-items:center!important;gap:clamp(18px,3vw,52px)!important}.manifesto .eye-poster.manifesto-conceito-sticker{display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;width:100%!important;min-height:0!important;aspect-ratio:auto!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;overflow:visible!important;line-height:0!important}.manifesto .eye-poster.manifesto-conceito-sticker::before,.manifesto .eye-poster.manifesto-conceito-sticker::after{display:none!important;content:none!important;background:none!important;border:0!important;box-shadow:none!important}.manifesto .manifesto-conceito-image{display:block!important;width:min(108%,680px)!important;height:auto!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(8px 9px 0 rgba(19,13,22,.58));transform:rotate(.8deg)}@media(max-width:700px){.manifesto .manifesto-grid{gap:18px!important}.manifesto .manifesto-conceito-image{width:100%!important;max-width:620px!important;transform:rotate(.35deg)}}</style>\n'
           )
           html = html.replace('</head>', head_assets + '</head>', 1)
           html = html.replace(
@@ -155,6 +164,7 @@ jobs:
               'lerajustificativa.png?v=1',
               'novaimagem.png?v=1',
               'lisademais.png?v=1',
+              'conceito.png?v=1',
               'decorations.js?v=37',
               'reality-loading.css?v=3',
           )
@@ -162,8 +172,8 @@ jobs:
               raise RuntimeError('generated hero, drop or manifesto sticker artwork is incomplete')
           if old_description in html:
               raise RuntimeError('hero description was not removed')
-          if old_manifesto_copy in html:
-              raise RuntimeError('manifesto copy was not replaced')
+          if old_manifesto_eye in html or old_manifesto_copy in html:
+              raise RuntimeError('manifesto artwork was not replaced')
 
           page.write_text(html, encoding='utf-8')
 
@@ -248,6 +258,7 @@ jobs:
           test -s "_site/lerajustificativa.png"
           test -s "_site/novaimagem.png"
           test -s "_site/lisademais.png"
+          test -s "_site/conceito.png"
           grep -q 'colecao001.png?v=6' _site/index.html
           grep -q 'adesivocta.png?v=1' _site/index.html
           grep -q 'vercoisascompreco.png?v=1' _site/index.html
@@ -257,7 +268,9 @@ jobs:
           grep -q 'novaimagem.png?v=1' _site/index.html
           grep -q 'novaimagem.png?v=1' _site/decorations.js
           grep -q 'lisademais.png?v=1' _site/index.html
+          grep -q 'conceito.png?v=1' _site/index.html
           grep -q 'manifesto-sticker-image' _site/index.html
+          grep -q 'manifesto-conceito-image' _site/index.html
           grep -q 'decorations.js?v=37' _site/index.html
           grep -q 'reality-loading.css?v=3' _site/index.html
           grep -q 'reality-loading.js?v=3' _site/index.html
