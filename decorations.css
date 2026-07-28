@@ -187,3 +187,32 @@
     transform:translateY(-3px) scale(1.03) !important;
   }
 }
+
+/* Quase encosta na borda, sem atropelar os adesivos. */
+@media(min-width:901px){
+  .site-nav .brand{
+    height:116px !important;
+    margin-left:clamp(-48px,-3vw,-16px) !important;
+    overflow:visible !important;
+  }
+  .site-nav .brand-logo{
+    width:clamp(360px,35vw,510px) !important;
+    max-height:122px !important;
+    transform:translateY(-3px) scale(1.05) !important;
+    transform-origin:left center !important;
+  }
+}
+@media(max-width:900px){
+  .site-nav .brand-logo{
+    width:clamp(310px,44vw,405px) !important;
+    max-height:104px !important;
+    transform:translateY(-4px) scale(1.04) !important;
+  }
+}
+@media(max-width:620px){
+  .site-nav .brand-logo{
+    width:282px !important;
+    max-height:88px !important;
+    transform:translateY(-3px) scale(1.03) !important;
+  }
+}
