@@ -224,21 +224,112 @@
 
   text('.archive .section-tag', 'CONTEÚDO PARA O SITE NÃO PARECER SÓ UMA LOJA');
   html('.archive .section-title', 'olhe oque estão dizendo sobre a static room:');
-  text('.archive-bar > span:first-child', 'arquivo_final_agora_v7_REAL');
-  const archiveEntries = [
-    'final_agora_v7_REAL.zip<small>não abre / representa a equipe</small>',
-    'manual para parecer espontâneo<small>revisado por nove pessoas</small>',
-    'como desaparecer online<small>postado em sete plataformas</small>',
-    'pesquisa de público<small>perguntamos para nós mesmos</small>'
-  ];
-  document.querySelectorAll('.archive-list li > span:nth-child(2)').forEach((target, index) => {
-    if (archiveEntries[index]) target.innerHTML = archiveEntries[index];
-  });
-  texts('.archive-list li > span:last-child', ['FINGIR QUE ABRE ↗', 'FINGIR QUE ABRE ↗', 'FINGIR QUE ABRE ↗', 'FINGIR QUE ABRE ↗']);
-  html('.note-card:nth-child(1) h3', 'Sonhe.<br>Falhe.<br>Chame de conceito.');
-  text('.note-card:nth-child(1) p', 'Objetos, referências e decisões que pareciam melhores às três da manhã.');
-  text('.note-card:nth-child(2) h3', 'Offline é o novo luxo.');
-  text('.note-card:nth-child(2) p', 'Por isso pedimos seu e-mail, sua atenção e, idealmente, uma transferência bancária. A contradição é parte do branding.');
+
+  const archive = document.querySelector('.archive');
+  const archiveGrid = archive?.querySelector('.archive-grid');
+  if (archive && archiveGrid) {
+    const commentCloud = document.createElement('div');
+    commentCloud.className = 'comment-cloud';
+    commentCloud.setAttribute('aria-label', 'Comentários sobre a Static Room');
+
+    const commentFiles = [
+      { src: 'comentário01fb.png?v=1', alt: 'Comentário 1 sobre a Static Room' },
+      { src: 'comentario02fb.png?v=1', alt: 'Comentário 2 sobre a Static Room' },
+      { src: 'comentário03fb.png?v=1', alt: 'Comentário 3 sobre a Static Room' },
+      { src: 'comentário04fb.png?v=1', alt: 'Comentário 4 sobre a Static Room' }
+    ];
+
+    commentFiles.forEach((item, index) => {
+      const figure = document.createElement('figure');
+      figure.className = `comment-float comment-float-${index + 1}`;
+
+      const image = document.createElement('img');
+      image.className = 'comment-float-image';
+      image.src = file(item.src);
+      image.alt = item.alt;
+      image.draggable = false;
+      image.decoding = 'async';
+      image.loading = 'lazy';
+
+      figure.appendChild(image);
+      commentCloud.appendChild(figure);
+    });
+
+    archiveGrid.replaceWith(commentCloud);
+  }
+
+  const commentStyle = document.createElement('style');
+  commentStyle.textContent = `
+    .archive .comment-cloud{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      align-items:center;
+      gap:clamp(22px,4vw,64px);
+      width:min(100%,1280px);
+      margin:clamp(34px,5vw,72px) auto 0;
+    }
+    .archive .comment-float{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0;
+      line-height:0;
+    }
+    .archive .comment-float:nth-child(even){
+      margin-top:clamp(18px,3vw,48px);
+    }
+    .archive .comment-float-image{
+      display:block;
+      width:min(100%,620px);
+      height:auto;
+      max-width:100%;
+      object-fit:contain;
+      filter:drop-shadow(7px 8px 0 rgba(19,13,22,.48));
+      will-change:transform;
+    }
+    @keyframes sr-comment-float-1{
+      0%,100%{transform:translate3d(0,0,0) rotate(-1.1deg)}
+      50%{transform:translate3d(2px,-10px,0) rotate(-.65deg)}
+    }
+    @keyframes sr-comment-float-2{
+      0%,100%{transform:translate3d(0,0,0) rotate(1deg)}
+      50%{transform:translate3d(-3px,-12px,0) rotate(.55deg)}
+    }
+    @keyframes sr-comment-float-3{
+      0%,100%{transform:translate3d(0,0,0) rotate(.45deg)}
+      50%{transform:translate3d(3px,-9px,0) rotate(.95deg)}
+    }
+    @keyframes sr-comment-float-4{
+      0%,100%{transform:translate3d(0,0,0) rotate(-.55deg)}
+      50%{transform:translate3d(-2px,-11px,0) rotate(-1deg)}
+    }
+    .archive .comment-float-1 .comment-float-image{animation:sr-comment-float-1 7.2s ease-in-out infinite}
+    .archive .comment-float-2 .comment-float-image{animation:sr-comment-float-2 8.1s ease-in-out -.9s infinite}
+    .archive .comment-float-3 .comment-float-image{animation:sr-comment-float-3 7.7s ease-in-out -1.8s infinite}
+    .archive .comment-float-4 .comment-float-image{animation:sr-comment-float-4 8.8s ease-in-out -.4s infinite}
+    @media(max-width:760px){
+      .archive .comment-cloud{
+        grid-template-columns:1fr;
+        gap:24px;
+      }
+      .archive .comment-float:nth-child(even){
+        margin-top:0;
+      }
+      .archive .comment-float-image{
+        width:min(100%,680px);
+      }
+    }
+    @media(prefers-reduced-motion:reduce){
+      .archive .comment-float-image{
+        animation:none !important;
+        will-change:auto;
+      }
+    }
+  `;
+  document.head.appendChild(commentStyle);
 
   text('.newsletter h2', 'DÊ SEU E-MAIL.');
   text('.newsletter p', 'Não prometemos conteúdo exclusivo. Prometemos usar a palavra “exclusivo” quando mandarmos.');
