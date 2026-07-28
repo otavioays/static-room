@@ -84,12 +84,12 @@ jobs:
               '  <link rel="stylesheet" href="./fifth-fold.css?v=3">\n'
               '  <link rel="stylesheet" href="./reality-loading.css?v=2">\n'
               '  <link rel="stylesheet" href="./bag-icon.css?v=2">\n'
-              '  <style>.hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start}.hero .hero-collection-sticker{display:inline-flex!important;align-self:flex-start!important;width:auto!important;max-width:100%!important;padding:0!important;margin:0 0 -8px 2px!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:translateY(10px)!important;line-height:0!important}.hero .hero-collection-image{display:block!important;width:clamp(170px,17vw,270px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important}.hero .hero-collection-sticker+h1{margin-top:4px!important}@media(max-width:620px){.hero .hero-collection-sticker{margin-bottom:-6px!important;transform:translateY(6px)!important}.hero .hero-collection-image{width:min(58vw,220px)!important}.hero .hero-collection-sticker+h1{margin-top:3px!important}}</style>\n'
+              '  <style>.hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start}.hero .hero-copy .hero-collection-sticker{display:inline-flex!important;align-self:flex-start!important;width:auto!important;max-width:100%!important;padding:0!important;margin:0 0 -10px 2px!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:translateY(16px)!important;line-height:0!important}.hero .hero-collection-image{display:block!important;width:clamp(170px,17vw,270px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important}.hero .hero-collection-sticker+h1{margin-top:4px!important}@media(max-width:620px){.hero .hero-copy .hero-collection-sticker{margin-bottom:-8px!important;transform:translateY(10px)!important}.hero .hero-collection-image{width:min(58vw,220px)!important}.hero .hero-collection-sticker+h1{margin-top:3px!important}}</style>\n'
               '</head>'
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=14"></script>\n'
+              '  <script src="./decorations.js?v=15"></script>\n'
               '  <script src="./reality-loading.js?v=2"></script>\n'
               '</body>'
           )
