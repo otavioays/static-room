@@ -53,6 +53,7 @@ jobs:
             "arquivosinuteis.png"
             "darseuemail.png"
             "colecao001.png"
+            "cta.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -76,6 +77,12 @@ jobs:
           )
 
           html = html.replace(
+              '<h1>Wear the <span>signal.</span></h1>',
+              '<h1 class="hero-cta-title" aria-label="Compre a nossa fase"><img class="hero-cta-image" src="./cta.png?v=1" alt="Compre a nossa fase"></h1>',
+              1
+          )
+
+          html = html.replace(
               '</head>',
               '  <link rel="stylesheet" href="./decorations.css?v=15">\n'
               '  <link rel="stylesheet" href="./second-fold.css?v=6">\n'
@@ -84,20 +91,45 @@ jobs:
               '  <link rel="stylesheet" href="./fifth-fold.css?v=3">\n'
               '  <link rel="stylesheet" href="./reality-loading.css?v=2">\n'
               '  <link rel="stylesheet" href="./bag-icon.css?v=2">\n'
-              '  <style>.hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start}.hero .hero-copy>.hero-collection-sticker{display:inline-flex!important;align-self:flex-start!important;position:relative!important;top:34px!important;width:auto!important;max-width:100%!important;padding:0!important;margin:0 0 -28px 2px!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:none!important;line-height:0!important;z-index:4!important}.hero .hero-collection-image{display:block!important;width:clamp(170px,17vw,270px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important}.hero .hero-collection-sticker+h1{margin-top:4px!important}@media(max-width:620px){.hero .hero-copy>.hero-collection-sticker{top:22px!important;margin-bottom:-18px!important}.hero .hero-collection-image{width:min(58vw,220px)!important}.hero .hero-collection-sticker+h1{margin-top:3px!important}}</style>\n'
+              '  <style>.hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start}.hero .hero-copy>.hero-collection-sticker{display:inline-flex!important;align-self:flex-start!important;position:relative!important;top:34px!important;width:auto!important;max-width:100%!important;padding:0!important;margin:0 0 -28px 2px!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:none!important;line-height:0!important;z-index:4!important}.hero .hero-collection-image{display:block!important;width:clamp(170px,17vw,270px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important}.hero .hero-cta-title{display:block!important;width:min(100%,700px)!important;max-width:700px!important;margin:12px 0 14px!important;line-height:0!important;font-size:0!important;letter-spacing:0!important;text-transform:none!important;text-shadow:none!important}.hero .hero-cta-image{display:block!important;width:100%!important;height:auto!important;max-width:none!important;object-fit:contain!important}.hero .hero-collection-sticker+.hero-cta-title{margin-top:4px!important}@media(max-width:620px){.hero .hero-copy>.hero-collection-sticker{top:22px!important;margin-bottom:-18px!important}.hero .hero-collection-image{width:min(58vw,220px)!important}.hero .hero-cta-title{width:min(94vw,560px)!important;margin:8px 0 10px!important}.hero .hero-collection-sticker+.hero-cta-title{margin-top:3px!important}}</style>\n'
               '</head>'
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=16"></script>\n'
+              '  <script src="./decorations.js?v=17"></script>\n'
               '  <script src="./reality-loading.js?v=2"></script>\n'
               '</body>'
           )
 
           if 'colecao001.png?v=5' not in html:
               raise RuntimeError('collection artwork missing from generated HTML')
+          if 'cta.png?v=1' not in html:
+              raise RuntimeError('CTA artwork missing from generated HTML')
 
           page.write_text(html, encoding='utf-8')
+
+          script = Path('_site/decorations.js')
+          js = script.read_text(encoding='utf-8')
+          old = "  html('.hero h1', 'COMPRE A <span>NOSSA FASE.</span>');"
+          new = """  const heroTitle = document.querySelector('.hero h1');
+          if (heroTitle) {
+            heroTitle.classList.add('hero-cta-title');
+            heroTitle.setAttribute('aria-label', 'Compre a nossa fase');
+            let ctaImage = heroTitle.querySelector('.hero-cta-image');
+            if (!ctaImage) {
+              ctaImage = document.createElement('img');
+              ctaImage.className = 'hero-cta-image';
+              heroTitle.replaceChildren(ctaImage);
+            }
+            ctaImage.src = file('cta.png?v=1');
+            ctaImage.alt = 'Compre a nossa fase';
+            ctaImage.draggable = false;
+            ctaImage.decoding = 'async';
+            ctaImage.loading = 'eager';
+          }"""
+          if old not in js:
+              raise RuntimeError('original hero headline replacement was not found')
+          script.write_text(js.replace(old, new, 1), encoding='utf-8')
           PY
 
           touch _site/.nojekyll
@@ -123,7 +155,10 @@ jobs:
           test -s "_site/arquivosinuteis.png"
           test -s "_site/darseuemail.png"
           test -s "_site/colecao001.png"
+          test -s "_site/cta.png"
           grep -q 'colecao001.png?v=5' _site/index.html
+          grep -q 'cta.png?v=1' _site/index.html
+          grep -q 'cta.png?v=1' _site/decorations.js
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
