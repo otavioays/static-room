@@ -1,0 +1,28 @@
+/* Background visual da segunda dobra */
+.drop-section{
+  isolation:isolate;
+  background:
+    linear-gradient(180deg,rgba(243,160,111,.12) 0%,rgba(239,120,173,.22) 48%,rgba(182,110,212,.18) 100%),
+    url("./ChatGPT Image Jul 28, 2026, 12_08_29 AM.png") center top / cover no-repeat !important;
+}
+.drop-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(248,211,166,.14),transparent 24%,transparent 76%,rgba(239,120,173,.14)),
+    repeating-radial-gradient(circle at 0 0,transparent 0 3px,rgba(19,13,22,.055) 3.2px 4px);
+  mix-blend-mode:multiply;
+}
+.drop-section .section-title,
+.drop-section .section-lead{
+  text-shadow:3px 3px 0 rgba(248,211,166,.7);
+}
+@media (max-width:700px){
+  .drop-section{
+    background-position:center top !important;
+    background-size:auto 100% !important;
+  }
+}
