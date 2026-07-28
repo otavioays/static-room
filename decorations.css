@@ -70,3 +70,24 @@
   .note-scrap{width:86px;right:-10px;top:-30px}
 }
 @media (prefers-reduced-motion:reduce){.doodle-orbit,.doodle-star{animation:none}}
+
+/* Logo grande o bastante para peitar o header, não para ocupar o município inteiro */
+.site-nav .brand-logo{
+  width:clamp(280px,27vw,390px) !important;
+  max-height:92px !important;
+  transform:translateY(-8px) !important;
+}
+@media(max-width:900px){
+  .site-nav .brand-logo{
+    width:clamp(260px,36vw,330px) !important;
+    max-height:82px !important;
+    transform:translateY(-6px) !important;
+  }
+}
+@media(max-width:620px){
+  .site-nav .brand-logo{
+    width:235px !important;
+    max-height:72px !important;
+    transform:translateY(-4px) !important;
+  }
+}
