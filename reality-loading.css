@@ -46,6 +46,13 @@ body .hero .hero-justification-button-image{
   display:none !important;
 }
 
+/* Move a arte Coisas à venda 50px para a esquerda e 100px para baixo. */
+.drop-section .drop-title-image-wrap{
+  position:relative !important;
+  left:-50px !important;
+  top:100px !important;
+}
+
 /* Abaixa as duas artes principais mais 35px. */
 body .hero .hero-copy > .hero-collection-sticker{
   top:169px !important;
