@@ -29,7 +29,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp index.html decorations.css decorations.js _site/
+          cp index.html decorations.css decorations.js second-fold.css _site/
 
           assets=(
             "dobra1.png"
@@ -42,6 +42,7 @@ jobs:
             "ChatGPT Image Jul 28, 2026, 12_03_48 AM (3).png"
             "ChatGPT Image Jul 28, 2026, 12_03_48 AM (2).png"
             "ChatGPT Image Jul 28, 2026, 12_03_47 AM (1).png"
+            "ChatGPT Image Jul 28, 2026, 12_08_29 AM.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -53,8 +54,13 @@ jobs:
           from pathlib import Path
           page = Path('_site/index.html')
           html = page.read_text(encoding='utf-8')
-          html = html.replace('</head>', '  <link rel="stylesheet" href="./decorations.css?v=1">\n</head>')
-          html = html.replace('</body>', '  <script src="./decorations.js?v=1"></script>\n</body>')
+          html = html.replace(
+              '</head>',
+              '  <link rel="stylesheet" href="./decorations.css?v=2">\n'
+              '  <link rel="stylesheet" href="./second-fold.css?v=1">\n'
+              '</head>'
+          )
+          html = html.replace('</body>', '  <script src="./decorations.js?v=2"></script>\n</body>')
           page.write_text(html, encoding='utf-8')
           PY
 
@@ -62,6 +68,8 @@ jobs:
           test -s _site/index.html
           test -s _site/decorations.css
           test -s _site/decorations.js
+          test -s _site/second-fold.css
+          test -s "_site/ChatGPT Image Jul 28, 2026, 12_08_29 AM.png"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
