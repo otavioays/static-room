@@ -92,25 +92,42 @@
   }
 }
 
-/* Agora dá para ler sem ampliar a página como um perito criminal. */
+/* Agora cresce o PNG de verdade, não só a área clicável. */
+.site-nav .nav-links{
+  overflow:visible !important;
+}
+.site-nav .nav-links a{
+  overflow:visible !important;
+}
+.site-nav .nav-label-image{
+  width:auto !important;
+  height:clamp(68px,5vw,92px) !important;
+  max-width:none !important;
+  transform:scale(1.14);
+  transform-origin:center;
+}
+.site-nav .nav-links a:hover .nav-label-image,
+.site-nav .nav-links a:focus-visible .nav-label-image{
+  transform:translateY(-2px) rotate(-1deg) scale(1.18) !important;
+}
 @media(min-width:901px){
   .site-nav .nav-links{
     flex:1 1 auto !important;
     justify-content:space-evenly !important;
     gap:0 !important;
-    margin-left:clamp(12px,1.5vw,28px) !important;
-    margin-right:clamp(12px,1.4vw,26px) !important;
+    margin-left:clamp(8px,1vw,18px) !important;
+    margin-right:clamp(8px,1vw,18px) !important;
     min-width:0;
-    overflow:visible;
   }
   .site-nav .nav-links a{
     flex:1 1 25%;
     min-width:0;
-    padding-inline:clamp(2px,.35vw,7px) !important;
-    overflow:visible;
+    padding-inline:0 !important;
   }
+}
+@media(max-width:900px){
   .site-nav .nav-label-image{
-    height:clamp(48px,3.5vw,62px) !important;
-    max-width:clamp(170px,13vw,240px) !important;
+    height:58px !important;
+    transform:scale(1.08);
   }
 }
