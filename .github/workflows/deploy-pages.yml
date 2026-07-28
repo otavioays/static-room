@@ -71,7 +71,7 @@ jobs:
               '  <link rel="stylesheet" href="./fourth-fold.css?v=4">\n'
               '  <link rel="stylesheet" href="./fifth-fold.css?v=3">\n'
               '  <link rel="stylesheet" href="./reality-loading.css?v=2">\n'
-              '  <link rel="stylesheet" href="./bag-icon.css?v=1">\n'
+              '  <link rel="stylesheet" href="./bag-icon.css?v=2">\n'
               '</head>'
           )
           html = html.replace(
