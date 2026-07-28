@@ -1,0 +1,32 @@
+/* Background visual da quarta dobra */
+.archive{
+  isolation:isolate;
+  background:
+    linear-gradient(135deg,rgba(248,211,166,.36),rgba(239,120,173,.24) 46%,rgba(135,80,188,.3)),
+    url("./f4244071-4ccf-4e01-9c80-a2f175db0890.png") center center / cover no-repeat !important;
+}
+
+.archive::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.18;
+  background:
+    linear-gradient(90deg,rgba(248,211,166,.18),transparent 28%,transparent 72%,rgba(19,13,22,.13)),
+    repeating-linear-gradient(12deg,transparent 0 9px,rgba(19,13,22,.16) 10px 11px);
+  mix-blend-mode:multiply;
+}
+
+.archive .section-title,
+.archive .section-tag{
+  text-shadow:3px 3px 0 rgba(248,211,166,.72);
+}
+
+@media (max-width:700px){
+  .archive{
+    background-position:center top !important;
+    background-size:auto 100% !important;
+  }
+}
