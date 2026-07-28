@@ -172,7 +172,47 @@
   const cart = document.querySelector('.cart-pill');
   if (cart?.firstChild) cart.firstChild.nodeValue = 'sacola.exe ';
 
-  text('.hero .eyebrow', 'coleção 001 / infelizmente disponível');
+  const heroEyebrow = document.querySelector('.hero .eyebrow');
+  if (heroEyebrow) {
+    const collectionImage = document.createElement('img');
+    collectionImage.className = 'hero-collection-image';
+    collectionImage.src = file('colecao001.png?v=1');
+    collectionImage.alt = 'Coleção 001, infelizmente disponível';
+    collectionImage.draggable = false;
+    collectionImage.decoding = 'async';
+    collectionImage.loading = 'eager';
+    heroEyebrow.replaceChildren(collectionImage);
+    heroEyebrow.setAttribute('aria-label', collectionImage.alt);
+
+    const collectionStyle = document.createElement('style');
+    collectionStyle.textContent = `
+      .hero .eyebrow{
+        display:inline-flex !important;
+        width:auto !important;
+        max-width:100% !important;
+        padding:0 !important;
+        background:transparent !important;
+        border:0 !important;
+        box-shadow:none !important;
+        transform:none !important;
+        line-height:0 !important;
+      }
+      .hero .hero-collection-image{
+        display:block;
+        width:clamp(280px,28vw,450px);
+        height:auto;
+        max-width:100%;
+        object-fit:contain;
+      }
+      @media(max-width:620px){
+        .hero .hero-collection-image{
+          width:min(86vw,360px);
+        }
+      }
+    `;
+    document.head.appendChild(collectionStyle);
+  }
+
   html('.hero h1', 'COMPRE A <span>NOSSA FASE.</span>');
   text('.hero-copy p', 'Fizemos roupas porque desenvolver uma personalidade coerente estava tomando tempo demais.');
   texts('.hero-actions .btn', ['ver coisas com preço ↗', 'ler a justificativa']);
