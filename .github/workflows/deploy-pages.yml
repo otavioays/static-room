@@ -59,6 +59,10 @@ jobs:
             "novaimagem.png"
             "lisademais.png"
             "conceito.png"
+            "comentário01fb.png"
+            "comentario02fb.png"
+            "comentário03fb.png"
+            "comentário04fb.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -151,7 +155,7 @@ jobs:
           html = html.replace('</head>', head_assets + '</head>', 1)
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=37"></script>\n'
+              '  <script src="./decorations.js?v=38"></script>\n'
               '  <script src="./reality-loading.js?v=3"></script>\n'
               '</body>',
               1,
@@ -165,7 +169,7 @@ jobs:
               'novaimagem.png?v=1',
               'lisademais.png?v=1',
               'conceito.png?v=1',
-              'decorations.js?v=37',
+              'decorations.js?v=38',
               'reality-loading.css?v=3',
           )
           if not all(item in html for item in expected_html):
@@ -259,6 +263,10 @@ jobs:
           test -s "_site/novaimagem.png"
           test -s "_site/lisademais.png"
           test -s "_site/conceito.png"
+          test -s "_site/comentário01fb.png"
+          test -s "_site/comentario02fb.png"
+          test -s "_site/comentário03fb.png"
+          test -s "_site/comentário04fb.png"
           grep -q 'colecao001.png?v=6' _site/index.html
           grep -q 'adesivocta.png?v=1' _site/index.html
           grep -q 'vercoisascompreco.png?v=1' _site/index.html
@@ -269,11 +277,17 @@ jobs:
           grep -q 'novaimagem.png?v=1' _site/decorations.js
           grep -q 'lisademais.png?v=1' _site/index.html
           grep -q 'conceito.png?v=1' _site/index.html
+          grep -q 'comentário01fb.png?v=1' _site/decorations.js
+          grep -q 'comentario02fb.png?v=1' _site/decorations.js
+          grep -q 'comentário03fb.png?v=1' _site/decorations.js
+          grep -q 'comentário04fb.png?v=1' _site/decorations.js
+          grep -q 'comment-cloud' _site/decorations.js
+          grep -q 'sr-comment-float-1' _site/decorations.js
           grep -q 'manifesto-sticker-image' _site/index.html
           grep -q 'manifesto-conceito-image' _site/index.html
           grep -q 'sr-float-lisa' _site/index.html
           grep -q 'sr-float-conceito' _site/index.html
-          grep -q 'decorations.js?v=37' _site/index.html
+          grep -q 'decorations.js?v=38' _site/index.html
           grep -q 'reality-loading.css?v=3' _site/index.html
           grep -q 'reality-loading.js?v=3' _site/index.html
           ! grep -q 'A internet ficou lisa demais. A gente veio devolver' _site/index.html
