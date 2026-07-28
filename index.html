@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Static Room</title>
+  <style>
+    *{box-sizing:border-box}
+
+    html,
+    body{
+      margin:0;
+      width:100%;
+      min-height:100%;
+    }
+
+    body{
+      min-height:100vh;
+      overflow-x:hidden;
+      background:#eed2ae url("./fundo.png?v=1") center top / cover no-repeat;
+    }
+
+    .drawing-panel{
+      position:relative;
+      width:100%;
+      min-height:100vh;
+    }
+  </style>
+</head>
+<body>
+  <main class="drawing-panel" aria-label="Painel Static Room"></main>
+</body>
+</html>
