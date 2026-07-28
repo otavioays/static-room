@@ -1,0 +1,72 @@
+/* Static Room uploaded visual scraps */
+.hero-interface{position:relative;z-index:3}
+.section>.asset-doodle,.newsletter>.asset-doodle{z-index:1}
+.section>:not(.asset-doodle),.newsletter>:not(.asset-doodle){position:relative;z-index:2}
+.asset-doodle{
+  position:absolute;
+  display:block;
+  max-width:none;
+  object-fit:contain;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+  filter:drop-shadow(4px 5px 0 rgba(19,13,22,.78));
+  transform-origin:center;
+}
+.hero>.asset-doodle{z-index:1}
+.doodle-cloud{width:clamp(120px,18vw,310px);left:3%;bottom:3%;transform:rotate(-8deg);opacity:.96}
+.doodle-orbit{width:clamp(90px,11vw,190px);right:3%;top:18%;transform:rotate(13deg);animation:scrapFloat 5.5s ease-in-out infinite}
+.doodle-spring{width:clamp(95px,13vw,220px);right:-2%;top:7%;transform:rotate(18deg)}
+.doodle-star{width:clamp(72px,9vw,150px);left:2%;top:24%;transform:rotate(-14deg);animation:scrapPulse 3.4s ease-in-out infinite}
+.doodle-spiral{width:clamp(90px,12vw,210px);right:2%;top:4%;transform:rotate(8deg)}
+.doodle-archive{width:clamp(105px,16vw,260px);left:-2%;bottom:4%;transform:rotate(-9deg);opacity:.92}
+.doodle-news{width:clamp(100px,14vw,240px);right:1%;bottom:4%;transform:rotate(11deg)}
+.product-scrap{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:50%;
+  width:min(72%,260px);
+  max-height:78%;
+  object-fit:contain;
+  transform:translate(-50%,-50%) rotate(-7deg);
+  filter:drop-shadow(6px 7px 0 rgba(19,13,22,.85));
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.product-card:nth-child(2) .product-scrap{transform:translate(-50%,-50%) rotate(6deg);width:min(76%,280px)}
+.product-card:nth-child(3) .product-scrap{transform:translate(-50%,-50%) rotate(-2deg);width:min(70%,250px)}
+.product-visual.has-scrap::after{opacity:.16;z-index:1}
+.product-visual.has-scrap::before{z-index:0}
+.note-card{position:relative;overflow:visible}
+.note-scrap{
+  position:absolute;
+  z-index:3;
+  right:-20px;
+  top:-45px;
+  width:115px;
+  transform:rotate(12deg);
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+  filter:drop-shadow(3px 4px 0 rgba(19,13,22,.75));
+}
+@keyframes scrapFloat{0%,100%{transform:rotate(13deg) translateY(0)}50%{transform:rotate(18deg) translateY(-12px)}}
+@keyframes scrapPulse{0%,100%{transform:rotate(-14deg) scale(1)}50%{transform:rotate(-8deg) scale(1.08)}}
+@media (max-width:900px){
+  .doodle-spring{right:-8%}
+  .doodle-star{left:-3%}
+  .doodle-spiral{right:-5%}
+  .doodle-archive{left:-7%}
+}
+@media (max-width:620px){
+  .doodle-orbit,.doodle-archive{display:none}
+  .doodle-cloud{width:125px;left:-8px;bottom:1%}
+  .doodle-spring{width:100px;right:-25px;top:2%}
+  .doodle-star{width:76px;left:-15px;top:17%}
+  .doodle-spiral{width:88px;right:-22px}
+  .doodle-news{width:100px;right:-25px;bottom:2%}
+  .note-scrap{width:86px;right:-10px;top:-30px}
+}
+@media (prefers-reduced-motion:reduce){.doodle-orbit,.doodle-star{animation:none}}
