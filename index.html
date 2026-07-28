@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Static Room</title>
   <style>
     *{box-sizing:border-box}
@@ -11,25 +14,28 @@
     body{
       margin:0;
       width:100%;
-      min-height:100%;
+      height:100%;
+      overflow:hidden;
       background:#eed2ae;
-    }
-
-    body{
-      overflow-x:hidden;
     }
 
     .page-canvas{
       position:relative;
-      width:100%;
-      min-height:100vh;
+      width:100vw;
+      height:100vh;
+      overflow:hidden;
     }
 
     .page-background{
+      position:absolute;
+      inset:0;
       display:block;
-      width:100%;
-      height:auto;
+      width:100vw;
+      height:100vh;
+      object-fit:contain;
+      object-position:center center;
       max-width:none;
+      z-index:0;
       user-select:none;
       pointer-events:none;
       -webkit-user-drag:none;
@@ -38,6 +44,7 @@
     .drawing-panel{
       position:absolute;
       inset:0;
+      z-index:1;
     }
   </style>
 </head>
@@ -45,7 +52,7 @@
   <div class="page-canvas">
     <img
       class="page-background"
-      src="./fundo.png?v=2"
+      src="/static-room/fundo.png?v=3"
       alt=""
       aria-hidden="true"
       draggable="false"
