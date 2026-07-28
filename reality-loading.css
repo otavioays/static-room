@@ -1,0 +1,48 @@
+/* Janela Reality Loading em PNG */
+.reality-loading-slot{
+  width:min(43vw,560px);
+  justify-self:end;
+  align-self:end;
+  position:relative;
+  z-index:6;
+  background:none;
+  border:0;
+  box-shadow:none;
+  color:inherit;
+  pointer-events:none;
+}
+
+.reality-loading-window{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:none;
+  user-select:none;
+  -webkit-user-drag:none;
+  filter:drop-shadow(12px 14px 0 rgba(19,13,22,.72));
+  transform-origin:center;
+  animation:realityWindowFloat 5.8s ease-in-out infinite;
+}
+
+@keyframes realityWindowFloat{
+  0%,100%{transform:translateY(0) rotate(1.4deg)}
+  50%{transform:translateY(-15px) rotate(-.8deg)}
+}
+
+@media (max-width:900px){
+  .reality-loading-slot{
+    justify-self:start;
+    width:min(76vw,560px);
+  }
+}
+
+@media (max-width:620px){
+  .reality-loading-slot{width:100%}
+  .reality-loading-window{
+    filter:drop-shadow(7px 9px 0 rgba(19,13,22,.7));
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .reality-loading-window{animation:none}
+}
