@@ -53,7 +53,7 @@ jobs:
             "arquivosinuteis.png"
             "darseuemail.png"
             "colecao001.png"
-            "cta.png"
+            "ctaatualizado.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -78,7 +78,7 @@ jobs:
 
           html = html.replace(
               '<h1>Wear the <span>signal.</span></h1>',
-              '<h1 class="hero-cta-title" aria-label="Compre a nossa fase"><img class="hero-cta-image" src="./cta.png?v=1" alt="Compre a nossa fase"></h1>',
+              '<h1 class="hero-cta-title" aria-label="Compre a nossa fase"><img class="hero-cta-image" src="./ctaatualizado.png?v=1" alt="Compre a nossa fase"></h1>',
               1
           )
 
@@ -96,15 +96,15 @@ jobs:
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=19"></script>\n'
+              '  <script src="./decorations.js?v=20"></script>\n'
               '  <script src="./reality-loading.js?v=2"></script>\n'
               '</body>'
           )
 
           if 'colecao001.png?v=5' not in html:
               raise RuntimeError('collection artwork missing from generated HTML')
-          if 'cta.png?v=1' not in html:
-              raise RuntimeError('CTA artwork missing from generated HTML')
+          if 'ctaatualizado.png?v=1' not in html:
+              raise RuntimeError('updated CTA artwork missing from generated HTML')
 
           page.write_text(html, encoding='utf-8')
 
@@ -121,7 +121,7 @@ jobs:
               ctaImage.className = 'hero-cta-image';
               heroTitle.replaceChildren(ctaImage);
             }
-            ctaImage.src = file('cta.png?v=1');
+            ctaImage.src = file('ctaatualizado.png?v=1');
             ctaImage.alt = 'Compre a nossa fase';
             ctaImage.draggable = false;
             ctaImage.decoding = 'async';
@@ -155,10 +155,10 @@ jobs:
           test -s "_site/arquivosinuteis.png"
           test -s "_site/darseuemail.png"
           test -s "_site/colecao001.png"
-          test -s "_site/cta.png"
+          test -s "_site/ctaatualizado.png"
           grep -q 'colecao001.png?v=5' _site/index.html
-          grep -q 'cta.png?v=1' _site/index.html
-          grep -q 'cta.png?v=1' _site/decorations.js
+          grep -q 'ctaatualizado.png?v=1' _site/index.html
+          grep -q 'ctaatualizado.png?v=1' _site/decorations.js
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
