@@ -106,7 +106,7 @@ jobs:
           )
           html = html.replace(
               old_drop_title,
-              '<h2 class="section-title drop-title-image-wrap" data-reveal aria-label="Coisas à venda"><img class="drop-title-image" src="./coisas%20a%20venda.png?v=1" alt="Coisas à venda"></h2>',
+              '<h2 class="section-title drop-title-image-wrap" data-reveal aria-label="Coisas à venda"><img class="drop-title-image" src="./coisas%20a%20venda.png?v=2" alt="Coisas à venda"></h2>',
               1
           )
 
@@ -126,7 +126,7 @@ jobs:
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=35"></script>\n'
+              '  <script src="./decorations.js?v=36"></script>\n'
               '  <script src="./reality-loading.js?v=3"></script>\n'
               '</body>'
           )
@@ -139,7 +139,7 @@ jobs:
               raise RuntimeError('price CTA artwork missing from generated HTML')
           if 'lerajustificativa.png?v=1' not in html:
               raise RuntimeError('justification CTA artwork missing from generated HTML')
-          if 'coisas%20a%20venda.png?v=1' not in html:
+          if 'coisas%20a%20venda.png?v=2' not in html:
               raise RuntimeError('drop title artwork missing from generated HTML')
           if old_description in html:
               raise RuntimeError('hero description was not removed')
@@ -183,7 +183,7 @@ jobs:
             dropTitle.setAttribute('aria-label', 'Coisas à venda');
             const dropTitleImage = document.createElement('img');
             dropTitleImage.className = 'drop-title-image';
-            dropTitleImage.src = file('coisas a venda.png?v=1');
+            dropTitleImage.src = file('coisas a venda.png?v=2');
             dropTitleImage.alt = 'Coisas à venda';
             dropTitleImage.draggable = false;
             dropTitleImage.decoding = 'async';
@@ -232,8 +232,9 @@ jobs:
           grep -q 'vercoisascompreco.png?v=1' _site/decorations.js
           grep -q 'lerajustificativa.png?v=1' _site/index.html
           grep -q 'lerajustificativa.png?v=1' _site/decorations.js
-          grep -q 'coisas%20a%20venda.png?v=1' _site/index.html
-          grep -q 'coisas a venda.png?v=1' _site/decorations.js
+          grep -q 'coisas%20a%20venda.png?v=2' _site/index.html
+          grep -q 'coisas a venda.png?v=2' _site/decorations.js
+          grep -q 'decorations.js?v=36' _site/index.html
           grep -q 'reality-loading.js?v=3' _site/index.html
           ! grep -q 'Roupas e artefatos para quem cresceu online' _site/index.html
 
