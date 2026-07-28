@@ -1,14 +1,16 @@
 (() => {
-  const panel = document.querySelector('.hero-console');
+  const panel = document.querySelector('.hero-console, .reality-loading-slot');
   if (!panel) return;
 
-  panel.className = 'reality-loading-slot';
+  panel.classList.remove('hero-console');
+  panel.classList.add('reality-loading-slot', 'visible');
+  panel.removeAttribute('data-reveal');
   panel.setAttribute('aria-label', 'Status da transmissão: Reality Loading');
   panel.replaceChildren();
 
   const image = document.createElement('img');
   image.className = 'reality-loading-window';
-  image.src = new URL('realityloading.png?v=1', document.baseURI).href;
+  image.src = new URL('realityloading.png?v=2', document.baseURI).href;
   image.alt = 'Janela Static Room mostrando Reality Loading, sinal instável e alma encontrada';
   image.draggable = false;
   image.decoding = 'async';
