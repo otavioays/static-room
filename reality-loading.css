@@ -34,12 +34,12 @@
   top:-15px !important;
 }
 
-/* Abaixa as duas artes principais mais 20px. */
+/* Abaixa as duas artes principais mais 35px. */
 body .hero .hero-copy > .hero-collection-sticker{
-  top:134px !important;
+  top:169px !important;
 }
 body .hero .hero-copy .hero-cta-sticker{
-  top:80px !important;
+  top:115px !important;
 }
 
 @media (max-width:900px){
@@ -55,10 +55,10 @@ body .hero .hero-copy .hero-cta-sticker{
     filter:drop-shadow(7px 9px 0 rgba(19,13,22,.7));
   }
   body .hero .hero-copy > .hero-collection-sticker{
-    top:122px !important;
+    top:157px !important;
   }
   body .hero .hero-copy .hero-cta-sticker{
-    top:80px !important;
+    top:115px !important;
   }
 }
 
