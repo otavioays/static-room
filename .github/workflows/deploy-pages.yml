@@ -55,6 +55,7 @@ jobs:
             "colecao001.png"
             "adesivocta.png"
             "vercoisascompreco.png"
+            "lerajustificativa.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -75,9 +76,10 @@ jobs:
           old_title = '<h1>Wear the <span>signal.</span></h1>'
           old_description = '<p>Roupas e artefatos para quem cresceu online e nunca voltou completamente.</p>'
           old_price_button = '<a class="btn btn-primary" href="#drop">Entrar no drop ↗</a>'
+          old_justification_button = '<a class="btn btn-secondary" href="#manifesto">Ler transmissão</a>'
 
-          if old_eyebrow not in html or old_title not in html or old_description not in html or old_price_button not in html:
-              raise RuntimeError('original hero artwork, description or price button markup was not found')
+          if old_eyebrow not in html or old_title not in html or old_description not in html or old_price_button not in html or old_justification_button not in html:
+              raise RuntimeError('original hero artwork, description or CTA button markup was not found')
 
           html = html.replace(
               old_eyebrow,
@@ -95,6 +97,11 @@ jobs:
               '<a class="btn btn-primary hero-price-image-button" href="#drop" aria-label="Ver coisas com preço"><img class="hero-price-button-image" src="./vercoisascompreco.png?v=1" alt="Ver coisas com preço"></a>',
               1
           )
+          html = html.replace(
+              old_justification_button,
+              '<a class="btn btn-secondary hero-justification-image-button" href="#manifesto" aria-label="Ler a justificativa"><img class="hero-justification-button-image" src="./lerajustificativa.png?v=1" alt="Ler a justificativa"></a>',
+              1
+          )
 
           html = html.replace(
               '</head>',
@@ -106,12 +113,12 @@ jobs:
               '  <link rel="stylesheet" href="./reality-loading.css?v=2">\n'
               '  <link rel="stylesheet" href="./bag-icon.css?v=2">\n'
               '  <style>@keyframes sr-float-collection{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-5px,0) rotate(-.38deg)}}@keyframes sr-float-cta{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(2px,-6px,0) rotate(.3deg)}}.hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start;max-width:760px!important}.hero .hero-copy>.hero-collection-sticker{display:inline-flex!important;align-self:flex-start!important;position:relative!important;top:54px!important;z-index:7!important;width:auto!important;max-width:100%!important;padding:0!important;margin:18px 0 -28px 2px!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:none!important;line-height:0!important}.hero .hero-collection-image{display:block!important;width:clamp(170px,17vw,270px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important;animation:sr-float-collection 6.8s ease-in-out infinite;will-change:transform}.hero .hero-cta-sticker{display:block!important;align-self:flex-start!important;position:relative!important;z-index:5!important;width:min(100%,760px)!important;max-width:760px!important;margin:4px 0 18px -90px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;line-height:0!important}.hero .hero-cta-sticker-image{display:block!important;width:100%!important;height:auto!important;max-width:none!important;object-fit:contain!important;animation:sr-float-cta 7.8s ease-in-out -.9s infinite;will-change:transform}.hero .hero-actions{position:relative!important;z-index:6!important;margin-top:0!important}@media(max-width:620px){.hero .hero-copy{max-width:100%!important}.hero .hero-copy>.hero-collection-sticker{top:42px!important;margin:14px 0 -18px 0!important}.hero .hero-collection-image{width:min(58vw,220px)!important}.hero .hero-cta-sticker{width:min(96vw,640px)!important;margin:4px 0 12px -22px!important}}@media(prefers-reduced-motion:reduce){.hero .hero-collection-image,.hero .hero-cta-sticker-image{animation:none!important;will-change:auto}}</style>\n'
-              '  <style>.hero .hero-actions .hero-price-image-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;line-height:0!important;overflow:visible!important}.hero .hero-actions .hero-price-image-button:hover,.hero .hero-actions .hero-price-image-button:focus-visible{transform:translate(3px,3px) rotate(-1deg)!important;box-shadow:none!important}.hero .hero-price-button-image{display:block!important;width:clamp(190px,19vw,285px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important;filter:drop-shadow(5px 5px 0 rgba(19,13,22,.72))}@media(max-width:620px){.hero .hero-price-button-image{width:min(64vw,245px)!important}}</style>\n'
+              '  <style>.hero .hero-actions .hero-price-image-button,.hero .hero-actions .hero-justification-image-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;line-height:0!important;overflow:visible!important}.hero .hero-actions .hero-price-image-button:hover,.hero .hero-actions .hero-price-image-button:focus-visible{transform:translate(3px,3px) rotate(-1deg)!important;box-shadow:none!important}.hero .hero-actions .hero-justification-image-button:hover,.hero .hero-actions .hero-justification-image-button:focus-visible{transform:translate(3px,3px) rotate(1deg)!important;box-shadow:none!important}.hero .hero-price-button-image,.hero .hero-justification-button-image{display:block!important;width:clamp(190px,19vw,285px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important;filter:drop-shadow(5px 5px 0 rgba(19,13,22,.72))}@media(max-width:620px){.hero .hero-price-button-image,.hero .hero-justification-button-image{width:min(64vw,245px)!important}}</style>\n'
               '</head>'
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=31"></script>\n'
+              '  <script src="./decorations.js?v=32"></script>\n'
               '  <script src="./reality-loading.js?v=3"></script>\n'
               '</body>'
           )
@@ -122,6 +129,8 @@ jobs:
               raise RuntimeError('combined CTA sticker missing from generated HTML')
           if 'vercoisascompreco.png?v=1' not in html:
               raise RuntimeError('price CTA artwork missing from generated HTML')
+          if 'lerajustificativa.png?v=1' not in html:
+              raise RuntimeError('justification CTA artwork missing from generated HTML')
           if old_description in html:
               raise RuntimeError('hero description was not removed')
 
@@ -144,7 +153,19 @@ jobs:
             priceImage.loading = 'eager';
             priceButton.replaceChildren(priceImage);
           }
-          if (heroButtons[1]) heroButtons[1].textContent = 'ler a justificativa';"""
+          const justificationButton = heroButtons[1];
+          if (justificationButton) {
+            justificationButton.classList.add('hero-justification-image-button');
+            justificationButton.setAttribute('aria-label', 'Ler a justificativa');
+            const justificationImage = document.createElement('img');
+            justificationImage.className = 'hero-justification-button-image';
+            justificationImage.src = file('lerajustificativa.png?v=1');
+            justificationImage.alt = 'Ler a justificativa';
+            justificationImage.draggable = false;
+            justificationImage.decoding = 'async';
+            justificationImage.loading = 'eager';
+            justificationButton.replaceChildren(justificationImage);
+          }"""
           if old_actions not in js:
               raise RuntimeError('original hero button copy replacement was not found')
           script.write_text(js.replace(old_actions, new_actions, 1), encoding='utf-8')
@@ -175,10 +196,13 @@ jobs:
           test -s "_site/colecao001.png"
           test -s "_site/adesivocta.png"
           test -s "_site/vercoisascompreco.png"
+          test -s "_site/lerajustificativa.png"
           grep -q 'colecao001.png?v=6' _site/index.html
           grep -q 'adesivocta.png?v=1' _site/index.html
           grep -q 'vercoisascompreco.png?v=1' _site/index.html
           grep -q 'vercoisascompreco.png?v=1' _site/decorations.js
+          grep -q 'lerajustificativa.png?v=1' _site/index.html
+          grep -q 'lerajustificativa.png?v=1' _site/decorations.js
           grep -q 'reality-loading.js?v=3' _site/index.html
           ! grep -q 'Roupas e artefatos para quem cresceu online' _site/index.html
 
