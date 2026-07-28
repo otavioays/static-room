@@ -47,6 +47,7 @@ jobs:
             "f4244071-4ccf-4e01-9c80-a2f175db0890.png"
             "e424ef6c-e075-4c0a-93d8-23859e3fea39.png"
             "realityloading.png"
+            "logostaticroom.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -76,7 +77,7 @@ jobs:
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=8"></script>\n'
+              '  <script src="./decorations.js?v=9"></script>\n'
               '  <script src="./reality-loading.js?v=2"></script>\n'
               '</body>'
           )
@@ -100,6 +101,7 @@ jobs:
           test -s "_site/f4244071-4ccf-4e01-9c80-a2f175db0890.png"
           test -s "_site/e424ef6c-e075-4c0a-93d8-23859e3fea39.png"
           test -s "_site/realityloading.png"
+          test -s "_site/logostaticroom.png"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
