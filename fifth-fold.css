@@ -1,0 +1,34 @@
+/* Background visual da última dobra */
+.newsletter{
+  isolation:isolate;
+  background:
+    linear-gradient(135deg,rgba(243,78,155,.26),rgba(182,110,212,.24) 48%,rgba(246,192,108,.28)),
+    url("./e424ef6c-e075-4c0a-93d8-23859e3fea39.png") center center / cover no-repeat !important;
+}
+
+.newsletter::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 50%,transparent 0 18%,rgba(19,13,22,.14) 18.5% 19%,transparent 19.5% 25%,rgba(19,13,22,.1) 25.5% 26%,transparent 26.5%),
+    linear-gradient(180deg,rgba(248,211,166,.09),rgba(19,13,22,.14));
+  mix-blend-mode:multiply;
+}
+
+.newsletter h2{
+  text-shadow:9px 9px 0 var(--ink),0 0 24px rgba(248,211,166,.45);
+}
+
+.newsletter p{
+  text-shadow:2px 2px 0 rgba(248,211,166,.72);
+}
+
+@media (max-width:700px){
+  .newsletter{
+    background-position:center top !important;
+    background-size:auto 100% !important;
+  }
+}
