@@ -1,0 +1,45 @@
+/* Ícone real da sacola, preservando o link original */
+.cart-pill{
+  display:block !important;
+  flex:0 0 auto;
+  width:clamp(104px,8.4vw,126px);
+  aspect-ratio:121 / 64;
+  min-height:0;
+  padding:0 !important;
+  border:0 !important;
+  box-shadow:none !important;
+  background:url("./bag.png?v=1") center / contain no-repeat !important;
+  color:transparent !important;
+  font-size:0 !important;
+  line-height:0;
+  text-shadow:none !important;
+  overflow:hidden;
+  white-space:nowrap;
+  transform:rotate(1deg);
+  transition:transform .18s ease,filter .18s ease;
+  filter:drop-shadow(3px 4px 0 rgba(19,13,22,.58));
+}
+
+.cart-pill::after{
+  display:none !important;
+  content:none !important;
+}
+
+.cart-pill:hover,
+.cart-pill:focus-visible{
+  transform:translateY(-3px) rotate(-1deg) !important;
+  filter:drop-shadow(5px 7px 0 rgba(19,13,22,.7));
+  outline:none;
+}
+
+@media (max-width:900px){
+  .cart-pill{
+    display:block !important;
+    width:108px;
+    margin-left:auto;
+  }
+}
+
+@media (max-width:620px){
+  .cart-pill{width:94px}
+}
