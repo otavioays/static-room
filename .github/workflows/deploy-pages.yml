@@ -29,7 +29,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp index.html decorations.css decorations.js second-fold.css third-fold.css fourth-fold.css fifth-fold.css reality-loading.css reality-loading.js _site/
+          cp index.html decorations.css decorations.js second-fold.css third-fold.css fourth-fold.css fifth-fold.css reality-loading.css reality-loading.js bag-icon.css _site/
 
           assets=(
             "dobra1.png"
@@ -54,24 +54,30 @@ jobs:
             cp "$asset" _site/
           done
 
+          # O upload se chama bag.exe, mas contém a imagem do ícone.
+          # Publicamos como PNG para o navegador receber o MIME correto.
+          test -s "bag.exe"
+          cp "bag.exe" "_site/bag.png"
+
           python - <<'PY'
           from pathlib import Path
           page = Path('_site/index.html')
           html = page.read_text(encoding='utf-8')
           html = html.replace(
               '</head>',
-              '  <link rel="stylesheet" href="./decorations.css?v=6">\n'
-              '  <link rel="stylesheet" href="./second-fold.css?v=5">\n'
-              '  <link rel="stylesheet" href="./third-fold.css?v=4">\n'
-              '  <link rel="stylesheet" href="./fourth-fold.css?v=3">\n'
-              '  <link rel="stylesheet" href="./fifth-fold.css?v=2">\n'
-              '  <link rel="stylesheet" href="./reality-loading.css?v=1">\n'
+              '  <link rel="stylesheet" href="./decorations.css?v=7">\n'
+              '  <link rel="stylesheet" href="./second-fold.css?v=6">\n'
+              '  <link rel="stylesheet" href="./third-fold.css?v=5">\n'
+              '  <link rel="stylesheet" href="./fourth-fold.css?v=4">\n'
+              '  <link rel="stylesheet" href="./fifth-fold.css?v=3">\n'
+              '  <link rel="stylesheet" href="./reality-loading.css?v=2">\n'
+              '  <link rel="stylesheet" href="./bag-icon.css?v=1">\n'
               '</head>'
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=6"></script>\n'
-              '  <script src="./reality-loading.js?v=1"></script>\n'
+              '  <script src="./decorations.js?v=7"></script>\n'
+              '  <script src="./reality-loading.js?v=2"></script>\n'
               '</body>'
           )
           page.write_text(html, encoding='utf-8')
@@ -87,6 +93,8 @@ jobs:
           test -s _site/fifth-fold.css
           test -s _site/reality-loading.css
           test -s _site/reality-loading.js
+          test -s _site/bag-icon.css
+          test -s _site/bag.png
           test -s "_site/ChatGPT Image Jul 28, 2026, 12_08_29 AM.png"
           test -s "_site/9c5fd7b0-88cd-4f25-892a-2812f3b00cd8.png"
           test -s "_site/f4244071-4ccf-4e01-9c80-a2f175db0890.png"
