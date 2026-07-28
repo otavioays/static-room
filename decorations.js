@@ -57,7 +57,7 @@
   if (brand) {
     const logo = document.createElement('img');
     logo.className = 'brand-logo';
-    logo.src = file('logostaticroom.png?v=1');
+    logo.src = file('logostaticroom.png?v=2');
     logo.alt = 'Static Room, departamento de decisões questionáveis';
     logo.draggable = false;
     logo.decoding = 'async';
@@ -66,26 +66,43 @@
 
     const brandStyle = document.createElement('style');
     brandStyle.textContent = `
+      .site-nav{
+        overflow:visible !important;
+      }
       .site-nav .brand{
         display:flex;
-        align-items:center;
+        align-items:flex-start;
         flex:0 0 auto;
+        height:78px;
+        overflow:visible;
         transform:none !important;
         text-shadow:none !important;
       }
       .site-nav .brand-logo{
         display:block;
-        width:clamp(230px,24vw,340px);
+        width:clamp(340px,34vw,520px);
         height:auto;
-        max-height:68px;
+        max-width:none;
+        max-height:none;
         object-fit:contain;
-        object-position:left center;
+        object-position:left top;
+        transform:translateY(-17px);
+        filter:drop-shadow(2px 3px 0 rgba(19,13,22,.35));
       }
       @media(max-width:900px){
-        .site-nav .brand-logo{width:clamp(210px,34vw,290px);max-height:58px}
+        .site-nav .brand-logo{
+          width:clamp(300px,42vw,410px);
+          transform:translateY(-13px);
+        }
       }
       @media(max-width:620px){
-        .site-nav .brand-logo{width:210px;max-height:50px}
+        .site-nav .brand{
+          height:66px;
+        }
+        .site-nav .brand-logo{
+          width:280px;
+          transform:translateY(-9px);
+        }
       }
     `;
     document.head.appendChild(brandStyle);
