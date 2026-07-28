@@ -71,7 +71,7 @@ jobs:
 
           html = html.replace(
               '<span class="eyebrow">drop 001 / online now</span>',
-              '<span class="eyebrow hero-collection-sticker" aria-label="Coleção 001, infelizmente disponível"><img class="hero-collection-image" src="./colecao001.png?v=3" alt="Coleção 001, infelizmente disponível"></span>',
+              '<span class="eyebrow hero-collection-sticker" aria-label="Coleção 001, infelizmente disponível"><img class="hero-collection-image" src="./colecao001.png?v=4" alt="Coleção 001, infelizmente disponível"></span>',
               1
           )
 
@@ -84,17 +84,17 @@ jobs:
               '  <link rel="stylesheet" href="./fifth-fold.css?v=3">\n'
               '  <link rel="stylesheet" href="./reality-loading.css?v=2">\n'
               '  <link rel="stylesheet" href="./bag-icon.css?v=2">\n'
-              '  <style>.hero .hero-collection-sticker{display:inline-flex!important;width:auto!important;max-width:100%!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:none!important;line-height:0!important}.hero .hero-collection-image{display:block;width:clamp(280px,28vw,450px);height:auto;max-width:100%;object-fit:contain}@media(max-width:620px){.hero .hero-collection-image{width:min(86vw,360px)}}</style>\n'
+              '  <style>.hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start}.hero .hero-collection-sticker{display:inline-flex!important;align-self:flex-start!important;width:auto!important;max-width:100%!important;padding:0!important;margin:0 0 -8px 2px!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:translateY(10px)!important;line-height:0!important}.hero .hero-collection-image{display:block!important;width:clamp(170px,17vw,270px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important}.hero .hero-collection-sticker+h1{margin-top:4px!important}@media(max-width:620px){.hero .hero-collection-sticker{margin-bottom:-6px!important;transform:translateY(6px)!important}.hero .hero-collection-image{width:min(58vw,220px)!important}.hero .hero-collection-sticker+h1{margin-top:3px!important}}</style>\n'
               '</head>'
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=13"></script>\n'
+              '  <script src="./decorations.js?v=14"></script>\n'
               '  <script src="./reality-loading.js?v=2"></script>\n'
               '</body>'
           )
 
-          if 'colecao001.png?v=3' not in html:
+          if 'colecao001.png?v=4' not in html:
               raise RuntimeError('collection artwork missing from generated HTML')
 
           page.write_text(html, encoding='utf-8')
@@ -123,7 +123,7 @@ jobs:
           test -s "_site/arquivosinuteis.png"
           test -s "_site/darseuemail.png"
           test -s "_site/colecao001.png"
-          grep -q 'colecao001.png?v=3' _site/index.html
+          grep -q 'colecao001.png?v=4' _site/index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
