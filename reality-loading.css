@@ -40,6 +40,12 @@ body .hero .hero-justification-button-image{
   width:clamp(225px,22vw,335px) !important;
 }
 
+/* Remove a estrela e a etiqueta acima da arte Coisas à venda. */
+.drop-section .float-star.star-a,
+.drop-section .section-tag{
+  display:none !important;
+}
+
 /* Abaixa as duas artes principais mais 35px. */
 body .hero .hero-copy > .hero-collection-sticker{
   top:169px !important;
