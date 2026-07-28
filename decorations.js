@@ -53,6 +53,44 @@
   const note = document.querySelector('.note-card');
   if (note) note.prepend(makeImage('ChatGPT Image Jul 28, 2026, 12_03_48 AM (5).png', 'note-scrap'));
 
+  const brand = document.querySelector('.brand');
+  if (brand) {
+    const logo = document.createElement('img');
+    logo.className = 'brand-logo';
+    logo.src = file('logostaticroom.png?v=1');
+    logo.alt = 'Static Room, departamento de decisões questionáveis';
+    logo.draggable = false;
+    logo.decoding = 'async';
+    logo.loading = 'eager';
+    brand.replaceChildren(logo);
+
+    const brandStyle = document.createElement('style');
+    brandStyle.textContent = `
+      .site-nav .brand{
+        display:flex;
+        align-items:center;
+        flex:0 0 auto;
+        transform:none !important;
+        text-shadow:none !important;
+      }
+      .site-nav .brand-logo{
+        display:block;
+        width:clamp(230px,24vw,340px);
+        height:auto;
+        max-height:68px;
+        object-fit:contain;
+        object-position:left center;
+      }
+      @media(max-width:900px){
+        .site-nav .brand-logo{width:clamp(210px,34vw,290px);max-height:58px}
+      }
+      @media(max-width:620px){
+        .site-nav .brand-logo{width:210px;max-height:50px}
+      }
+    `;
+    document.head.appendChild(brandStyle);
+  }
+
   document.title = 'Static Room | infelizmente, uma marca';
   const description = document.querySelector('meta[name="description"]');
   if (description) description.content = 'Static Room. Roupas para quem já transformou falta de personalidade em direção criativa.';
