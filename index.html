@@ -14,27 +14,26 @@
     body{
       margin:0;
       width:100%;
-      height:100%;
-      overflow:hidden;
+      min-height:100%;
       background:#eed2ae;
+    }
+
+    body{
+      overflow-x:hidden;
     }
 
     .page-canvas{
       position:relative;
-      width:100vw;
-      height:100vh;
-      overflow:hidden;
+      width:100%;
+      min-height:100vh;
     }
 
     .page-background{
-      position:absolute;
-      inset:0;
       display:block;
-      width:100vw;
-      height:100vh;
-      object-fit:contain;
-      object-position:center center;
+      width:100%;
+      height:auto;
       max-width:none;
+      position:relative;
       z-index:0;
       user-select:none;
       pointer-events:none;
@@ -52,7 +51,7 @@
   <div class="page-canvas">
     <img
       class="page-background"
-      src="/static-room/fundo.png?v=3"
+      src="https://raw.githubusercontent.com/otavioays/static-room/40ef4f266bedd1efbdfdfa03774a844a41a9ad52/fundo.png"
       alt=""
       aria-hidden="true"
       draggable="false"
