@@ -22,6 +22,17 @@
       overflow-x:hidden;
     }
 
+    .top-banner{
+      display:block;
+      width:100%;
+      height:auto;
+      margin:0;
+      padding:0;
+      user-select:none;
+      pointer-events:none;
+      -webkit-user-drag:none;
+    }
+
     .page-canvas{
       position:relative;
       width:100%;
@@ -48,6 +59,13 @@
   </style>
 </head>
 <body>
+  <img
+    class="top-banner"
+    src="./banner.png?v=1"
+    alt="Banner Static Room"
+    draggable="false"
+  >
+
   <div class="page-canvas">
     <img
       class="page-background"
