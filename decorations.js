@@ -115,8 +115,60 @@
   const ticker = 'SIM, É UMA LOJA ★ NÃO, O SITE NÃO VAI FICAR MAIS NORMAL ★ VOCÊ PODE IR EMBORA, MAS JÁ CARREGOU AS IMAGENS ★';
   texts('.top-strip .ticker span', [ticker, ticker]);
 
-  text('.brand small', 'DEPARTAMENTO DE DECISÕES QUESTIONÁVEIS');
-  texts('.nav-links a', ['coisas à venda', 'texto obrigatório', 'arquivos inúteis', 'dar seu e-mail']);
+  const navArtwork = [
+    { src: 'coisasavenda.png?v=1', label: 'Coisas à venda' },
+    { src: 'textoobrigatorio.png?v=1', label: 'Texto obrigatório' },
+    { src: 'arquivosinuteis.png?v=1', label: 'Arquivos inúteis' },
+    { src: 'darseuemail.png?v=1', label: 'Dar seu e-mail' }
+  ];
+  document.querySelectorAll('.nav-links a').forEach((link, index) => {
+    const item = navArtwork[index];
+    if (!item) return;
+    const image = makeImage(item.src, 'nav-label-image', true);
+    link.setAttribute('aria-label', item.label);
+    link.replaceChildren(image);
+  });
+  const navArtworkStyle = document.createElement('style');
+  navArtworkStyle.textContent = `
+    .site-nav .nav-links{
+      gap:clamp(8px,1.25vw,22px);
+    }
+    .site-nav .nav-links a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:4px 2px;
+      line-height:0;
+      text-shadow:none;
+    }
+    .site-nav .nav-label-image{
+      display:block;
+      width:auto;
+      height:clamp(30px,2.45vw,42px);
+      max-width:clamp(112px,10vw,172px);
+      object-fit:contain;
+      filter:drop-shadow(1px 2px 0 rgba(19,13,22,.38));
+      transition:transform .18s ease;
+    }
+    .site-nav .nav-links a:hover .nav-label-image,
+    .site-nav .nav-links a:focus-visible .nav-label-image{
+      transform:translateY(-2px) rotate(-1deg);
+    }
+    @media(max-width:900px){
+      .site-nav .nav-links a{
+        justify-content:flex-start;
+        min-height:58px;
+        padding:7px 4px;
+      }
+      .site-nav .nav-label-image{
+        height:40px;
+        max-width:230px;
+      }
+    }
+  `;
+  document.head.appendChild(navArtworkStyle);
+
   const cart = document.querySelector('.cart-pill');
   if (cart?.firstChild) cart.firstChild.nodeValue = 'sacola.exe ';
 
