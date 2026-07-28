@@ -57,6 +57,18 @@ body .hero .hero-justification-button-image{
   margin:0 auto 34px !important;
 }
 
+/* Faz a arte Coisas à venda flutuar sem alterar o fluxo da seção. */
+.drop-section .drop-title-image{
+  animation:dropTitleFloat 7.4s ease-in-out infinite;
+  transform-origin:center;
+  will-change:transform;
+}
+
+@keyframes dropTitleFloat{
+  0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+  50%{transform:translate3d(2px,-10px,0) rotate(-.4deg)}
+}
+
 /* Abaixa as duas artes principais mais 35px. */
 body .hero .hero-copy > .hero-collection-sticker{
   top:169px !important;
@@ -94,5 +106,9 @@ body .hero .hero-copy .hero-cta-sticker{
 }
 
 @media (prefers-reduced-motion:reduce){
-  .reality-loading-window{animation:none}
+  .reality-loading-window,
+  .drop-section .drop-title-image{
+    animation:none !important;
+    will-change:auto;
+  }
 }
