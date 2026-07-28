@@ -104,7 +104,7 @@ jobs:
           html = html.replace(
               '</body>',
               '  <script src="./decorations.js?v=30"></script>\n'
-              '  <script src="./reality-loading.js?v=2"></script>\n'
+              '  <script src="./reality-loading.js?v=3"></script>\n'
               '</body>'
           )
 
@@ -144,6 +144,7 @@ jobs:
           test -s "_site/adesivocta.png"
           grep -q 'colecao001.png?v=6' _site/index.html
           grep -q 'adesivocta.png?v=1' _site/index.html
+          grep -q 'reality-loading.js?v=3' _site/index.html
           ! grep -q 'Roupas e artefatos para quem cresceu online' _site/index.html
 
       - name: Configure GitHub Pages
