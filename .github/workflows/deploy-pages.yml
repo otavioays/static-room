@@ -66,7 +66,7 @@ jobs:
           html = page.read_text(encoding='utf-8')
           html = html.replace(
               '</head>',
-              '  <link rel="stylesheet" href="./decorations.css?v=8">\n'
+              '  <link rel="stylesheet" href="./decorations.css?v=9">\n'
               '  <link rel="stylesheet" href="./second-fold.css?v=6">\n'
               '  <link rel="stylesheet" href="./third-fold.css?v=5">\n'
               '  <link rel="stylesheet" href="./fourth-fold.css?v=4">\n'
