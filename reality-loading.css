@@ -34,6 +34,14 @@
   top:-15px !important;
 }
 
+/* Abaixa as duas artes principais mais 20px. */
+body .hero .hero-copy > .hero-collection-sticker{
+  top:134px !important;
+}
+body .hero .hero-copy .hero-cta-sticker{
+  top:80px !important;
+}
+
 @media (max-width:900px){
   .reality-loading-slot{
     justify-self:start;
@@ -45,6 +53,12 @@
   .reality-loading-slot{width:100%}
   .reality-loading-window{
     filter:drop-shadow(7px 9px 0 rgba(19,13,22,.7));
+  }
+  body .hero .hero-copy > .hero-collection-sticker{
+    top:122px !important;
+  }
+  body .hero .hero-copy .hero-cta-sticker{
+    top:80px !important;
   }
 }
 
