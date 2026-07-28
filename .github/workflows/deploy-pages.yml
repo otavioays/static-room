@@ -48,6 +48,10 @@ jobs:
             "e424ef6c-e075-4c0a-93d8-23859e3fea39.png"
             "realityloading.png"
             "logostaticroom.png"
+            "coisasavenda.png"
+            "textoobrigatorio.png"
+            "arquivosinuteis.png"
+            "darseuemail.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -77,7 +81,7 @@ jobs:
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=10"></script>\n'
+              '  <script src="./decorations.js?v=11"></script>\n'
               '  <script src="./reality-loading.js?v=2"></script>\n'
               '</body>'
           )
@@ -102,6 +106,10 @@ jobs:
           test -s "_site/e424ef6c-e075-4c0a-93d8-23859e3fea39.png"
           test -s "_site/realityloading.png"
           test -s "_site/logostaticroom.png"
+          test -s "_site/coisasavenda.png"
+          test -s "_site/textoobrigatorio.png"
+          test -s "_site/arquivosinuteis.png"
+          test -s "_site/darseuemail.png"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
