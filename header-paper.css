@@ -1,7 +1,0 @@
-.header-pastel{
-  background-color:#eed2ae;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='90' viewBox='0 0 380 90'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' seed='13' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='.28 0 0 0 .64 0 .22 0 0 .52 0 0 .16 0 .40 0 0 0 .42 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%23eed2ae'/%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='.25'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-  background-size:380px 90px;
-  background-position:left top;
-}
