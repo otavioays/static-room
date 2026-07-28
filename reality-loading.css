@@ -40,17 +40,21 @@ body .hero .hero-justification-button-image{
   width:clamp(225px,22vw,335px) !important;
 }
 
-/* Remove a estrela e a etiqueta acima da arte Coisas à venda. */
+/* A nova arte já contém título, etiqueta e texto auxiliar. */
 .drop-section .float-star.star-a,
-.drop-section .section-tag{
+.drop-section .section-tag,
+.drop-section .section-lead{
   display:none !important;
 }
 
-/* Move a arte Coisas à venda 200px para a esquerda e 400px para baixo. */
+/* Mantém a nova arte no fluxo normal, centralizada e longe dos produtos. */
 .drop-section .drop-title-image-wrap{
   position:relative !important;
-  left:-200px !important;
-  top:400px !important;
+  left:0 !important;
+  top:0 !important;
+  width:min(100%,1100px) !important;
+  max-width:1100px !important;
+  margin:0 auto 34px !important;
 }
 
 /* Abaixa as duas artes principais mais 35px. */
@@ -76,6 +80,10 @@ body .hero .hero-copy .hero-cta-sticker{
   body .hero .hero-price-button-image,
   body .hero .hero-justification-button-image{
     width:min(72vw,285px) !important;
+  }
+  .drop-section .drop-title-image-wrap{
+    width:100% !important;
+    margin-bottom:24px !important;
   }
   body .hero .hero-copy > .hero-collection-sticker{
     top:157px !important;
