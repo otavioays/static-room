@@ -80,7 +80,10 @@
   text('.drop-section .section-tag', 'OBJETOS JURIDICAMENTE CLASSIFICADOS COMO PRODUTOS');
   html('.drop-section .section-title', 'Coisas <span class="outline">à venda</span>');
   text('.drop-section .section-lead', 'Três peças selecionadas entre as três peças que conseguimos terminar. A curadoria foi brutal.');
-  texts('.product-card .sticker', ['quantidade\ncontável', 'conceito\nlavável', 'mangas\nincluídas']);
+  const stickerCopy = ['quantidade<br>contável', 'conceito<br>lavável', 'mangas<br>incluídas'];
+  document.querySelectorAll('.product-card .sticker').forEach((target, index) => {
+    if (stickerCopy[index]) target.innerHTML = stickerCopy[index];
+  });
   texts('.product-meta > span', ['camiseta grande', 'moletom que pesa', 'camiseta com mais manga']);
   const productLinks = document.querySelectorAll('.product-link');
   ['Ver Static Core, uma camiseta grande', 'Ver Lost Signal, um moletom que pesa', 'Ver Brain Rot, uma camiseta com mais manga'].forEach((label, index) => {
