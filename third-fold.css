@@ -1,0 +1,30 @@
+/* Background visual da terceira dobra */
+.manifesto{
+  isolation:isolate;
+  background:
+    linear-gradient(135deg,rgba(246,192,108,.34),rgba(239,120,173,.28) 45%,rgba(135,80,188,.34)),
+    url("./9c5fd7b0-88cd-4f25-892a-2812f3b00cd8.png") center center / cover no-repeat !important;
+}
+
+.manifesto::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(248,211,166,.14),transparent 30%,transparent 70%,rgba(19,13,22,.12)),
+    repeating-radial-gradient(circle at 0 0,transparent 0 3px,rgba(19,13,22,.05) 3.2px 4px);
+  mix-blend-mode:multiply;
+}
+
+.manifesto-copy{
+  text-shadow:2px 2px 0 rgba(248,211,166,.68);
+}
+
+@media (max-width:700px){
+  .manifesto{
+    background-position:center top !important;
+    background-size:auto 100% !important;
+  }
+}
