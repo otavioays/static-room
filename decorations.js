@@ -223,7 +223,7 @@
   document.head.appendChild(fourthWallStyle);
 
   text('.archive .section-tag', 'CONTEÚDO PARA O SITE NÃO PARECER SÓ UMA LOJA');
-  html('.archive .section-title', 'Provas <span class="outline">circunstanciais</span>');
+  html('.archive .section-title', 'olhe oque estão dizendo sobre a static room:');
   text('.archive-bar > span:first-child', 'arquivo_final_agora_v7_REAL');
   const archiveEntries = [
     'final_agora_v7_REAL.zip<small>não abre / representa a equipe</small>',
