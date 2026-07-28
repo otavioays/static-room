@@ -76,7 +76,7 @@ jobs:
           )
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=7"></script>\n'
+              '  <script src="./decorations.js?v=8"></script>\n'
               '  <script src="./reality-loading.js?v=2"></script>\n'
               '</body>'
           )
