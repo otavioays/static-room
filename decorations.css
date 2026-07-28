@@ -158,3 +158,32 @@
     transform:translateY(-8px) rotate(-1deg) scale(1.18) !important;
   }
 }
+
+/* A marca volta a ser a maior criatura do header. */
+@media(min-width:901px){
+  .site-nav .brand{
+    height:104px !important;
+    align-items:center !important;
+  }
+  .site-nav .brand-logo{
+    width:clamp(330px,32vw,455px) !important;
+    max-height:112px !important;
+    transform:translateY(-5px) scale(1.06) !important;
+    transform-origin:left center !important;
+  }
+}
+@media(max-width:900px){
+  .site-nav .brand-logo{
+    width:clamp(290px,41vw,370px) !important;
+    max-height:96px !important;
+    transform:translateY(-5px) scale(1.04) !important;
+    transform-origin:left center !important;
+  }
+}
+@media(max-width:620px){
+  .site-nav .brand-logo{
+    width:260px !important;
+    max-height:82px !important;
+    transform:translateY(-3px) scale(1.03) !important;
+  }
+}
