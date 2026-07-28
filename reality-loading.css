@@ -34,6 +34,12 @@
   top:-15px !important;
 }
 
+/* Deixa os dois botões maiores sem alterar os links ou a posição do bloco. */
+body .hero .hero-price-button-image,
+body .hero .hero-justification-button-image{
+  width:clamp(225px,22vw,335px) !important;
+}
+
 /* Abaixa as duas artes principais mais 35px. */
 body .hero .hero-copy > .hero-collection-sticker{
   top:169px !important;
@@ -53,6 +59,10 @@ body .hero .hero-copy .hero-cta-sticker{
   .reality-loading-slot{width:100%}
   .reality-loading-window{
     filter:drop-shadow(7px 9px 0 rgba(19,13,22,.7));
+  }
+  body .hero .hero-price-button-image,
+  body .hero .hero-justification-button-image{
+    width:min(72vw,285px) !important;
   }
   body .hero .hero-copy > .hero-collection-sticker{
     top:157px !important;
