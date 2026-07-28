@@ -29,6 +29,11 @@
   50%{transform:translateY(-15px) rotate(-.8deg)}
 }
 
+/* Aproxima os dois CTAs das artes sem mover o resto do hero. */
+.hero .hero-actions{
+  top:-15px !important;
+}
+
 @media (max-width:900px){
   .reality-loading-slot{
     justify-self:start;
