@@ -131,3 +131,30 @@
     transform:scale(1.08);
   }
 }
+
+/* Mantém o PNG grande, mas traz a faixa amarela para dentro do header. */
+@media(min-width:901px){
+  .site-nav{
+    min-height:118px !important;
+    padding-top:8px !important;
+    padding-bottom:14px !important;
+    align-items:center !important;
+    overflow:visible !important;
+  }
+  .site-nav .nav-links{
+    align-self:stretch;
+    align-items:center !important;
+  }
+  .site-nav .nav-links a{
+    min-height:96px !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+  .site-nav .nav-label-image{
+    transform:translateY(-6px) scale(1.14) !important;
+  }
+  .site-nav .nav-links a:hover .nav-label-image,
+  .site-nav .nav-links a:focus-visible .nav-label-image{
+    transform:translateY(-8px) rotate(-1deg) scale(1.18) !important;
+  }
+}
