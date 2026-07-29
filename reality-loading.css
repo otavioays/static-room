@@ -103,6 +103,57 @@ body .hero .hero-copy .hero-cta-sticker{
   body .hero .hero-copy .hero-cta-sticker{
     top:115px !important;
   }
+
+  /* No mobile, os dois botões viram adesivos no topo em vez de uma coluna perdida no hero. */
+  body .hero .hero-interface{
+    justify-content:flex-start !important;
+    padding-top:112px !important;
+  }
+  body .hero .hero-copy{
+    width:100% !important;
+    max-width:100% !important;
+  }
+  body .hero .hero-copy .hero-actions{
+    order:-3 !important;
+    position:relative !important;
+    top:0 !important;
+    z-index:12 !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    align-items:start !important;
+    gap:2px !important;
+    width:100% !important;
+    margin:0 0 2px !important;
+  }
+  body .hero .hero-copy .hero-price-image-button,
+  body .hero .hero-copy .hero-justification-image-button{
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+  }
+  body .hero .hero-copy .hero-price-image-button{
+    justify-content:flex-start !important;
+    transform:rotate(-1.5deg) !important;
+  }
+  body .hero .hero-copy .hero-justification-image-button{
+    justify-content:flex-end !important;
+    transform:translateY(18px) rotate(1.5deg) !important;
+  }
+  body .hero .hero-price-button-image,
+  body .hero .hero-justification-button-image{
+    width:min(43vw,180px) !important;
+    max-width:none !important;
+  }
+  body .hero .hero-copy > .hero-collection-sticker{
+    order:-2 !important;
+    top:6px !important;
+    margin:2px 0 -18px 0 !important;
+  }
+  body .hero .hero-copy .hero-cta-sticker{
+    order:-1 !important;
+    top:0 !important;
+    margin:0 0 8px -22px !important;
+  }
 }
 
 @media (prefers-reduced-motion:reduce){
