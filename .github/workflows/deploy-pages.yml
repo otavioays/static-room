@@ -28,49 +28,11 @@ jobs:
 
       - name: Prepare static site
         run: |
+          rm -rf _site
           mkdir -p _site
-          cp index.html decorations.css decorations.js second-fold.css third-fold.css fourth-fold.css fifth-fold.css reality-loading.css reality-loading.js bag-icon.css _site/
 
-          assets=(
-            "dobra1.png"
-            "mola_static_room (1).png"
-            "nuvem_static_room (1).png"
-            "estrela_static_room (1).png"
-            "espiral_static_room (1).png"
-            "ChatGPT Image Jul 28, 2026, 12_03_48 AM (5).png"
-            "ChatGPT Image Jul 28, 2026, 12_03_48 AM (4).png"
-            "ChatGPT Image Jul 28, 2026, 12_03_48 AM (3).png"
-            "ChatGPT Image Jul 28, 2026, 12_03_48 AM (2).png"
-            "ChatGPT Image Jul 28, 2026, 12_03_47 AM (1).png"
-            "ChatGPT Image Jul 28, 2026, 12_08_29 AM.png"
-            "9c5fd7b0-88cd-4f25-892a-2812f3b00cd8.png"
-            "f4244071-4ccf-4e01-9c80-a2f175db0890.png"
-            "e424ef6c-e075-4c0a-93d8-23859e3fea39.png"
-            "realityloading.png"
-            "logostaticroom.png"
-            "coisasavenda.png"
-            "textoobrigatorio.png"
-            "arquivosinuteis.png"
-            "darseuemail.png"
-            "colecao001.png"
-            "adesivocta.png"
-            "vercoisascompreco.png"
-            "lerajustificativa.png"
-            "novaimagem.png"
-            "lisademais.png"
-            "conceito.png"
-            "comentário01fb.png"
-            "comentario02fb.png"
-            "comentário03fb.png"
-            "comentário04fb.png"
-            "olheoqueestaodizendo.png"
-          )
-
-          for asset in "${assets[@]}"; do
-            test -s "$asset"
-            cp "$asset" _site/
-          done
-
+          # Copia todos os arquivos públicos da raiz. Assim novos PNGs não somem do deploy.
+          find . -maxdepth 1 -type f -exec cp -a {} _site/ \;
           test -s "bag.exe"
           cp "bag.exe" "_site/bag.png"
 
@@ -80,171 +42,202 @@ jobs:
           page = Path('_site/index.html')
           html = page.read_text(encoding='utf-8')
 
-          old_eyebrow = '<span class="eyebrow">drop 001 / online now</span>'
-          old_title = '<h1>Wear the <span>signal.</span></h1>'
-          old_description = '<p>Roupas e artefatos para quem cresceu online e nunca voltou completamente.</p>'
-          old_price_button = '<a class="btn btn-primary" href="#drop">Entrar no drop ↗</a>'
-          old_justification_button = '<a class="btn btn-secondary" href="#manifesto">Ler transmissão</a>'
-          old_drop_title = '<h2 class="section-title" data-reveal>Drop <span class="outline">001</span></h2>'
-          old_manifesto_eye = '<div class="eye-poster" data-reveal aria-hidden="true"></div>'
-          old_manifesto_copy = '<div class="manifesto-copy" data-reveal><span class="section-tag">TRANSMISSION / 00:13 AM</span><blockquote>A internet ficou lisa demais. A gente veio devolver o <em>ruído.</em></blockquote><p>Static Room nasce da saudade de quando cada perfil parecia um quarto bagunçado, cada foto tinha flash estourado e ninguém sabia exatamente o que estava fazendo. Não vendemos nostalgia limpa. Recuperamos o caos, imprimimos por cima e vestimos.</p><span class="scribble">NOT A TREND. A MEMORY LEAK.</span></div>'
-          old_archive_heading = '<span class="section-tag" data-reveal>STATIC ARCHIVE / INDEX</span><h2 class="section-title" data-reveal>Lost <span class="outline">files</span></h2>'
-
-          required = (
-              old_eyebrow,
-              old_title,
-              old_description,
-              old_price_button,
-              old_justification_button,
-              old_drop_title,
-              old_manifesto_eye,
-              old_manifesto_copy,
-              old_archive_heading,
-          )
-          if not all(item in html for item in required):
-              raise RuntimeError('original hero, drop, manifesto or archive markup was not found')
-
-          html = html.replace(
-              old_eyebrow,
-              '<span class="eyebrow hero-collection-sticker" aria-label="Coleção 001, infelizmente disponível"><img class="hero-collection-image" src="./colecao001.png?v=6" alt="Coleção 001, infelizmente disponível"></span>',
-              1,
-          )
-          html = html.replace(
-              old_title,
-              '<div class="hero-cta-sticker" aria-label="Compre, estamos implorando"><img class="hero-cta-sticker-image" src="./adesivocta.png?v=1" alt="Compre, estamos implorando"></div>',
-              1,
-          )
-          html = html.replace(old_description, '', 1)
-          html = html.replace(
-              old_price_button,
-              '<a class="btn btn-primary hero-price-image-button" href="#drop" aria-label="Ver coisas com preço"><img class="hero-price-button-image" src="./vercoisascompreco.png?v=1" alt="Ver coisas com preço"></a>',
-              1,
-          )
-          html = html.replace(
-              old_justification_button,
-              '<a class="btn btn-secondary hero-justification-image-button" href="#manifesto" aria-label="Ler a justificativa"><img class="hero-justification-button-image" src="./lerajustificativa.png?v=1" alt="Ler a justificativa"></a>',
-              1,
-          )
-          html = html.replace(
-              old_drop_title,
-              '<h2 class="section-title drop-title-image-wrap" data-reveal aria-label="Coisas à venda"><img class="drop-title-image" src="./novaimagem.png?v=1" alt="Coisas à venda"></h2>',
-              1,
-          )
-          html = html.replace(
-              old_manifesto_eye,
-              '<div class="eye-poster manifesto-conceito-sticker" data-reveal aria-label="Você chegou na parte do conceito"><img class="manifesto-conceito-image" src="./conceito.png?v=1" alt="Você chegou na parte do conceito"></div>',
-              1,
-          )
-          html = html.replace(
-              old_manifesto_copy,
-              '<div class="manifesto-copy manifesto-sticker-copy" data-reveal aria-label="A internet ficou lisa demais. Aí a gente fez uma camiseta."><img class="manifesto-sticker-image" src="./lisademais.png?v=1" alt="A internet ficou lisa demais. Aí a gente fez uma camiseta."></div>',
-              1,
-          )
-          html = html.replace(
-              old_archive_heading,
-              '<h2 class="section-title archive-heading-art" data-reveal aria-label="Olhe o que estão dizendo sobre a Static Room"><img class="archive-heading-image" src="./olheoqueestaodizendo.png?v=1" alt="Olhe o que estão dizendo sobre a Static Room"></h2>',
-              1,
+          replacements = (
+              (
+                  '<span class="eyebrow">drop 001 / online now</span>',
+                  '<span class="eyebrow hero-collection-sticker" aria-label="Coleção 001, infelizmente disponível"><img class="hero-collection-image" src="./colecao001.png?v=6" alt="Coleção 001, infelizmente disponível"></span>',
+              ),
+              (
+                  '<h1>Wear the <span>signal.</span></h1>',
+                  '<div class="hero-cta-sticker" aria-label="Compre, estamos implorando"><img class="hero-cta-sticker-image" src="./adesivocta.png?v=1" alt="Compre, estamos implorando"></div>',
+              ),
+              (
+                  '<p>Roupas e artefatos para quem cresceu online e nunca voltou completamente.</p>',
+                  '',
+              ),
+              (
+                  '<a class="btn btn-primary" href="#drop">Entrar no drop ↗</a>',
+                  '<a class="btn btn-primary hero-price-image-button" href="#drop" aria-label="Ver coisas com preço"><img class="hero-price-button-image" src="./vercoisascompreco.png?v=1" alt="Ver coisas com preço"></a>',
+              ),
+              (
+                  '<a class="btn btn-secondary" href="#manifesto">Ler transmissão</a>',
+                  '<a class="btn btn-secondary hero-justification-image-button" href="#manifesto" aria-label="Ler a justificativa"><img class="hero-justification-button-image" src="./lerajustificativa.png?v=1" alt="Ler a justificativa"></a>',
+              ),
+              (
+                  '<h2 class="section-title" data-reveal>Drop <span class="outline">001</span></h2>',
+                  '<h2 class="section-title drop-title-image-wrap" data-reveal aria-label="Coisas à venda"><img class="drop-title-image" src="./novaimagem.png?v=1" alt="Coisas à venda"></h2>',
+              ),
+              (
+                  '<div class="eye-poster" data-reveal aria-hidden="true"></div>',
+                  '<div class="eye-poster manifesto-conceito-sticker" data-reveal aria-label="Você chegou na parte do conceito"><img class="manifesto-conceito-image" src="./conceito.png?v=1" alt="Você chegou na parte do conceito"></div>',
+              ),
+              (
+                  '<div class="manifesto-copy" data-reveal><span class="section-tag">TRANSMISSION / 00:13 AM</span><blockquote>A internet ficou lisa demais. A gente veio devolver o <em>ruído.</em></blockquote><p>Static Room nasce da saudade de quando cada perfil parecia um quarto bagunçado, cada foto tinha flash estourado e ninguém sabia exatamente o que estava fazendo. Não vendemos nostalgia limpa. Recuperamos o caos, imprimimos por cima e vestimos.</p><span class="scribble">NOT A TREND. A MEMORY LEAK.</span></div>',
+                  '<div class="manifesto-copy manifesto-sticker-copy" data-reveal aria-label="A internet ficou lisa demais. Aí a gente fez uma camiseta."><img class="manifesto-sticker-image" src="./lisademais.png?v=1" alt="A internet ficou lisa demais. Aí a gente fez uma camiseta."></div>',
+              ),
+              (
+                  '<span class="section-tag" data-reveal>STATIC ARCHIVE / INDEX</span><h2 class="section-title" data-reveal>Lost <span class="outline">files</span></h2>',
+                  '<h2 class="section-title archive-heading-art" data-reveal aria-label="Olhe o que estão dizendo sobre a Static Room"><img class="archive-heading-image" src="./olheoqueestaodizendo.png?v=1" alt="Olhe o que estão dizendo sobre a Static Room"></h2>',
+              ),
           )
 
-          head_assets = (
-              '  <link rel="stylesheet" href="./decorations.css?v=15">\n'
-              '  <link rel="stylesheet" href="./second-fold.css?v=6">\n'
-              '  <link rel="stylesheet" href="./third-fold.css?v=5">\n'
-              '  <link rel="stylesheet" href="./fourth-fold.css?v=4">\n'
-              '  <link rel="stylesheet" href="./fifth-fold.css?v=3">\n'
-              '  <link rel="stylesheet" href="./reality-loading.css?v=3">\n'
-              '  <link rel="stylesheet" href="./bag-icon.css?v=2">\n'
-              '  <style>@keyframes sr-float-collection{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-5px,0) rotate(-.38deg)}}@keyframes sr-float-cta{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(2px,-6px,0) rotate(.3deg)}}.hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start;max-width:760px!important}.hero .hero-copy>.hero-collection-sticker{display:inline-flex!important;align-self:flex-start!important;position:relative!important;top:114px!important;z-index:7!important;width:auto!important;max-width:100%!important;padding:0!important;margin:18px 0 -28px 2px!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:none!important;line-height:0!important}.hero .hero-collection-image{display:block!important;width:clamp(170px,17vw,270px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important;animation:sr-float-collection 6.8s ease-in-out infinite;will-change:transform}.hero .hero-cta-sticker{display:block!important;align-self:flex-start!important;position:relative!important;top:60px!important;z-index:5!important;width:min(100%,760px)!important;max-width:760px!important;margin:4px 0 18px -90px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;line-height:0!important}.hero .hero-cta-sticker-image{display:block!important;width:100%!important;height:auto!important;max-width:none!important;object-fit:contain!important;animation:sr-float-cta 7.8s ease-in-out -.9s infinite;will-change:transform}.hero .hero-actions{position:relative!important;z-index:6!important;margin-top:0!important}@media(max-width:620px){.hero .hero-copy{max-width:100%!important}.hero .hero-copy>.hero-collection-sticker{top:102px!important;margin:14px 0 -18px 0!important}.hero .hero-collection-image{width:min(58vw,220px)!important}.hero .hero-cta-sticker{width:min(96vw,640px)!important;top:60px!important;margin:4px 0 12px -22px!important}}@media(prefers-reduced-motion:reduce){.hero .hero-collection-image,.hero .hero-cta-sticker-image{animation:none!important;will-change:auto}}</style>\n'
-              '  <style>.hero .hero-actions .hero-price-image-button,.hero .hero-actions .hero-justification-image-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;line-height:0!important;overflow:visible!important}.hero .hero-actions .hero-price-image-button:hover,.hero .hero-actions .hero-price-image-button:focus-visible{transform:translate(3px,3px) rotate(-1deg)!important;box-shadow:none!important}.hero .hero-actions .hero-justification-image-button:hover,.hero .hero-actions .hero-justification-image-button:focus-visible{transform:translate(3px,3px) rotate(1deg)!important;box-shadow:none!important}.hero .hero-price-button-image,.hero .hero-justification-button-image{display:block!important;width:clamp(190px,19vw,285px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important;filter:drop-shadow(5px 5px 0 rgba(19,13,22,.72))}@media(max-width:620px){.hero .hero-price-button-image,.hero .hero-justification-button-image{width:min(64vw,245px)!important}}</style>\n'
-              '  <style>.drop-section .float-star.star-a,.drop-section .section-tag,.drop-section .section-lead{display:none!important}.drop-section .drop-title-image-wrap{display:block!important;position:relative!important;left:0!important;top:0!important;width:min(100%,1100px)!important;max-width:1100px!important;margin:0 auto!important;line-height:0!important;text-shadow:none!important;-webkit-text-stroke:0!important}.drop-section .drop-title-image{display:block!important;width:100%!important;height:auto!important;max-width:1100px!important;object-fit:contain!important;object-position:center!important;filter:drop-shadow(7px 8px 0 rgba(19,13,22,.62))}@media(max-width:620px){.drop-section .drop-title-image-wrap{width:100%!important;margin:0 auto!important}.drop-section .drop-title-image{width:100%!important}}</style>\n'
-              '  <style>@keyframes sr-float-lisa{0%,100%{transform:translate3d(0,0,0) rotate(-.7deg)}50%{transform:translate3d(-2px,-10px,0) rotate(-1.05deg)}}.manifesto .manifesto-sticker-copy{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;max-width:none!important;padding:0!important;background:transparent!important;text-shadow:none!important;line-height:0!important}.manifesto .manifesto-sticker-image{display:block!important;width:min(112%,820px)!important;height:auto!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(8px 9px 0 rgba(19,13,22,.58));animation:sr-float-lisa 8.2s ease-in-out -.8s infinite;will-change:transform}@media(max-width:700px){.manifesto .manifesto-sticker-image{width:100%!important;max-width:760px!important}}</style>\n'
-              '  <style>@keyframes sr-float-conceito{0%,100%{transform:translate3d(0,0,0) rotate(.8deg)}50%{transform:translate3d(2px,-9px,0) rotate(1.15deg)}}.manifesto .manifesto-grid{align-items:center!important;gap:clamp(18px,3vw,52px)!important}.manifesto .eye-poster.manifesto-conceito-sticker{display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;width:100%!important;min-height:0!important;aspect-ratio:auto!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;overflow:visible!important;line-height:0!important}.manifesto .eye-poster.manifesto-conceito-sticker::before,.manifesto .eye-poster.manifesto-conceito-sticker::after{display:none!important;content:none!important;background:none!important;border:0!important;box-shadow:none!important}.manifesto .manifesto-conceito-image{display:block!important;width:min(108%,680px)!important;height:auto!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(8px 9px 0 rgba(19,13,22,.58));animation:sr-float-conceito 7.1s ease-in-out infinite;will-change:transform}@media(max-width:700px){.manifesto .manifesto-grid{gap:18px!important}.manifesto .manifesto-conceito-image{width:100%!important;max-width:620px!important}}@media(prefers-reduced-motion:reduce){.manifesto .manifesto-conceito-image,.manifesto .manifesto-sticker-image{animation:none!important;will-change:auto}}</style>\n'
-              '  <style>.archive .archive-heading-art{display:block!important;position:relative!important;z-index:2!important;width:min(100%,1100px)!important;max-width:1100px!important;margin:0 auto!important;line-height:0!important;text-shadow:none!important;-webkit-text-stroke:0!important}.archive .archive-heading-image{display:block!important;width:100%!important;height:auto!important;max-width:1100px!important;margin:0 auto!important;object-fit:contain!important;filter:drop-shadow(7px 8px 0 rgba(19,13,22,.5))}@media(max-width:620px){.archive .archive-heading-art,.archive .archive-heading-image{width:100%!important}}</style>\n'
-          )
-          html = html.replace('</head>', head_assets + '</head>', 1)
+          for old, new in replacements:
+              if old not in html:
+                  raise RuntimeError(f'expected markup not found: {old[:90]}')
+              html = html.replace(old, new, 1)
+
+          head_assets = r'''
+            <link rel="stylesheet" href="./decorations.css?v=15">
+            <link rel="stylesheet" href="./second-fold.css?v=6">
+            <link rel="stylesheet" href="./third-fold.css?v=5">
+            <link rel="stylesheet" href="./fourth-fold.css?v=4">
+            <link rel="stylesheet" href="./fifth-fold.css?v=3">
+            <link rel="stylesheet" href="./reality-loading.css?v=4">
+            <link rel="stylesheet" href="./bag-icon.css?v=2">
+
+            <style>
+              @keyframes sr-float-collection{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-5px,0) rotate(-.38deg)}}
+              @keyframes sr-float-cta{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(2px,-6px,0) rotate(.3deg)}}
+              .hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start;max-width:760px!important}
+              .hero .hero-copy>.hero-collection-sticker{display:inline-flex!important;align-self:flex-start!important;position:relative!important;top:114px!important;z-index:7!important;width:auto!important;max-width:100%!important;padding:0!important;margin:18px 0 -28px 2px!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:none!important;line-height:0!important}
+              .hero .hero-collection-image{display:block!important;width:clamp(170px,17vw,270px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important;animation:sr-float-collection 6.8s ease-in-out infinite;will-change:transform}
+              .hero .hero-cta-sticker{display:block!important;align-self:flex-start!important;position:relative!important;top:60px!important;z-index:5!important;width:min(100%,760px)!important;max-width:760px!important;margin:4px 0 18px -90px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;line-height:0!important}
+              .hero .hero-cta-sticker-image{display:block!important;width:100%!important;height:auto!important;max-width:none!important;object-fit:contain!important;animation:sr-float-cta 7.8s ease-in-out -.9s infinite;will-change:transform}
+              .hero .hero-actions{position:relative!important;z-index:6!important;margin-top:0!important}
+              @media(max-width:620px){
+                .hero .hero-copy{max-width:100%!important}
+                .hero .hero-copy>.hero-collection-sticker{top:102px!important;margin:14px 0 -18px 0!important}
+                .hero .hero-collection-image{width:min(58vw,220px)!important}
+                .hero .hero-cta-sticker{width:min(96vw,640px)!important;top:60px!important;margin:4px 0 12px -22px!important}
+              }
+              @media(prefers-reduced-motion:reduce){
+                .hero .hero-collection-image,.hero .hero-cta-sticker-image{animation:none!important;will-change:auto}
+              }
+            </style>
+
+            <style>
+              .hero .hero-actions .hero-price-image-button,.hero .hero-actions .hero-justification-image-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;line-height:0!important;overflow:visible!important}
+              .hero .hero-actions .hero-price-image-button:hover,.hero .hero-actions .hero-price-image-button:focus-visible{transform:translate(3px,3px) rotate(-1deg)!important;box-shadow:none!important}
+              .hero .hero-actions .hero-justification-image-button:hover,.hero .hero-actions .hero-justification-image-button:focus-visible{transform:translate(3px,3px) rotate(1deg)!important;box-shadow:none!important}
+              .hero .hero-price-button-image,.hero .hero-justification-button-image{display:block!important;width:clamp(190px,19vw,285px)!important;height:auto!important;max-width:100%!important;object-fit:contain!important;filter:drop-shadow(5px 5px 0 rgba(19,13,22,.72))}
+              @media(max-width:620px){.hero .hero-price-button-image,.hero .hero-justification-button-image{width:min(64vw,245px)!important}}
+            </style>
+
+            <style>
+              .drop-section .float-star.star-a,.drop-section .section-tag,.drop-section .section-lead{display:none!important}
+              .drop-section .drop-title-image-wrap{display:block!important;position:relative!important;left:0!important;top:0!important;width:min(100%,1100px)!important;max-width:1100px!important;margin:0 auto!important;line-height:0!important;text-shadow:none!important;-webkit-text-stroke:0!important}
+              .drop-section .drop-title-image{display:block!important;width:100%!important;height:auto!important;max-width:1100px!important;object-fit:contain!important;object-position:center!important;filter:drop-shadow(7px 8px 0 rgba(19,13,22,.62))}
+              @media(max-width:620px){.drop-section .drop-title-image-wrap{width:100%!important;margin:0 auto!important}.drop-section .drop-title-image{width:100%!important}}
+            </style>
+
+            <style>
+              @keyframes sr-float-lisa{0%,100%{transform:translate3d(0,0,0) rotate(-.7deg)}50%{transform:translate3d(-2px,-10px,0) rotate(-1.05deg)}}
+              .manifesto .manifesto-sticker-copy{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;max-width:none!important;padding:0!important;background:transparent!important;text-shadow:none!important;line-height:0!important}
+              .manifesto .manifesto-sticker-image{display:block!important;width:min(112%,820px)!important;height:auto!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(8px 9px 0 rgba(19,13,22,.58));animation:sr-float-lisa 8.2s ease-in-out -.8s infinite;will-change:transform}
+              @media(max-width:700px){.manifesto .manifesto-sticker-image{width:100%!important;max-width:760px!important}}
+            </style>
+
+            <style>
+              @keyframes sr-float-conceito{0%,100%{transform:translate3d(0,0,0) rotate(.8deg)}50%{transform:translate3d(2px,-9px,0) rotate(1.15deg)}}
+              .manifesto .manifesto-grid{align-items:center!important;gap:clamp(18px,3vw,52px)!important}
+              .manifesto .eye-poster.manifesto-conceito-sticker{display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;width:100%!important;min-height:0!important;aspect-ratio:auto!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;overflow:visible!important;line-height:0!important}
+              .manifesto .eye-poster.manifesto-conceito-sticker::before,.manifesto .eye-poster.manifesto-conceito-sticker::after{display:none!important;content:none!important;background:none!important;border:0!important;box-shadow:none!important}
+              .manifesto .manifesto-conceito-image{display:block!important;width:min(108%,680px)!important;height:auto!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(8px 9px 0 rgba(19,13,22,.58));animation:sr-float-conceito 7.1s ease-in-out infinite;will-change:transform}
+              @media(max-width:700px){.manifesto .manifesto-grid{gap:18px!important}.manifesto .manifesto-conceito-image{width:100%!important;max-width:620px!important}}
+              @media(prefers-reduced-motion:reduce){.manifesto .manifesto-conceito-image,.manifesto .manifesto-sticker-image{animation:none!important;will-change:auto}}
+            </style>
+
+            <style>
+              .archive .archive-heading-art{display:block!important;position:relative!important;z-index:2!important;width:min(100%,1100px)!important;max-width:1100px!important;margin:0 auto!important;line-height:0!important;text-shadow:none!important;-webkit-text-stroke:0!important}
+              .archive .archive-heading-image{display:block!important;width:100%!important;height:auto!important;max-width:1100px!important;margin:0 auto!important;object-fit:contain!important;filter:drop-shadow(7px 8px 0 rgba(19,13,22,.5))}
+              @media(max-width:620px){.archive .archive-heading-art,.archive .archive-heading-image{width:100%!important}}
+            </style>
+
+            <style>
+              /* Correção final exclusiva para mobile: remove CTAs e impede o header de alargar a página. */
+              @media(max-width:620px){
+                html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+                body main,body .hero,body .top-strip,body .site-nav{width:100%!important;max-width:100%!important;min-width:0!important}
+                body main{overflow-x:hidden!important}
+                body .site-nav .cart-pill{display:none!important}
+                body .site-nav .brand{flex:1 1 auto!important;min-width:0!important;max-width:calc(100% - 92px)!important}
+                body .site-nav .brand-logo{width:min(58vw,230px)!important;max-width:100%!important}
+                body .site-nav .menu-button{flex:0 0 auto!important;margin-left:auto!important}
+                body .hero .hero-interface,body .hero .hero-bottom,body .hero .hero-copy{width:100%!important;max-width:100%!important;min-width:0!important}
+                body .hero .hero-copy .hero-actions{display:none!important}
+              }
+            </style>
+          '''
+
+          html = html.replace('</head>', head_assets + '\n</head>', 1)
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=39"></script>\n'
+              '  <script src="./decorations.js?v=40"></script>\n'
               '  <script src="./reality-loading.js?v=3"></script>\n'
               '</body>',
               1,
           )
-
-          expected_html = (
-              'colecao001.png?v=6',
-              'adesivocta.png?v=1',
-              'vercoisascompreco.png?v=1',
-              'lerajustificativa.png?v=1',
-              'novaimagem.png?v=1',
-              'lisademais.png?v=1',
-              'conceito.png?v=1',
-              'olheoqueestaodizendo.png?v=1',
-              'decorations.js?v=39',
-              'reality-loading.css?v=3',
-          )
-          if not all(item in html for item in expected_html):
-              raise RuntimeError('generated hero, drop, manifesto or archive artwork is incomplete')
-          if old_description in html:
-              raise RuntimeError('hero description was not removed')
-          if old_manifesto_eye in html or old_manifesto_copy in html:
-              raise RuntimeError('manifesto artwork was not replaced')
-          if old_archive_heading in html:
-              raise RuntimeError('archive heading artwork was not replaced')
-
           page.write_text(html, encoding='utf-8')
 
           script = Path('_site/decorations.js')
           js = script.read_text(encoding='utf-8')
+
           old_actions = "  texts('.hero-actions .btn', ['ver coisas com preço ↗', 'ler a justificativa']);"
           new_actions = """  const heroButtons = document.querySelectorAll('.hero-actions .btn');
-          const priceButton = heroButtons[0];
-          if (priceButton) {
-            priceButton.classList.add('hero-price-image-button');
-            priceButton.setAttribute('aria-label', 'Ver coisas com preço');
-            const priceImage = document.createElement('img');
-            priceImage.className = 'hero-price-button-image';
-            priceImage.src = file('vercoisascompreco.png?v=1');
-            priceImage.alt = 'Ver coisas com preço';
-            priceImage.draggable = false;
-            priceImage.decoding = 'async';
-            priceImage.loading = 'eager';
-            priceButton.replaceChildren(priceImage);
-          }
-          const justificationButton = heroButtons[1];
-          if (justificationButton) {
-            justificationButton.classList.add('hero-justification-image-button');
-            justificationButton.setAttribute('aria-label', 'Ler a justificativa');
-            const justificationImage = document.createElement('img');
-            justificationImage.className = 'hero-justification-button-image';
-            justificationImage.src = file('lerajustificativa.png?v=1');
-            justificationImage.alt = 'Ler a justificativa';
-            justificationImage.draggable = false;
-            justificationImage.decoding = 'async';
-            justificationImage.loading = 'eager';
-            justificationButton.replaceChildren(justificationImage);
-          }"""
+            const priceButton = heroButtons[0];
+            if (priceButton) {
+              priceButton.classList.add('hero-price-image-button');
+              priceButton.setAttribute('aria-label', 'Ver coisas com preço');
+              const priceImage = document.createElement('img');
+              priceImage.className = 'hero-price-button-image';
+              priceImage.src = file('vercoisascompreco.png?v=1');
+              priceImage.alt = 'Ver coisas com preço';
+              priceImage.draggable = false;
+              priceImage.decoding = 'async';
+              priceImage.loading = 'eager';
+              priceButton.replaceChildren(priceImage);
+            }
+            const justificationButton = heroButtons[1];
+            if (justificationButton) {
+              justificationButton.classList.add('hero-justification-image-button');
+              justificationButton.setAttribute('aria-label', 'Ler a justificativa');
+              const justificationImage = document.createElement('img');
+              justificationImage.className = 'hero-justification-button-image';
+              justificationImage.src = file('lerajustificativa.png?v=1');
+              justificationImage.alt = 'Ler a justificativa';
+              justificationImage.draggable = false;
+              justificationImage.decoding = 'async';
+              justificationImage.loading = 'eager';
+              justificationButton.replaceChildren(justificationImage);
+            }"""
+
           old_drop_title_action = "  html('.drop-section .section-title', 'Coisas <span class=\"outline\">à venda</span>');"
           new_drop_title_action = """  const dropTitle = document.querySelector('.drop-section .section-title');
-          if (dropTitle) {
-            dropTitle.classList.add('drop-title-image-wrap');
-            dropTitle.setAttribute('aria-label', 'Coisas à venda');
-            const dropTitleImage = document.createElement('img');
-            dropTitleImage.className = 'drop-title-image';
-            dropTitleImage.src = file('novaimagem.png?v=1');
-            dropTitleImage.alt = 'Coisas à venda';
-            dropTitleImage.draggable = false;
-            dropTitleImage.decoding = 'async';
-            dropTitleImage.loading = 'eager';
-            dropTitle.replaceChildren(dropTitleImage);
-          }"""
+            if (dropTitle) {
+              dropTitle.classList.add('drop-title-image-wrap');
+              dropTitle.setAttribute('aria-label', 'Coisas à venda');
+              const dropTitleImage = document.createElement('img');
+              dropTitleImage.className = 'drop-title-image';
+              dropTitleImage.src = file('novaimagem.png?v=1');
+              dropTitleImage.alt = 'Coisas à venda';
+              dropTitleImage.draggable = false;
+              dropTitleImage.decoding = 'async';
+              dropTitleImage.loading = 'eager';
+              dropTitle.replaceChildren(dropTitleImage);
+            }"""
+
           old_archive_tag_action = "  text('.archive .section-tag', 'CONTEÚDO PARA O SITE NÃO PARECER SÓ UMA LOJA');"
           old_archive_title_action = "  html('.archive .section-title', 'olhe oque estão dizendo sobre a static room:');"
-          if old_actions not in js:
-              raise RuntimeError('original hero button copy replacement was not found')
-          if old_drop_title_action not in js:
-              raise RuntimeError('original drop title replacement was not found')
-          if old_archive_tag_action not in js or old_archive_title_action not in js:
-              raise RuntimeError('original archive heading copy replacement was not found')
+
+          required_js = (
+              old_actions,
+              old_drop_title_action,
+              old_archive_tag_action,
+              old_archive_title_action,
+          )
+          if not all(item in js for item in required_js):
+              raise RuntimeError('expected decorations.js actions were not found')
+
           js = js.replace(old_actions, new_actions, 1)
           js = js.replace(old_drop_title_action, new_drop_title_action, 1)
           js = js.replace(old_archive_tag_action, '', 1)
@@ -254,66 +247,11 @@ jobs:
 
           touch _site/.nojekyll
           test -s _site/index.html
-          test -s _site/decorations.css
-          test -s _site/decorations.js
-          test -s _site/second-fold.css
-          test -s _site/third-fold.css
-          test -s _site/fourth-fold.css
-          test -s _site/fifth-fold.css
           test -s _site/reality-loading.css
-          test -s _site/reality-loading.js
-          test -s _site/bag-icon.css
-          test -s _site/bag.png
-          test -s "_site/ChatGPT Image Jul 28, 2026, 12_08_29 AM.png"
-          test -s "_site/9c5fd7b0-88cd-4f25-892a-2812f3b00cd8.png"
-          test -s "_site/f4244071-4ccf-4e01-9c80-a2f175db0890.png"
-          test -s "_site/e424ef6c-e075-4c0a-93d8-23859e3fea39.png"
-          test -s "_site/realityloading.png"
-          test -s "_site/logostaticroom.png"
-          test -s "_site/coisasavenda.png"
-          test -s "_site/textoobrigatorio.png"
-          test -s "_site/arquivosinuteis.png"
-          test -s "_site/darseuemail.png"
-          test -s "_site/colecao001.png"
-          test -s "_site/adesivocta.png"
-          test -s "_site/vercoisascompreco.png"
-          test -s "_site/lerajustificativa.png"
-          test -s "_site/novaimagem.png"
-          test -s "_site/lisademais.png"
-          test -s "_site/conceito.png"
-          test -s "_site/comentário01fb.png"
-          test -s "_site/comentario02fb.png"
-          test -s "_site/comentário03fb.png"
-          test -s "_site/comentário04fb.png"
-          test -s "_site/olheoqueestaodizendo.png"
-          grep -q 'colecao001.png?v=6' _site/index.html
-          grep -q 'adesivocta.png?v=1' _site/index.html
-          grep -q 'vercoisascompreco.png?v=1' _site/index.html
-          grep -q 'vercoisascompreco.png?v=1' _site/decorations.js
-          grep -q 'lerajustificativa.png?v=1' _site/index.html
-          grep -q 'lerajustificativa.png?v=1' _site/decorations.js
-          grep -q 'novaimagem.png?v=1' _site/index.html
-          grep -q 'novaimagem.png?v=1' _site/decorations.js
-          grep -q 'lisademais.png?v=1' _site/index.html
-          grep -q 'conceito.png?v=1' _site/index.html
-          grep -q 'comentário01fb.png?v=1' _site/decorations.js
-          grep -q 'comentario02fb.png?v=1' _site/decorations.js
-          grep -q 'comentário03fb.png?v=1' _site/decorations.js
-          grep -q 'comentário04fb.png?v=1' _site/decorations.js
-          grep -q 'olheoqueestaodizendo.png?v=1' _site/index.html
-          grep -q 'archive-heading-image' _site/index.html
-          grep -q 'comment-cloud' _site/decorations.js
-          grep -q 'sr-comment-float-1' _site/decorations.js
-          grep -q 'manifesto-sticker-image' _site/index.html
-          grep -q 'manifesto-conceito-image' _site/index.html
-          grep -q 'sr-float-lisa' _site/index.html
-          grep -q 'sr-float-conceito' _site/index.html
-          grep -q 'decorations.js?v=39' _site/index.html
-          grep -q 'reality-loading.css?v=3' _site/index.html
-          grep -q 'reality-loading.js?v=3' _site/index.html
-          ! grep -q 'olhe oque estão dizendo sobre a static room:' _site/decorations.js
-          ! grep -q 'A internet ficou lisa demais. A gente veio devolver' _site/index.html
-          ! grep -q 'Roupas e artefatos para quem cresceu online' _site/index.html
+          test -s _site/decorations.js
+          grep -q 'reality-loading.css?v=4' _site/index.html
+          grep -q 'decorations.js?v=40' _site/index.html
+          grep -q 'hero-copy .hero-actions{display:none!important}' _site/index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
