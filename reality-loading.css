@@ -137,11 +137,13 @@ body .hero .hero-copy .hero-cta-sticker{
     max-width:100% !important;
     min-width:0 !important;
   }
-  body .hero .hero-copy > .hero-collection-sticker{
-    top:157px !important;
+
+  /* Sobe o adesivo da coleção e o “Compre” exatamente 30px, somente no mobile. */
+  html body .hero .hero-copy > .hero-collection-sticker{
+    top:72px !important;
   }
-  body .hero .hero-copy .hero-cta-sticker{
-    top:115px !important;
+  html body .hero .hero-copy .hero-cta-sticker{
+    top:30px !important;
   }
 
   /* Remove apenas os dois CTAs da primeira dobra no mobile. */
