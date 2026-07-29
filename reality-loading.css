@@ -85,6 +85,43 @@ body .hero .hero-copy .hero-cta-sticker{
 }
 
 @media (max-width:620px){
+  /* Trava o layout na largura real do aparelho e elimina a faixa preta lateral. */
+  html,
+  body{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:hidden !important;
+  }
+  body main,
+  body .hero,
+  body .top-strip,
+  body .site-nav{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+  body main{
+    overflow-x:hidden !important;
+  }
+
+  /* A sacola estava sendo forçada no mobile por outra folha e alargando a página. */
+  body .site-nav .cart-pill{
+    display:none !important;
+  }
+  body .site-nav .brand{
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    max-width:calc(100% - 92px) !important;
+  }
+  body .site-nav .brand-logo{
+    width:min(58vw,230px) !important;
+    max-width:100% !important;
+  }
+  body .site-nav .menu-button{
+    flex:0 0 auto !important;
+    margin-left:auto !important;
+  }
+
   .reality-loading-slot{width:100%}
   .reality-loading-window{
     filter:drop-shadow(7px 9px 0 rgba(19,13,22,.7));
@@ -92,6 +129,13 @@ body .hero .hero-copy .hero-cta-sticker{
   .drop-section .drop-title-image-wrap{
     width:100% !important;
     margin-bottom:24px !important;
+  }
+  body .hero .hero-interface,
+  body .hero .hero-bottom,
+  body .hero .hero-copy{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
   }
   body .hero .hero-copy > .hero-collection-sticker{
     top:157px !important;
