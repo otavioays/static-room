@@ -63,6 +63,7 @@ jobs:
             "comentario02fb.png"
             "comentário03fb.png"
             "comentário04fb.png"
+            "olheoqueestaodizendo.png"
           )
 
           for asset in "${assets[@]}"; do
@@ -87,6 +88,7 @@ jobs:
           old_drop_title = '<h2 class="section-title" data-reveal>Drop <span class="outline">001</span></h2>'
           old_manifesto_eye = '<div class="eye-poster" data-reveal aria-hidden="true"></div>'
           old_manifesto_copy = '<div class="manifesto-copy" data-reveal><span class="section-tag">TRANSMISSION / 00:13 AM</span><blockquote>A internet ficou lisa demais. A gente veio devolver o <em>ruído.</em></blockquote><p>Static Room nasce da saudade de quando cada perfil parecia um quarto bagunçado, cada foto tinha flash estourado e ninguém sabia exatamente o que estava fazendo. Não vendemos nostalgia limpa. Recuperamos o caos, imprimimos por cima e vestimos.</p><span class="scribble">NOT A TREND. A MEMORY LEAK.</span></div>'
+          old_archive_heading = '<span class="section-tag" data-reveal>STATIC ARCHIVE / INDEX</span><h2 class="section-title" data-reveal>Lost <span class="outline">files</span></h2>'
 
           required = (
               old_eyebrow,
@@ -97,9 +99,10 @@ jobs:
               old_drop_title,
               old_manifesto_eye,
               old_manifesto_copy,
+              old_archive_heading,
           )
           if not all(item in html for item in required):
-              raise RuntimeError('original hero, drop or manifesto markup was not found')
+              raise RuntimeError('original hero, drop, manifesto or archive markup was not found')
 
           html = html.replace(
               old_eyebrow,
@@ -137,6 +140,11 @@ jobs:
               '<div class="manifesto-copy manifesto-sticker-copy" data-reveal aria-label="A internet ficou lisa demais. Aí a gente fez uma camiseta."><img class="manifesto-sticker-image" src="./lisademais.png?v=1" alt="A internet ficou lisa demais. Aí a gente fez uma camiseta."></div>',
               1,
           )
+          html = html.replace(
+              old_archive_heading,
+              '<h2 class="section-title archive-heading-art" data-reveal aria-label="Olhe o que estão dizendo sobre a Static Room"><img class="archive-heading-image" src="./olheoqueestaodizendo.png?v=1" alt="Olhe o que estão dizendo sobre a Static Room"></h2>',
+              1,
+          )
 
           head_assets = (
               '  <link rel="stylesheet" href="./decorations.css?v=15">\n'
@@ -151,11 +159,12 @@ jobs:
               '  <style>.drop-section .float-star.star-a,.drop-section .section-tag,.drop-section .section-lead{display:none!important}.drop-section .drop-title-image-wrap{display:block!important;position:relative!important;left:0!important;top:0!important;width:min(100%,1100px)!important;max-width:1100px!important;margin:0 auto!important;line-height:0!important;text-shadow:none!important;-webkit-text-stroke:0!important}.drop-section .drop-title-image{display:block!important;width:100%!important;height:auto!important;max-width:1100px!important;object-fit:contain!important;object-position:center!important;filter:drop-shadow(7px 8px 0 rgba(19,13,22,.62))}@media(max-width:620px){.drop-section .drop-title-image-wrap{width:100%!important;margin:0 auto!important}.drop-section .drop-title-image{width:100%!important}}</style>\n'
               '  <style>@keyframes sr-float-lisa{0%,100%{transform:translate3d(0,0,0) rotate(-.7deg)}50%{transform:translate3d(-2px,-10px,0) rotate(-1.05deg)}}.manifesto .manifesto-sticker-copy{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;max-width:none!important;padding:0!important;background:transparent!important;text-shadow:none!important;line-height:0!important}.manifesto .manifesto-sticker-image{display:block!important;width:min(112%,820px)!important;height:auto!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(8px 9px 0 rgba(19,13,22,.58));animation:sr-float-lisa 8.2s ease-in-out -.8s infinite;will-change:transform}@media(max-width:700px){.manifesto .manifesto-sticker-image{width:100%!important;max-width:760px!important}}</style>\n'
               '  <style>@keyframes sr-float-conceito{0%,100%{transform:translate3d(0,0,0) rotate(.8deg)}50%{transform:translate3d(2px,-9px,0) rotate(1.15deg)}}.manifesto .manifesto-grid{align-items:center!important;gap:clamp(18px,3vw,52px)!important}.manifesto .eye-poster.manifesto-conceito-sticker{display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;width:100%!important;min-height:0!important;aspect-ratio:auto!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;overflow:visible!important;line-height:0!important}.manifesto .eye-poster.manifesto-conceito-sticker::before,.manifesto .eye-poster.manifesto-conceito-sticker::after{display:none!important;content:none!important;background:none!important;border:0!important;box-shadow:none!important}.manifesto .manifesto-conceito-image{display:block!important;width:min(108%,680px)!important;height:auto!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(8px 9px 0 rgba(19,13,22,.58));animation:sr-float-conceito 7.1s ease-in-out infinite;will-change:transform}@media(max-width:700px){.manifesto .manifesto-grid{gap:18px!important}.manifesto .manifesto-conceito-image{width:100%!important;max-width:620px!important}}@media(prefers-reduced-motion:reduce){.manifesto .manifesto-conceito-image,.manifesto .manifesto-sticker-image{animation:none!important;will-change:auto}}</style>\n'
+              '  <style>.archive .archive-heading-art{display:block!important;position:relative!important;z-index:2!important;width:min(100%,1100px)!important;max-width:1100px!important;margin:0 auto!important;line-height:0!important;text-shadow:none!important;-webkit-text-stroke:0!important}.archive .archive-heading-image{display:block!important;width:100%!important;height:auto!important;max-width:1100px!important;margin:0 auto!important;object-fit:contain!important;filter:drop-shadow(7px 8px 0 rgba(19,13,22,.5))}@media(max-width:620px){.archive .archive-heading-art,.archive .archive-heading-image{width:100%!important}}</style>\n'
           )
           html = html.replace('</head>', head_assets + '</head>', 1)
           html = html.replace(
               '</body>',
-              '  <script src="./decorations.js?v=38"></script>\n'
+              '  <script src="./decorations.js?v=39"></script>\n'
               '  <script src="./reality-loading.js?v=3"></script>\n'
               '</body>',
               1,
@@ -169,15 +178,18 @@ jobs:
               'novaimagem.png?v=1',
               'lisademais.png?v=1',
               'conceito.png?v=1',
-              'decorations.js?v=38',
+              'olheoqueestaodizendo.png?v=1',
+              'decorations.js?v=39',
               'reality-loading.css?v=3',
           )
           if not all(item in html for item in expected_html):
-              raise RuntimeError('generated hero, drop or manifesto sticker artwork is incomplete')
+              raise RuntimeError('generated hero, drop, manifesto or archive artwork is incomplete')
           if old_description in html:
               raise RuntimeError('hero description was not removed')
           if old_manifesto_eye in html or old_manifesto_copy in html:
               raise RuntimeError('manifesto artwork was not replaced')
+          if old_archive_heading in html:
+              raise RuntimeError('archive heading artwork was not replaced')
 
           page.write_text(html, encoding='utf-8')
 
@@ -225,12 +237,18 @@ jobs:
             dropTitleImage.loading = 'eager';
             dropTitle.replaceChildren(dropTitleImage);
           }"""
+          old_archive_tag_action = "  text('.archive .section-tag', 'CONTEÚDO PARA O SITE NÃO PARECER SÓ UMA LOJA');"
+          old_archive_title_action = "  html('.archive .section-title', 'olhe oque estão dizendo sobre a static room:');"
           if old_actions not in js:
               raise RuntimeError('original hero button copy replacement was not found')
           if old_drop_title_action not in js:
               raise RuntimeError('original drop title replacement was not found')
+          if old_archive_tag_action not in js or old_archive_title_action not in js:
+              raise RuntimeError('original archive heading copy replacement was not found')
           js = js.replace(old_actions, new_actions, 1)
           js = js.replace(old_drop_title_action, new_drop_title_action, 1)
+          js = js.replace(old_archive_tag_action, '', 1)
+          js = js.replace(old_archive_title_action, '', 1)
           script.write_text(js, encoding='utf-8')
           PY
 
@@ -267,6 +285,7 @@ jobs:
           test -s "_site/comentario02fb.png"
           test -s "_site/comentário03fb.png"
           test -s "_site/comentário04fb.png"
+          test -s "_site/olheoqueestaodizendo.png"
           grep -q 'colecao001.png?v=6' _site/index.html
           grep -q 'adesivocta.png?v=1' _site/index.html
           grep -q 'vercoisascompreco.png?v=1' _site/index.html
@@ -281,15 +300,18 @@ jobs:
           grep -q 'comentario02fb.png?v=1' _site/decorations.js
           grep -q 'comentário03fb.png?v=1' _site/decorations.js
           grep -q 'comentário04fb.png?v=1' _site/decorations.js
+          grep -q 'olheoqueestaodizendo.png?v=1' _site/index.html
+          grep -q 'archive-heading-image' _site/index.html
           grep -q 'comment-cloud' _site/decorations.js
           grep -q 'sr-comment-float-1' _site/decorations.js
           grep -q 'manifesto-sticker-image' _site/index.html
           grep -q 'manifesto-conceito-image' _site/index.html
           grep -q 'sr-float-lisa' _site/index.html
           grep -q 'sr-float-conceito' _site/index.html
-          grep -q 'decorations.js?v=38' _site/index.html
+          grep -q 'decorations.js?v=39' _site/index.html
           grep -q 'reality-loading.css?v=3' _site/index.html
           grep -q 'reality-loading.js?v=3' _site/index.html
+          ! grep -q 'olhe oque estão dizendo sobre a static room:' _site/decorations.js
           ! grep -q 'A internet ficou lisa demais. A gente veio devolver' _site/index.html
           ! grep -q 'Roupas e artefatos para quem cresceu online' _site/index.html
 
