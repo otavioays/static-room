@@ -1,0 +1,68 @@
+name: Force remove centered product PNG
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Permanently block centered product PNG overlays
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          index_path = Path('index.html')
+          html = index_path.read_text(encoding='utf-8')
+
+          css_marker = '/* centered-product-png-kill */'
+          if css_marker not in html:
+              kill_css = f'\n    {css_marker}.product-scrap{{display:none!important;visibility:hidden!important;opacity:0!important}}\n'
+              if '</style>' not in html:
+                  raise SystemExit('Tag </style> não encontrada no index.html')
+              html = html.replace('</style>', kill_css + '  </style>', 1)
+
+          js_marker = 'centered-product-png-purge'
+          if js_marker not in html:
+              kill_js = '''  <script id="centered-product-png-purge">
+    (()=>{
+      const purge=()=>{
+        document.querySelectorAll('.product-scrap').forEach(node=>node.remove());
+        document.querySelectorAll('.product-visual.has-scrap').forEach(node=>node.classList.remove('has-scrap'));
+      };
+      purge();
+      new MutationObserver(purge).observe(document.documentElement,{childList:true,subtree:true});
+    })();
+  </script>
+'''
+              if '</body>' not in html:
+                  raise SystemExit('Tag </body> não encontrada no index.html')
+              html = html.replace('</body>', kill_js + '</body>', 1)
+
+          index_path.write_text(html, encoding='utf-8')
+
+          deploy_path = Path('.github/workflows/deploy-pages.yml')
+          deploy = deploy_path.read_text(encoding='utf-8')
+          deploy, count = re.subn(r'decorations\.js\?v=\d+', 'decorations.js?v=42', deploy)
+          if count < 1:
+              raise SystemExit('Referência versionada de decorations.js não encontrada no deploy')
+          deploy_path.write_text(deploy, encoding='utf-8')
+          PY
+
+          git rm .github/workflows/force-remove-centered-png.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/deploy-pages.yml
+          git commit -m "fix: force-remove centered PNGs from deployed product cards"
+          git push origin HEAD:main
