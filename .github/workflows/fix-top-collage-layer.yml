@@ -26,8 +26,8 @@ jobs:
           path = Path('index.html')
           html = path.read_text(encoding='utf-8')
 
-          # Move each top-collage span out of .product-visual so it is not clipped
-          # or painted as part of the shirt image.
+          # Move each sticker outside .product-visual. This prevents the shirt
+          # image container from clipping it or painting it behind the border.
           pattern = re.compile(
               r'(<article class="product-card" data-reveal>)'
               r'(<div class="product-visual [^"]+">)'
@@ -40,8 +40,8 @@ jobs:
           if moved != 3:
               raise SystemExit(f'Esperava mover 3 top-collage, movi {moved}')
 
-          # Let the sticker escape the card border while keeping the shirt image
-          # clipped by .product-visual.
+          # The card must allow the sticker to cross the border. The inner
+          # .product-visual remains overflow:hidden for the shirt itself.
           html, card_count = re.subn(
               r'(\.product-card\{[^{}]*?)overflow:hidden',
               r'\1overflow:visible',
@@ -51,33 +51,45 @@ jobs:
           if card_count != 1:
               raise SystemExit(f'Não encontrei overflow do product-card: {card_count}')
 
-          replacements = {
-              r'\.top-collage\{[^{}]*\}': '.top-collage{position:absolute;z-index:8;top:-26px;left:-18px;width:48%;max-width:220px;height:78px;overflow:hidden;transform:rotate(-4deg);transform-origin:left top;pointer-events:none}',
-              r'\.product-card:nth-child\(2\) \.top-collage\{[^{}]*\}': '.product-card:nth-child(2) .top-collage{left:-18px;width:45%;max-width:205px;transform:rotate(4deg)}',
-              r'\.product-card:nth-child\(3\) \.top-collage\{[^{}]*\}': '.product-card:nth-child(3) .top-collage{left:-18px;width:46%;max-width:210px;transform:rotate(-3deg)}',
-          }
-          for selector, replacement in replacements.items():
+          replacements = (
+              (
+                  r'\.top-collage\{[^{}]*\}',
+                  '.top-collage{position:absolute;z-index:8;top:-26px;left:-18px;width:48%;max-width:220px;height:78px;overflow:hidden;transform:rotate(-4deg);transform-origin:left top;pointer-events:none}',
+              ),
+              (
+                  r'\.product-card:nth-child\(2\) \.top-collage\{[^{}]*\}',
+                  '.product-card:nth-child(2) .top-collage{left:-18px;width:45%;max-width:205px;transform:rotate(4deg)}',
+              ),
+              (
+                  r'\.product-card:nth-child\(3\) \.top-collage\{[^{}]*\}',
+                  '.product-card:nth-child(3) .top-collage{left:-18px;width:46%;max-width:210px;transform:rotate(-3deg)}',
+              ),
+          )
+          for selector, replacement in replacements:
               html, count = re.subn(selector, replacement, html, count=1)
               if count != 1:
                   raise SystemExit(f'Falha ao atualizar CSS: {selector} -> {count}')
 
-          html = html.replace(
-              '.top-collage{width:42%;max-width:165px;height:54px}',
-              '.top-collage{top:-20px;left:-14px;width:42%;max-width:165px;height:60px}',
-              1,
+          mobile_replacements = (
+              (
+                  '.top-collage{width:42%;max-width:165px;height:54px}',
+                  '.top-collage{top:-20px;left:-14px;width:42%;max-width:165px;height:60px}',
+              ),
+              (
+                  '.product-card:nth-child(2) .top-collage{width:40%;max-width:155px}',
+                  '.product-card:nth-child(2) .top-collage{left:-14px;width:40%;max-width:155px}',
+              ),
+              (
+                  '.product-card:nth-child(3) .top-collage{width:41%;max-width:160px}',
+                  '.product-card:nth-child(3) .top-collage{left:-14px;width:41%;max-width:160px}',
+              ),
           )
-          html = html.replace(
-              '.product-card:nth-child(2) .top-collage{width:40%;max-width:155px}',
-              '.product-card:nth-child(2) .top-collage{left:-14px;width:40%;max-width:155px}',
-              1,
-          )
-          html = html.replace(
-              '.product-card:nth-child(3) .top-collage{width:41%;max-width:160px}',
-              '.product-card:nth-child(3) .top-collage{left:-14px;width:41%;max-width:160px}',
-              1,
-          )
+          for old, new in mobile_replacements:
+              if old not in html:
+                  raise SystemExit(f'CSS mobile não encontrado: {old}')
+              html = html.replace(old, new, 1)
 
-          # Verify the final structure: sticker first, visual second.
+          # Verify each card now starts with the sticker followed by the image.
           direct = re.findall(
               r'<article class="product-card" data-reveal><span class="top-collage".*?</span><div class="product-visual',
               html,
@@ -85,7 +97,16 @@ jobs:
           )
           if len(direct) != 3:
               raise SystemExit(f'Estrutura final inválida: {len(direct)} stickers fora da imagem')
-          if re.search(r'<div class="product-visual [^"]+">.*?<span class="top-collage"', html, re.S):
+
+          # Limit the check to the contents of each individual product-visual.
+          visual_contents = re.findall(
+              r'<div class="product-visual [^"]+">(.*?)</div><a class="product-link"',
+              html,
+              flags=re.S,
+          )
+          if len(visual_contents) != 3:
+              raise SystemExit(f'Não encontrei os 3 product-visual: {len(visual_contents)}')
+          if any('top-collage' in content for content in visual_contents):
               raise SystemExit('Ainda existe top-collage dentro de product-visual')
 
           path.write_text(html, encoding='utf-8')
