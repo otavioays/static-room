@@ -7,7 +7,7 @@
   const setupPricesCarousel = () => {
     const modal = document.querySelector('#prices-modal');
     const popup = modal?.querySelector('.prices-popup');
-    const frame = popup?.querySelector('img[alt*="Preços"], img[src*="pre%C3%A7os"], img[src*="preços"]');
+    const frame = popup?.querySelector('img[alt*="Comprar"], img[src*="comprarnovo"], img[alt*="Preços"], img[src*="pre%C3%A7os"], img[src*="preços"]');
     const triggers = [...document.querySelectorAll('[data-open-prices]')];
     const products = [...document.querySelectorAll('.product-card .shirt-image')].map((image) => ({
       src: image.currentSrc || image.src,
@@ -24,8 +24,8 @@
     style.dataset.pricesCarousel = 'true';
     style.textContent = `
       .prices-popup{isolation:isolate}
-      .prices-popup>.prices-frame{position:relative;z-index:1;display:block!important;width:100%!important;height:auto!important;max-width:none!important;max-height:93vh!important;object-fit:contain!important}
-      .prices-carousel-stage{position:absolute;z-index:2;left:17%;right:6%;top:13%;bottom:19%;display:grid;place-items:center;overflow:hidden;pointer-events:none}
+      .prices-popup>.prices-frame{position:relative;z-index:3;display:block!important;width:100%!important;height:auto!important;max-width:none!important;max-height:93vh!important;object-fit:contain!important;pointer-events:none}
+      .prices-carousel-stage{position:absolute;z-index:1;left:17%;right:6%;top:13%;bottom:19%;display:grid;place-items:center;overflow:hidden;pointer-events:none}
       .prices-carousel-shirt{display:block!important;width:100%!important;height:100%!important;max-width:88%!important;max-height:92%!important;object-fit:contain!important;filter:drop-shadow(8px 12px 9px rgba(19,13,22,.34));transform:translateZ(0)}
       .prices-carousel-nav{position:absolute;z-index:4;top:37%;width:11%;height:25%;padding:0;border:0;background:transparent;cursor:pointer;color:transparent;font-size:0}
       .prices-carousel-nav--prev{left:17%}
