@@ -1,0 +1,45 @@
+name: Fix first card hover
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix-hover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Keep motion running and strengthen first-card hover
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          text = text.replace(
+              '.product-card:hover{animation-play-state:paused}',
+              '.product-card:hover{animation-play-state:running}.product-card:first-child:hover{transform:translateY(-16px) rotate(-1.2deg) scale(1.015);box-shadow:10px 12px 0 var(--ink)}'
+          )
+
+          if 'product-card:first-child:hover' not in text:
+              raise SystemExit('First-card hover rule was not added')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit changes and remove temporary workflow
+        run: |
+          rm .github/workflows/fix-first-card-hover.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/fix-first-card-hover.yml
+          git commit -m "fix: animate first product card on hover"
+          git push
