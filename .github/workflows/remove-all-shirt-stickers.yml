@@ -1,0 +1,60 @@
+name: Remove all shirt stickers
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove sticker PNG overlays from all shirt cards
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          text, html_count = re.subn(
+              r'<span class="top-collage" aria-hidden="true"><img[^>]*></span>',
+              '',
+              text,
+          )
+
+          css_patterns = [
+              r'\.top-collage\{[^{}]*\}',
+              r'\.top-collage img\{[^{}]*\}',
+              r'\.product-card:nth-child\(2\) \.top-collage\{[^{}]*\}',
+              r'\.product-card:nth-child\(3\) \.top-collage\{[^{}]*\}',
+          ]
+          css_count = 0
+          for pattern in css_patterns:
+              text, count = re.subn(pattern, '', text)
+              css_count += count
+
+          if html_count < 1:
+              raise SystemExit('Nenhum adesivo PNG top-collage encontrado no HTML')
+          if css_count < 1:
+              raise SystemExit('Nenhuma regra CSS top-collage encontrada')
+
+          path.write_text(text, encoding='utf-8')
+          print(f'Removidos {html_count} adesivos HTML e {css_count} regras CSS')
+          PY
+
+          rm -f .github/workflows/remove-all-shirt-stickers.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/remove-all-shirt-stickers.yml
+          git commit -m "fix: remove all PNG stickers from shirt images"
+          git push origin HEAD:main
