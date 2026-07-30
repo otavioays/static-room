@@ -1,0 +1,88 @@
+name: Fix centered product PNGs
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove only the centered product PNG overlays
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          js_path = Path('decorations.js')
+          js = js_path.read_text(encoding='utf-8')
+          js, js_count = re.subn(
+              r"\n  const productFiles = \[.*?\n  \}\);\n\n  const note =",
+              "\n\n  const note =",
+              js,
+              count=1,
+              flags=re.S,
+          )
+          if js_count != 1:
+              raise SystemExit(f'Bloco productFiles/product-scrap não encontrado: {js_count}')
+          if 'product-scrap' in js or 'has-scrap' in js:
+              raise SystemExit('Ainda restaram referências product-scrap/has-scrap no JavaScript')
+          js_path.write_text(js, encoding='utf-8')
+
+          css_path = Path('decorations.css')
+          css = css_path.read_text(encoding='utf-8')
+          css, css_count = re.subn(
+              r"\n\.product-scrap\{.*?\n\.product-visual\.has-scrap::before\{z-index:0\}\n",
+              "\n",
+              css,
+              count=1,
+              flags=re.S,
+          )
+          if css_count != 1:
+              raise SystemExit(f'CSS de product-scrap não encontrado: {css_count}')
+          if 'product-scrap' in css or 'has-scrap' in css:
+              raise SystemExit('Ainda restaram referências product-scrap/has-scrap no CSS')
+          css_path.write_text(css, encoding='utf-8')
+
+          index_path = Path('index.html')
+          html = index_path.read_text(encoding='utf-8')
+          html = html.replace(
+              '.product-card .product-sticker,.product-card [data-static-room-sticker]{display:none!important}',
+              '',
+          )
+          html = html.replace(
+              "    const removeLegacyProductStickers=()=>document.querySelectorAll('.product-card .product-sticker,.product-card [data-static-room-sticker]').forEach(node=>node.remove());const legacyStickerGrid=document.querySelector('.product-grid');if(legacyStickerGrid){removeLegacyProductStickers();new MutationObserver(removeLegacyProductStickers).observe(legacyStickerGrid,{childList:true,subtree:true})}\n",
+              '',
+          )
+          if html.count('class="top-collage"') != 3:
+              raise SystemExit(f'Os três PNGs top-collage não estão preservados: {html.count("class=\"top-collage\"")}')
+          index_path.write_text(html, encoding='utf-8')
+
+          deploy_path = Path('.github/workflows/deploy-pages.yml')
+          deploy = deploy_path.read_text(encoding='utf-8')
+          replacements = {
+              'decorations.css?v=15': 'decorations.css?v=16',
+              'decorations.js?v=40': 'decorations.js?v=41',
+          }
+          for old, new in replacements.items():
+              if old not in deploy:
+                  raise SystemExit(f'Versão esperada não encontrada no deploy: {old}')
+              deploy = deploy.replace(old, new)
+          deploy_path.write_text(deploy, encoding='utf-8')
+          PY
+
+          git rm .github/workflows/fix-centered-product-scraps.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add decorations.js decorations.css index.html .github/workflows/deploy-pages.yml
+          git commit -m "fix: remove centered product PNG overlays"
+          git push origin HEAD:main
