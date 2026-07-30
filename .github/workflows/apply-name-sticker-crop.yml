@@ -1,0 +1,81 @@
+name: Crop name stickers
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Keep only the name strips at the top edge
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          collage_css = (
+              '.top-collage{position:absolute;z-index:3;top:-3px;left:50%;width:48%;max-width:220px;height:72px;overflow:hidden;'
+              'transform:translateX(-50%) rotate(-4deg);transform-origin:center top;pointer-events:none}'
+              '.top-collage img{display:block;width:100%;height:auto;transform:translateY(-34%);filter:drop-shadow(0 4px 4px rgba(19,13,22,.2))}'
+              '.product-card:nth-child(2) .top-collage{left:50%;width:45%;max-width:205px;transform:translateX(-50%) rotate(4deg)}'
+              '.product-card:nth-child(3) .top-collage{left:50%;width:46%;max-width:210px;transform:translateX(-50%) rotate(-3deg)}'
+          )
+
+          text, css_count = re.subn(
+              r'\.top-overlay\{.*?\.product-card:nth-child\(3\) \.top-overlay\{.*?\}',
+              collage_css,
+              text,
+              count=1,
+              flags=re.S,
+          )
+          if css_count != 1:
+              raise SystemExit(f'Bloco CSS dos overlays não encontrado: {css_count}')
+
+          mobile_css = (
+              '.top-collage{width:42%;max-width:165px;height:54px}'
+              '.product-card:nth-child(2) .top-collage{width:40%;max-width:155px}'
+              '.product-card:nth-child(3) .top-collage{width:41%;max-width:160px}'
+          )
+          text, mobile_count = re.subn(
+              r'\.top-overlay\{width:38%;max-width:150px\}'
+              r'\.product-card:nth-child\(2\) \.top-overlay\{width:35%;max-width:140px\}'
+              r'\.product-card:nth-child\(3\) \.top-overlay\{width:37%;max-width:145px\}',
+              mobile_css,
+              text,
+              count=1,
+          )
+          if mobile_count != 1:
+              raise SystemExit(f'Bloco mobile dos overlays não encontrado: {mobile_count}')
+
+          overlay_pattern = re.compile(
+              r'<img class="top-overlay" src="([^"]+)" alt="[^"]*" loading="lazy" decoding="async">'
+          )
+          text, html_count = overlay_pattern.subn(
+              r'<span class="top-collage" aria-hidden="true"><img src="\1" alt="" loading="lazy" decoding="async"></span>',
+              text,
+          )
+          if html_count != 3:
+              raise SystemExit(f'Esperava 3 overlays no HTML, encontrei {html_count}')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/apply-name-sticker-crop.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/apply-name-sticker-crop.yml
+          git commit -m "style: keep only name stickers on card top edge"
+          git push origin HEAD:main
