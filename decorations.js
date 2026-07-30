@@ -38,18 +38,6 @@
   append('.archive', 'ChatGPT Image Jul 28, 2026, 12_03_47 AM (1).png', 'asset-doodle doodle-archive');
   append('.newsletter', 'espiral_static_room (1).png', 'asset-doodle doodle-news');
 
-  const productFiles = [
-    'ChatGPT Image Jul 28, 2026, 12_03_48 AM (4).png',
-    'ChatGPT Image Jul 28, 2026, 12_03_48 AM (3).png',
-    'ChatGPT Image Jul 28, 2026, 12_03_48 AM (2).png'
-  ];
-  document.querySelectorAll('.product-visual').forEach((visual, index) => {
-    const name = productFiles[index];
-    if (!name) return;
-    visual.classList.add('has-scrap');
-    visual.prepend(makeImage(name, 'product-scrap'));
-  });
-
   const note = document.querySelector('.note-card');
   if (note) note.prepend(makeImage('ChatGPT Image Jul 28, 2026, 12_03_48 AM (5).png', 'note-scrap'));
 
