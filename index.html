@@ -30,6 +30,7 @@
     .prices-popup img{display:block;width:auto;height:auto;max-width:100%;max-height:86vh;object-fit:contain}
     .prices-close{position:absolute;z-index:2;top:-16px;right:-16px;width:48px;height:48px;display:grid;place-items:center;border:3px solid var(--ink);background:var(--acid);box-shadow:5px 5px 0 var(--ink);color:var(--ink);font:900 30px/1 Arial,sans-serif;cursor:pointer;transform:rotate(5deg)}
     .prices-close:hover,.prices-close:focus-visible{transform:translate(3px,3px) rotate(1deg);box-shadow:2px 2px 0 var(--ink);outline:none}
+    @media(min-width:901px){.prices-modal{padding:14px}.prices-popup{width:min(97vw,1320px);max-height:96vh}.prices-popup img{max-height:93vh}}
     @media(max-width:620px){.prices-modal{padding:12px}.prices-popup{width:96vw}.prices-close{top:-10px;right:-4px;width:44px;height:44px}}
     /* product-card-motion */
     @keyframes sr-card-float-one{0%,100%{translate:0 0}50%{translate:0 -10px}}
