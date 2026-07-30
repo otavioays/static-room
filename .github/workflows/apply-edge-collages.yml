@@ -1,0 +1,47 @@
+name: Apply edge collages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Move collage images to the top edge
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+              'top:2%;left:50%;width:46%': 'top:-4%;left:50%;width:46%',
+              'top:1%;left:47%;width:42%': 'top:-5%;left:47%;width:42%',
+              'top:2%;left:53%;width:44%': 'top:-4.5%;left:53%;width:44%',
+          }
+
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'Trecho não encontrado: {old}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/apply-edge-collages.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/apply-edge-collages.yml
+          git commit -m "style: pin collage stickers to card top edge"
+          git push origin HEAD:main
