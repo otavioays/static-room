@@ -1,0 +1,94 @@
+name: Restore top stickers and remove legacy center overlays
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore intended top PNGs and remove old centered stickers
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          desktop_anchor = '.product-visual::before,.product-visual::after{display:none}.product-link{position:absolute;inset:0;z-index:4}'
+          desktop_replacement = (
+              '.product-visual::before,.product-visual::after{display:none}'
+              '.top-collage{position:absolute;z-index:3;top:-3px;left:50%;width:48%;max-width:220px;height:72px;overflow:hidden;transform:translateX(-50%) rotate(-4deg);transform-origin:center top;pointer-events:none}'
+              '.top-collage img{display:block;width:100%;height:auto;transform:translateY(-34%);filter:drop-shadow(0 4px 4px rgba(19,13,22,.2))}'
+              '.product-card:nth-child(2) .top-collage{left:50%;width:45%;max-width:205px;transform:translateX(-50%) rotate(4deg)}'
+              '.product-card:nth-child(3) .top-collage{left:50%;width:46%;max-width:210px;transform:translateX(-50%) rotate(-3deg)}'
+              '.product-card .product-sticker,.product-card [data-static-room-sticker]{display:none!important}'
+              '.product-link{position:absolute;inset:0;z-index:4}'
+          )
+          if desktop_anchor not in text:
+              raise SystemExit('Não encontrei o ponto exato do CSS desktop dos cards.')
+          text = text.replace(desktop_anchor, desktop_replacement, 1)
+
+          mobile_anchor = '.product-visual{min-height:420px;height:auto}.eye-poster{min-height:390px}'
+          mobile_replacement = (
+              '.product-visual{min-height:420px;height:auto}'
+              '.top-collage{width:42%;max-width:165px;height:54px}'
+              '.product-card:nth-child(2) .top-collage{width:40%;max-width:155px}'
+              '.product-card:nth-child(3) .top-collage{width:41%;max-width:160px}'
+              '.eye-poster{min-height:390px}'
+          )
+          if mobile_anchor not in text:
+              raise SystemExit('Não encontrei o ponto exato do CSS mobile dos cards.')
+          text = text.replace(mobile_anchor, mobile_replacement, 1)
+
+          cards = [
+              (
+                  '<article class="product-card" data-reveal><div class="product-visual visual-one"><img class="shirt-image" src="./cb008226-a63d-4959-9966-468942347b0a.png?v=3" alt="Camiseta Static Room, modelo 1" loading="lazy" decoding="async"></div>',
+                  '<article class="product-card" data-reveal><div class="product-visual visual-one"><img class="shirt-image" src="./cb008226-a63d-4959-9966-468942347b0a.png?v=3" alt="Camiseta Static Room, modelo 1" loading="lazy" decoding="async"><span class="top-collage" aria-hidden="true"><img src="./ChatGPT%20Image%20Jul%2030,%202026,%2001_18_22%20AM.png?v=2" alt="" loading="lazy" decoding="async"></span></div>'
+              ),
+              (
+                  '<article class="product-card" data-reveal><div class="product-visual visual-two"><img class="shirt-image" src="./ce773a28-f419-4abf-a555-2d487bce5010.png?v=3" alt="Camiseta Static Room, modelo 2" loading="lazy" decoding="async"></div>',
+                  '<article class="product-card" data-reveal><div class="product-visual visual-two"><img class="shirt-image" src="./ce773a28-f419-4abf-a555-2d487bce5010.png?v=3" alt="Camiseta Static Room, modelo 2" loading="lazy" decoding="async"><span class="top-collage" aria-hidden="true"><img src="./ChatGPT%20Image%20Jul%2030,%202026,%2001_18_26%20AM.png?v=2" alt="" loading="lazy" decoding="async"></span></div>'
+              ),
+              (
+                  '<article class="product-card" data-reveal><div class="product-visual visual-three"><img class="shirt-image" src="./monark.png?v=3" alt="Camiseta Static Room, modelo Monark" loading="lazy" decoding="async"></div>',
+                  '<article class="product-card" data-reveal><div class="product-visual visual-three"><img class="shirt-image" src="./monark.png?v=3" alt="Camiseta Static Room, modelo Monark" loading="lazy" decoding="async"><span class="top-collage" aria-hidden="true"><img src="./ChatGPT%20Image%20Jul%2030,%202026,%2001_18_28%20AM.png?v=2" alt="" loading="lazy" decoding="async"></span></div>'
+              ),
+          ]
+          for old, new in cards:
+              if old not in text:
+                  raise SystemExit(f'Card esperado não encontrado: {old[:80]}')
+              text = text.replace(old, new, 1)
+
+          script_anchor = "    const menuButton=document.querySelector('.menu-button'),nav=document.querySelector('.nav-links');"
+          legacy_cleanup = (
+              "    const removeLegacyProductStickers=()=>document.querySelectorAll('.product-card .product-sticker,.product-card [data-static-room-sticker]').forEach(node=>node.remove());"
+              "const legacyStickerGrid=document.querySelector('.product-grid');"
+              "if(legacyStickerGrid){removeLegacyProductStickers();new MutationObserver(removeLegacyProductStickers).observe(legacyStickerGrid,{childList:true,subtree:true})}\n"
+          )
+          if script_anchor not in text:
+              raise SystemExit('Não encontrei o início do script principal.')
+          text = text.replace(script_anchor, legacy_cleanup + script_anchor, 1)
+
+          if text.count('class="top-collage"') != 3:
+              raise SystemExit('A restauração não resultou em exatamente três top-collage.')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/restore-top-remove-legacy-center.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/restore-top-remove-legacy-center.yml
+          git commit -m "fix: restore top PNGs and remove legacy centered stickers"
+          git push origin HEAD:main
