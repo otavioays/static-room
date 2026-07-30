@@ -1,4 +1,15 @@
 (() => {
+  const purgeCenteredProductPngs = () => {
+    document.querySelectorAll('.product-scrap').forEach((node) => node.remove());
+    document.querySelectorAll('.product-visual.has-scrap').forEach((node) => node.classList.remove('has-scrap'));
+  };
+
+  purgeCenteredProductPngs();
+  new MutationObserver(purgeCenteredProductPngs).observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+
   const panel = document.querySelector('.hero-console, .reality-loading-slot');
   if (!panel) return;
 
