@@ -28,7 +28,7 @@
     .product-card.visible{will-change:translate;animation:sr-card-float-one 5.6s ease-in-out infinite}
     .product-card.visible:nth-child(2){animation-name:sr-card-float-two;animation-duration:6.4s;animation-delay:-1.7s}
     .product-card.visible:nth-child(3){animation-name:sr-card-float-three;animation-duration:5.9s;animation-delay:-3.1s}
-    .product-card:hover{animation-play-state:paused}
+    .product-card:hover{animation-play-state:running}.product-card:first-child:hover{transform:translateY(-16px) rotate(-1.2deg) scale(1.015);box-shadow:10px 12px 0 var(--ink)}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.product-card{translate:none!important}}
   </style>
 </head>
