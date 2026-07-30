@@ -1,0 +1,60 @@
+name: Fix full top stickers
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Show each top sticker completely
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          replacements = {
+              '.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.5vw,34px);margin-top:55px}':
+              '.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.5vw,34px);margin-top:92px}',
+
+              '.top-collage{position:absolute;z-index:12;top:-48px;left:-10px;width:50%;max-width:230px;height:auto;overflow:visible;transform:rotate(-4deg);transform-origin:left bottom;pointer-events:none}':
+              '.top-collage{position:absolute;z-index:12;top:-26px;left:-10px;width:50%;max-width:230px;height:auto;overflow:visible;line-height:0;transform:rotate(-4deg);transform-origin:left bottom;pointer-events:none}',
+
+              '.top-collage img{display:block;width:100%;height:auto;transform:none;filter:drop-shadow(0 5px 5px rgba(19,13,22,.28))}':
+              '.top-collage img{display:block;width:100%;height:auto;max-width:none;object-fit:contain;transform:none;filter:drop-shadow(0 5px 5px rgba(19,13,22,.28))}',
+
+              '.product-grid{grid-template-columns:1fr}.product-card{min-height:auto}.product-visual{min-height:420px;height:auto}.top-collage{top:-38px;left:-8px;width:44%;max-width:180px;height:auto}':
+              '.product-grid{grid-template-columns:1fr;row-gap:72px;margin-top:70px}.product-card{min-height:auto}.product-visual{min-height:420px;height:auto}.top-collage{top:-20px;left:-8px;width:44%;max-width:180px;height:auto;overflow:visible}'
+          }
+
+          for old, new in replacements.items():
+              if old not in html:
+                  raise SystemExit(f'Expected CSS not found: {old[:100]}')
+              html = html.replace(old, new, 1)
+
+          if 'top:-48px' in html or 'top:-38px' in html:
+              raise SystemExit('Old clipped sticker positions still remain')
+          if 'margin-top:92px' not in html or 'top:-26px' not in html:
+              raise SystemExit('New sticker spacing was not applied')
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+          git rm .github/workflows/fix-full-top-stickers.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "style: show full top sticker artwork"
+          git push origin HEAD:main
