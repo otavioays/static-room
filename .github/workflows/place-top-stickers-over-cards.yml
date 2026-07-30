@@ -1,0 +1,50 @@
+name: Place top stickers over cards
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Move top stickers above card borders
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          old = ".top-collage{position:absolute;z-index:8;top:-26px;left:-18px;width:48%;max-width:220px;height:78px;overflow:hidden;transform:rotate(-4deg);transform-origin:left top;pointer-events:none}.top-collage img{display:block;width:100%;height:auto;transform:translateY(-34%);filter:drop-shadow(0 4px 4px rgba(19,13,22,.2))}.product-card:nth-child(2) .top-collage{left:-18px;width:45%;max-width:205px;transform:rotate(4deg)}.product-card:nth-child(3) .top-collage{left:-18px;width:46%;max-width:210px;transform:rotate(-3deg)}"
+          new = ".top-collage{position:absolute;z-index:12;top:-48px;left:-10px;width:50%;max-width:230px;height:auto;overflow:visible;transform:rotate(-4deg);transform-origin:left bottom;pointer-events:none}.top-collage img{display:block;width:100%;height:auto;transform:none;filter:drop-shadow(0 5px 5px rgba(19,13,22,.28))}.product-card:nth-child(2) .top-collage{left:-10px;width:48%;max-width:220px;transform:rotate(4deg)}.product-card:nth-child(3) .top-collage{left:-10px;width:49%;max-width:225px;transform:rotate(-3deg)}"
+
+          if old not in html:
+              raise SystemExit('CSS desktop atual de top-collage não encontrado')
+          html = html.replace(old, new, 1)
+
+          old_mobile = ".top-collage{top:-20px;left:-14px;width:42%;max-width:165px;height:60px}.product-card:nth-child(2) .top-collage{left:-14px;width:40%;max-width:155px}.product-card:nth-child(3) .top-collage{left:-14px;width:41%;max-width:160px}"
+          new_mobile = ".top-collage{top:-38px;left:-8px;width:44%;max-width:180px;height:auto}.product-card:nth-child(2) .top-collage{left:-8px;width:42%;max-width:170px}.product-card:nth-child(3) .top-collage{left:-8px;width:43%;max-width:175px}"
+
+          if old_mobile not in html:
+              raise SystemExit('CSS mobile atual de top-collage não encontrado')
+          html = html.replace(old_mobile, new_mobile, 1)
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+          git rm .github/workflows/place-top-stickers-over-cards.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "style: place sticker artwork over card borders"
+          git push origin HEAD:main
