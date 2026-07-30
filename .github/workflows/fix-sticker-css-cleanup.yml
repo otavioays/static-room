@@ -1,0 +1,53 @@
+name: Repair sticker CSS cleanup
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Repair selectors left after sticker removal
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+              '.product-card:nth-child(2) .product-card:nth-child(3) .product-link': '.product-link',
+              '.product-card:nth-child(2) .product-card:nth-child(3) .eye-poster': '.eye-poster',
+          }
+
+          changed = 0
+          for old, new in replacements.items():
+              count = text.count(old)
+              text = text.replace(old, new)
+              changed += count
+
+          if changed != 2:
+              raise SystemExit(f'Esperava corrigir 2 seletores, corrigi {changed}')
+
+          if 'top-collage' in text:
+              raise SystemExit('Ainda existem referências top-collage no index.html')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/fix-sticker-css-cleanup.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/fix-sticker-css-cleanup.yml
+          git commit -m "fix: repair CSS after removing shirt stickers"
+          git push origin HEAD:main
