@@ -1,0 +1,99 @@
+name: Fix top collage layer
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Move top collage outside product image layer
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          # Move each top-collage span out of .product-visual so it is not clipped
+          # or painted as part of the shirt image.
+          pattern = re.compile(
+              r'(<article class="product-card" data-reveal>)'
+              r'(<div class="product-visual [^"]+">)'
+              r'(.*?)'
+              r'(<span class="top-collage".*?</span>)'
+              r'(</div><a class="product-link")',
+              re.S,
+          )
+          html, moved = pattern.subn(r'\1\4\2\3\5', html)
+          if moved != 3:
+              raise SystemExit(f'Esperava mover 3 top-collage, movi {moved}')
+
+          # Let the sticker escape the card border while keeping the shirt image
+          # clipped by .product-visual.
+          html, card_count = re.subn(
+              r'(\.product-card\{[^{}]*?)overflow:hidden',
+              r'\1overflow:visible',
+              html,
+              count=1,
+          )
+          if card_count != 1:
+              raise SystemExit(f'Não encontrei overflow do product-card: {card_count}')
+
+          replacements = {
+              r'\.top-collage\{[^{}]*\}': '.top-collage{position:absolute;z-index:8;top:-26px;left:-18px;width:48%;max-width:220px;height:78px;overflow:hidden;transform:rotate(-4deg);transform-origin:left top;pointer-events:none}',
+              r'\.product-card:nth-child\(2\) \.top-collage\{[^{}]*\}': '.product-card:nth-child(2) .top-collage{left:-18px;width:45%;max-width:205px;transform:rotate(4deg)}',
+              r'\.product-card:nth-child\(3\) \.top-collage\{[^{}]*\}': '.product-card:nth-child(3) .top-collage{left:-18px;width:46%;max-width:210px;transform:rotate(-3deg)}',
+          }
+          for selector, replacement in replacements.items():
+              html, count = re.subn(selector, replacement, html, count=1)
+              if count != 1:
+                  raise SystemExit(f'Falha ao atualizar CSS: {selector} -> {count}')
+
+          html = html.replace(
+              '.top-collage{width:42%;max-width:165px;height:54px}',
+              '.top-collage{top:-20px;left:-14px;width:42%;max-width:165px;height:60px}',
+              1,
+          )
+          html = html.replace(
+              '.product-card:nth-child(2) .top-collage{width:40%;max-width:155px}',
+              '.product-card:nth-child(2) .top-collage{left:-14px;width:40%;max-width:155px}',
+              1,
+          )
+          html = html.replace(
+              '.product-card:nth-child(3) .top-collage{width:41%;max-width:160px}',
+              '.product-card:nth-child(3) .top-collage{left:-14px;width:41%;max-width:160px}',
+              1,
+          )
+
+          # Verify the final structure: sticker first, visual second.
+          direct = re.findall(
+              r'<article class="product-card" data-reveal><span class="top-collage".*?</span><div class="product-visual',
+              html,
+              flags=re.S,
+          )
+          if len(direct) != 3:
+              raise SystemExit(f'Estrutura final inválida: {len(direct)} stickers fora da imagem')
+          if re.search(r'<div class="product-visual [^"]+">.*?<span class="top-collage"', html, re.S):
+              raise SystemExit('Ainda existe top-collage dentro de product-visual')
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+          git rm .github/workflows/fix-top-collage-layer.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "style: place top stickers above card corners"
+          git push origin HEAD:main
