@@ -1,0 +1,48 @@
+name: Apply top collage stickers
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Style top images as loose collages
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          css_old = '.top-overlay{position:absolute;z-index:3;top:0;left:50%;width:58%;max-width:260px;height:auto;display:block;object-fit:contain;transform:translateX(-50%);pointer-events:none}'
+          css_new = '.top-overlay{position:absolute;z-index:3;top:2%;left:50%;width:46%;max-width:205px;height:auto;display:block;object-fit:contain;transform:translateX(-50%) rotate(-7deg);transform-origin:center;filter:drop-shadow(0 5px 5px rgba(19,13,22,.22));pointer-events:none}.product-card:nth-child(2) .top-overlay{top:1%;left:47%;width:42%;max-width:190px;transform:translateX(-50%) rotate(8deg)}.product-card:nth-child(3) .top-overlay{top:2%;left:53%;width:44%;max-width:198px;transform:translateX(-50%) rotate(-4deg)}'
+          if css_old not in text:
+              raise SystemExit('CSS atual dos overlays não encontrado')
+          text = text.replace(css_old, css_new, 1)
+
+          mobile_old = '.top-overlay{width:52%;max-width:220px}.eye-poster'
+          mobile_new = '.top-overlay{width:38%;max-width:150px}.product-card:nth-child(2) .top-overlay{width:35%;max-width:140px}.product-card:nth-child(3) .top-overlay{width:37%;max-width:145px}.eye-poster'
+          if mobile_old not in text:
+              raise SystemExit('CSS mobile dos overlays não encontrado')
+          text = text.replace(mobile_old, mobile_new, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/apply-top-collage-stickers.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/apply-top-collage-stickers.yml
+          git commit -m "style: turn top images into collage stickers"
+          git push origin HEAD:main
