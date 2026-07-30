@@ -1,0 +1,46 @@
+name: Remove middle shirt sticker
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove sticker from the middle shirt card
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          pattern = re.compile(
+              r'(<div class="product-visual visual-two"><img class="shirt-image"[^>]+>)'
+              r'<span class="top-collage" aria-hidden="true"><img[^>]+></span>'
+              r'(</div>)'
+          )
+          text, count = pattern.subn(r'\1\2', text, count=1)
+          if count != 1:
+              raise SystemExit(f'Adesivo da camiseta central não encontrado: {count}')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/remove-middle-shirt-sticker.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/remove-middle-shirt-sticker.yml
+          git commit -m "fix: remove middle shirt sticker"
+          git push origin HEAD:main
