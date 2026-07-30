@@ -63,8 +63,9 @@ jobs:
               "    const removeLegacyProductStickers=()=>document.querySelectorAll('.product-card .product-sticker,.product-card [data-static-room-sticker]').forEach(node=>node.remove());const legacyStickerGrid=document.querySelector('.product-grid');if(legacyStickerGrid){removeLegacyProductStickers();new MutationObserver(removeLegacyProductStickers).observe(legacyStickerGrid,{childList:true,subtree:true})}\n",
               '',
           )
-          if html.count('class="top-collage"') != 3:
-              raise SystemExit(f'Os três PNGs top-collage não estão preservados: {html.count("class=\"top-collage\"")}')
+          top_collage_count = html.count('class="top-collage"')
+          if top_collage_count != 3:
+              raise SystemExit(f'Os três PNGs top-collage não estão preservados: {top_collage_count}')
           index_path.write_text(html, encoding='utf-8')
 
           deploy_path = Path('.github/workflows/deploy-pages.yml')
